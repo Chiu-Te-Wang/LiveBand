@@ -242,5 +242,28 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				m_MoveSpeedMultiplier = 0f;
 			}
 		}
+		void Update(){
+			if (Input.GetMouseButtonDown(0)){
+				//Pressed left click
+				RaycastHit hit;
+				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+				if (Physics.Raycast(ray, out hit, 1000)){
+					if(hit.collider.tag == "Floor"){
+						print(hit.point);
+						//transform.position = hit.point;
+						GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+						sphere.transform.position = hit.point;
+						moveTo(transform.position,hit.point);
+;					}
+				}
+			}
+		}
+		void moveTo(Vector3 posFrom, Vector3 posTo){
+			if (!(posFrom.x == posTo.x && posFrom.z == posTo.z)) {
+				Vector3 myMove = new Vector3(Mathf.Clamp((posFrom.x-posTo.x),-1.0f,1.0f),0f,Mathf.Clamp((posFrom.z-posTo.z),-1.0f,1.0f));
+				Move (myMove, false ,false);
+				//StartCoroutine(moveTo(transform.position,posTo));
+			}
+		}
 	}
 }
