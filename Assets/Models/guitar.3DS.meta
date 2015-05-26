@@ -1,0 +1,704 @@
+fileFormatVersion: 2
+guid: 56816436fd7c47c45806f08fbda41067
+timeCreated: 1432197274
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: back plat0
+    100002: back plate
+    100004: backplugs
+    100006: Capsule01
+    100008: Capsule02
+    100010: Capsule03
+    100012: Capsule04
+    100014: Capsule05
+    100016: Capsule06
+    100018: centre bol
+    100020: Circle01
+    100022: Circle02
+    100024: Circle03
+    100026: Circle04
+    100028: Circle05
+    100030: Circle06
+    100032: Circle07
+    100034: Circle08
+    100036: Circle09
+    100038: Circle10
+    100040: Circle11
+    100042: Circle12
+    100044: Circle13
+    100046: Circle14
+    100048: Circle15
+    100050: Circle16
+    100052: Circle17
+    100054: Circle18
+    100056: Circle19
+    100058: Circle20
+    100060: Circle21
+    100062: Circle22
+    100064: Circle23
+    100066: Circle24
+    100068: Cylinder02
+    100070: Cylinder04
+    100072: Cylinder05
+    100074: Cylinder18
+    100076: Cylinder19
+    100078: Cylinder20
+    100080: Cylinder21
+    100082: Cylinder22
+    100084: Cylinder23
+    100086: Cylinder31
+    100088: Cylinder37
+    100090: Cylinder39
+    100092: Cylinder40
+    100094: Cylinder42
+    100096: Cylinder44
+    100098: Cylinder45
+    100100: Cylinder46
+    100102: Cylinder48
+    100104: Cylinder49
+    100106: Cylinder51
+    100108: Cylinder52
+    100110: Cylinder55
+    100112: Cylinder56
+    100114: Cylinder57
+    100116: Cylinder58
+    100118: Cylinder59
+    100120: Cylinder60
+    100122: Cylinder61
+    100124: Cylinder62
+    100126: Cylinder63
+    100128: Cylinder64
+    100130: Cylinder65
+    100132: Cylinder66
+    100134: Cylinder67
+    100136: Cylinder68
+    100138: Cylinder69
+    100140: Cylinder70
+    100142: Cylinder71
+    100144: Cylinder72
+    100146: Cylinder73
+    100148: end string
+    100150: frets
+    100152: //RootNode
+    100154: guitarhelp
+    100156: guitrarbas
+    100158: head plate
+    100160: Line01
+    100162: Line02
+    100164: Line03
+    100166: Line04
+    100168: Line05
+    100170: Line06
+    100172: neck end
+    100174: Nob 01
+    100176: Nob 02
+    100178: Object01
+    100180: Object02
+    100182: Object03
+    100184: Pickup pla
+    100186: pickups
+    100188: Plane03
+    100190: Plane04
+    100192: Plane07
+    100194: Plane16
+    100196: Plane17
+    100198: Plane18
+    100200: Plane19
+    100202: Plane20
+    100204: Plane21
+    100206: Plane22
+    100208: power port
+    100210: screws
+    100212: screws0
+    100214: Sphere01
+    100216: Spring01
+    100218: Spring02
+    100220: Spring03
+    100222: Spring04
+    100224: Spring05
+    100226: spring06
+    100228: strap fix0
+    100230: strap fixi
+    100232: string 01
+    100234: string 02
+    100236: string 03
+    100238: string 04
+    100240: string 05
+    100242: string 06
+    100244: string bas
+    100246: string hol
+    100248: switch
+    100250: tuner 01
+    100252: tuner 02
+    100254: tuner 03
+    100256: tuner 04
+    100258: tuner 05
+    100260: tuner 06
+    100262: 'tuner nob '
+    100264: tuner nob0
+    100266: tuner nob1
+    100268: tuner nob2
+    100270: tuner nob3
+    100272: tuner nob4
+    100274: wood on ne
+    400000: back plat0
+    400002: back plate
+    400004: backplugs
+    400006: Capsule01
+    400008: Capsule02
+    400010: Capsule03
+    400012: Capsule04
+    400014: Capsule05
+    400016: Capsule06
+    400018: centre bol
+    400020: Circle01
+    400022: Circle02
+    400024: Circle03
+    400026: Circle04
+    400028: Circle05
+    400030: Circle06
+    400032: Circle07
+    400034: Circle08
+    400036: Circle09
+    400038: Circle10
+    400040: Circle11
+    400042: Circle12
+    400044: Circle13
+    400046: Circle14
+    400048: Circle15
+    400050: Circle16
+    400052: Circle17
+    400054: Circle18
+    400056: Circle19
+    400058: Circle20
+    400060: Circle21
+    400062: Circle22
+    400064: Circle23
+    400066: Circle24
+    400068: Cylinder02
+    400070: Cylinder04
+    400072: Cylinder05
+    400074: Cylinder18
+    400076: Cylinder19
+    400078: Cylinder20
+    400080: Cylinder21
+    400082: Cylinder22
+    400084: Cylinder23
+    400086: Cylinder31
+    400088: Cylinder37
+    400090: Cylinder39
+    400092: Cylinder40
+    400094: Cylinder42
+    400096: Cylinder44
+    400098: Cylinder45
+    400100: Cylinder46
+    400102: Cylinder48
+    400104: Cylinder49
+    400106: Cylinder51
+    400108: Cylinder52
+    400110: Cylinder55
+    400112: Cylinder56
+    400114: Cylinder57
+    400116: Cylinder58
+    400118: Cylinder59
+    400120: Cylinder60
+    400122: Cylinder61
+    400124: Cylinder62
+    400126: Cylinder63
+    400128: Cylinder64
+    400130: Cylinder65
+    400132: Cylinder66
+    400134: Cylinder67
+    400136: Cylinder68
+    400138: Cylinder69
+    400140: Cylinder70
+    400142: Cylinder71
+    400144: Cylinder72
+    400146: Cylinder73
+    400148: end string
+    400150: frets
+    400152: //RootNode
+    400154: guitarhelp
+    400156: guitrarbas
+    400158: head plate
+    400160: Line01
+    400162: Line02
+    400164: Line03
+    400166: Line04
+    400168: Line05
+    400170: Line06
+    400172: neck end
+    400174: Nob 01
+    400176: Nob 02
+    400178: Object01
+    400180: Object02
+    400182: Object03
+    400184: Pickup pla
+    400186: pickups
+    400188: Plane03
+    400190: Plane04
+    400192: Plane07
+    400194: Plane16
+    400196: Plane17
+    400198: Plane18
+    400200: Plane19
+    400202: Plane20
+    400204: Plane21
+    400206: Plane22
+    400208: power port
+    400210: screws
+    400212: screws0
+    400214: Sphere01
+    400216: Spring01
+    400218: Spring02
+    400220: Spring03
+    400222: Spring04
+    400224: Spring05
+    400226: spring06
+    400228: strap fix0
+    400230: strap fixi
+    400232: string 01
+    400234: string 02
+    400236: string 03
+    400238: string 04
+    400240: string 05
+    400242: string 06
+    400244: string bas
+    400246: string hol
+    400248: switch
+    400250: tuner 01
+    400252: tuner 02
+    400254: tuner 03
+    400256: tuner 04
+    400258: tuner 05
+    400260: tuner 06
+    400262: 'tuner nob '
+    400264: tuner nob0
+    400266: tuner nob1
+    400268: tuner nob2
+    400270: tuner nob3
+    400272: tuner nob4
+    400274: wood on ne
+    2300000: back plat0
+    2300002: back plate
+    2300004: backplugs
+    2300006: Capsule01
+    2300008: Capsule02
+    2300010: Capsule03
+    2300012: Capsule04
+    2300014: Capsule05
+    2300016: Capsule06
+    2300018: Circle01
+    2300020: Circle02
+    2300022: Circle03
+    2300024: Circle04
+    2300026: Circle05
+    2300028: Circle06
+    2300030: Circle07
+    2300032: Circle08
+    2300034: Circle09
+    2300036: Circle10
+    2300038: Circle11
+    2300040: Circle12
+    2300042: Circle13
+    2300044: Circle14
+    2300046: Circle15
+    2300048: Circle16
+    2300050: Circle17
+    2300052: Circle18
+    2300054: Circle19
+    2300056: Circle20
+    2300058: Circle21
+    2300060: Circle22
+    2300062: Circle23
+    2300064: Circle24
+    2300066: Cylinder02
+    2300068: Cylinder04
+    2300070: Cylinder05
+    2300072: Cylinder18
+    2300074: Cylinder19
+    2300076: Cylinder20
+    2300078: Cylinder21
+    2300080: Cylinder22
+    2300082: Cylinder23
+    2300084: Cylinder31
+    2300086: Cylinder37
+    2300088: Cylinder39
+    2300090: Cylinder40
+    2300092: Cylinder42
+    2300094: Cylinder44
+    2300096: Cylinder45
+    2300098: Cylinder46
+    2300100: Cylinder48
+    2300102: Cylinder49
+    2300104: Cylinder51
+    2300106: Cylinder52
+    2300108: Cylinder55
+    2300110: Cylinder56
+    2300112: Cylinder57
+    2300114: Cylinder58
+    2300116: Cylinder59
+    2300118: Cylinder60
+    2300120: Cylinder61
+    2300122: Cylinder62
+    2300124: Cylinder63
+    2300126: Cylinder64
+    2300128: Cylinder65
+    2300130: Cylinder66
+    2300132: Cylinder67
+    2300134: Cylinder68
+    2300136: Cylinder69
+    2300138: Cylinder70
+    2300140: Cylinder71
+    2300142: Cylinder72
+    2300144: Cylinder73
+    2300146: frets
+    2300148: guitarhelp
+    2300150: guitrarbas
+    2300152: head plate
+    2300154: Line01
+    2300156: Line02
+    2300158: Line03
+    2300160: Line04
+    2300162: Line05
+    2300164: Line06
+    2300166: neck end
+    2300168: Object01
+    2300170: Object02
+    2300172: Object03
+    2300174: Plane03
+    2300176: Plane04
+    2300178: Plane07
+    2300180: Plane16
+    2300182: Plane17
+    2300184: Plane18
+    2300186: Plane19
+    2300188: Plane20
+    2300190: Plane21
+    2300192: Plane22
+    2300194: power port
+    2300196: Sphere01
+    2300198: Spring01
+    2300200: Spring02
+    2300202: Spring03
+    2300204: Spring04
+    2300206: Spring05
+    2300208: spring06
+    2300210: strap fix0
+    2300212: strap fixi
+    2300214: string 01
+    2300216: string 02
+    2300218: string 03
+    2300220: string 04
+    2300222: string 05
+    2300224: string 06
+    2300226: string bas
+    2300228: 'tuner nob '
+    2300230: tuner nob0
+    2300232: tuner nob1
+    2300234: tuner nob2
+    2300236: tuner nob3
+    2300238: tuner nob4
+    2300240: wood on ne
+    3300000: back plat0
+    3300002: back plate
+    3300004: backplugs
+    3300006: Capsule01
+    3300008: Capsule02
+    3300010: Capsule03
+    3300012: Capsule04
+    3300014: Capsule05
+    3300016: Capsule06
+    3300018: Circle01
+    3300020: Circle02
+    3300022: Circle03
+    3300024: Circle04
+    3300026: Circle05
+    3300028: Circle06
+    3300030: Circle07
+    3300032: Circle08
+    3300034: Circle09
+    3300036: Circle10
+    3300038: Circle11
+    3300040: Circle12
+    3300042: Circle13
+    3300044: Circle14
+    3300046: Circle15
+    3300048: Circle16
+    3300050: Circle17
+    3300052: Circle18
+    3300054: Circle19
+    3300056: Circle20
+    3300058: Circle21
+    3300060: Circle22
+    3300062: Circle23
+    3300064: Circle24
+    3300066: Cylinder02
+    3300068: Cylinder04
+    3300070: Cylinder05
+    3300072: Cylinder18
+    3300074: Cylinder19
+    3300076: Cylinder20
+    3300078: Cylinder21
+    3300080: Cylinder22
+    3300082: Cylinder23
+    3300084: Cylinder31
+    3300086: Cylinder37
+    3300088: Cylinder39
+    3300090: Cylinder40
+    3300092: Cylinder42
+    3300094: Cylinder44
+    3300096: Cylinder45
+    3300098: Cylinder46
+    3300100: Cylinder48
+    3300102: Cylinder49
+    3300104: Cylinder51
+    3300106: Cylinder52
+    3300108: Cylinder55
+    3300110: Cylinder56
+    3300112: Cylinder57
+    3300114: Cylinder58
+    3300116: Cylinder59
+    3300118: Cylinder60
+    3300120: Cylinder61
+    3300122: Cylinder62
+    3300124: Cylinder63
+    3300126: Cylinder64
+    3300128: Cylinder65
+    3300130: Cylinder66
+    3300132: Cylinder67
+    3300134: Cylinder68
+    3300136: Cylinder69
+    3300138: Cylinder70
+    3300140: Cylinder71
+    3300142: Cylinder72
+    3300144: Cylinder73
+    3300146: frets
+    3300148: guitarhelp
+    3300150: guitrarbas
+    3300152: head plate
+    3300154: Line01
+    3300156: Line02
+    3300158: Line03
+    3300160: Line04
+    3300162: Line05
+    3300164: Line06
+    3300166: neck end
+    3300168: Object01
+    3300170: Object02
+    3300172: Object03
+    3300174: Plane03
+    3300176: Plane04
+    3300178: Plane07
+    3300180: Plane16
+    3300182: Plane17
+    3300184: Plane18
+    3300186: Plane19
+    3300188: Plane20
+    3300190: Plane21
+    3300192: Plane22
+    3300194: power port
+    3300196: Sphere01
+    3300198: Spring01
+    3300200: Spring02
+    3300202: Spring03
+    3300204: Spring04
+    3300206: Spring05
+    3300208: spring06
+    3300210: strap fix0
+    3300212: strap fixi
+    3300214: string 01
+    3300216: string 02
+    3300218: string 03
+    3300220: string 04
+    3300222: string 05
+    3300224: string 06
+    3300226: string bas
+    3300228: 'tuner nob '
+    3300230: tuner nob0
+    3300232: tuner nob1
+    3300234: tuner nob2
+    3300236: tuner nob3
+    3300238: tuner nob4
+    3300240: wood on ne
+    4300000: Capsule03
+    4300002: Capsule02
+    4300004: Capsule01
+    4300006: Capsule04
+    4300008: Capsule05
+    4300010: Capsule06
+    4300012: backplugs
+    4300014: string bas
+    4300016: guitarhelp
+    4300018: strap fixi
+    4300020: Object02
+    4300022: Cylinder04
+    4300024: Object03
+    4300026: Cylinder71
+    4300028: Object01
+    4300030: Sphere01
+    4300032: Cylinder05
+    4300034: Plane07
+    4300036: Plane18
+    4300038: Plane19
+    4300040: Plane20
+    4300042: Plane21
+    4300044: Plane22
+    4300046: Cylinder02
+    4300048: Cylinder70
+    4300050: back plate
+    4300052: power port
+    4300054: string 06
+    4300056: string 05
+    4300058: string 04
+    4300060: string 03
+    4300062: string 02
+    4300064: string 01
+    4300066: Line06
+    4300068: Line05
+    4300070: Line04
+    4300072: Line03
+    4300074: Line02
+    4300076: Line01
+    4300078: back plat0
+    4300080: Plane16
+    4300082: Circle24
+    4300084: Circle22
+    4300086: Circle20
+    4300088: Circle18
+    4300090: Circle16
+    4300092: Circle13
+    4300094: Circle14
+    4300096: Circle15
+    4300098: Circle17
+    4300100: Circle19
+    4300102: Circle21
+    4300104: Circle23
+    4300106: Circle12
+    4300108: Circle10
+    4300110: Circle08
+    4300112: Circle06
+    4300114: Circle04
+    4300116: Circle01
+    4300118: Circle02
+    4300120: Circle03
+    4300122: Circle05
+    4300124: Circle07
+    4300126: Circle09
+    4300128: Circle11
+    4300130: Plane03
+    4300132: Plane04
+    4300134: Plane17
+    4300136: Cylinder73
+    4300138: Cylinder72
+    4300140: Cylinder59
+    4300142: Cylinder60
+    4300144: Cylinder58
+    4300146: Cylinder57
+    4300148: Cylinder56
+    4300150: Cylinder55
+    4300152: Cylinder63
+    4300154: Cylinder62
+    4300156: Cylinder61
+    4300158: Cylinder66
+    4300160: Cylinder65
+    4300162: Cylinder64
+    4300164: Cylinder68
+    4300166: Cylinder67
+    4300168: Cylinder69
+    4300170: frets
+    4300172: wood on ne
+    4300174: strap fix0
+    4300176: head plate
+    4300178: neck end
+    4300180: Spring01
+    4300182: Spring02
+    4300184: Spring03
+    4300186: Spring04
+    4300188: Spring05
+    4300190: spring06
+    4300192: Cylinder31
+    4300194: Cylinder37
+    4300196: 'tuner nob '
+    4300198: Cylinder18
+    4300200: Cylinder19
+    4300202: Cylinder39
+    4300204: Cylinder40
+    4300206: tuner nob0
+    4300208: Cylinder20
+    4300210: Cylinder42
+    4300212: tuner nob1
+    4300214: Cylinder44
+    4300216: Cylinder48
+    4300218: Cylinder49
+    4300220: tuner nob2
+    4300222: Cylinder22
+    4300224: Cylinder45
+    4300226: Cylinder46
+    4300228: tuner nob3
+    4300230: Cylinder21
+    4300232: Cylinder23
+    4300234: Cylinder51
+    4300236: Cylinder52
+    4300238: tuner nob4
+    4300240: guitrarbas
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
