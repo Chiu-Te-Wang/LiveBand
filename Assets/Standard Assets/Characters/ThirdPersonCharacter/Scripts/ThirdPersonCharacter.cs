@@ -30,6 +30,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		bool m_Crouching;
 		//for click move
 		Vector3 posTo;
+		GameObject moveMark;
+		public Material moveMarkMaterial;
 
 
 		void Start()
@@ -243,6 +245,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				transform.rotation = new Quaternion(0f,0f,0f,0f);
 				m_MoveSpeedMultiplier = 0f;
 				CancelInvoke("moveTo");
+				if(!(moveMark == null)){ Destroy(moveMark); }
 			}
 		}
 		void Update(){
@@ -252,9 +255,14 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 				if (Physics.Raycast(ray, out hit, 1000)){
 					if(hit.collider.tag == "Floor"){
-						//transform.position = hit.point;
-						//GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-						//sphere.transform.position = hit.point;
+						if(!(moveMark == null)){ Destroy(moveMark); }
+						moveMark = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+						moveMark.name = "moveMark";
+						moveMark.transform.localScale = new Vector3(5f,0.5f,5f);
+						moveMark.transform.position = new Vector3(hit.point.x, -0.4f, hit.point.z);
+						moveMark.GetComponent<Collider>().enabled = false;
+						Renderer rend = moveMark.GetComponent<Renderer>();
+						rend.material = moveMarkMaterial;
 						posTo = hit.point;
 						moveTo();
 ;					}
@@ -269,6 +277,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				Invoke ("moveTo", 0.001f);
 			} else {
 				CancelInvoke("moveTo");
+				if(!(moveMark == null)){ Destroy(moveMark); }
 			}
 		}
 	}
