@@ -28,6 +28,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		Vector3 m_CapsuleCenter;
 		CapsuleCollider m_Capsule;
 		bool m_Crouching;
+		//for click move
+		Vector3 posTo;
 
 
 		void Start()
@@ -240,6 +242,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 				transform.rotation = new Quaternion(0f,0f,0f,0f);
 				m_MoveSpeedMultiplier = 0f;
+				CancelInvoke("moveTo");
 			}
 		}
 		void Update(){
@@ -249,20 +252,23 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 				if (Physics.Raycast(ray, out hit, 1000)){
 					if(hit.collider.tag == "Floor"){
-						print(hit.point);
 						//transform.position = hit.point;
-						GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-						sphere.transform.position = hit.point;
-						moveTo(transform.position,hit.point);
+						//GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+						//sphere.transform.position = hit.point;
+						posTo = hit.point;
+						moveTo();
 ;					}
 				}
 			}
 		}
-		void moveTo(Vector3 posFrom, Vector3 posTo){
-			if (!(posFrom.x == posTo.x && posFrom.z == posTo.z)) {
-				Vector3 myMove = new Vector3(Mathf.Clamp((posFrom.x-posTo.x),-1.0f,1.0f),0f,Mathf.Clamp((posFrom.z-posTo.z),-1.0f,1.0f));
-				Move (myMove, false ,false);
-				//StartCoroutine(moveTo(transform.position,posTo));
+		void moveTo(){
+			Vector3 posFrom = transform.position;
+			if (!(Mathf.Abs(posFrom.x - posTo.x)<0.05 && Mathf.Abs(posFrom.z - posTo.z)<0.05 )) {
+				Vector3 myMove = new Vector3 (Mathf.Clamp ((posTo.x - posFrom.x), -1.0f, 1.0f), 0f, Mathf.Clamp ((posTo.z - posFrom.z), -1.0f, 1.0f));
+				Move (myMove, false, false);
+				Invoke ("moveTo", 0.001f);
+			} else {
+				CancelInvoke("moveTo");
 			}
 		}
 	}

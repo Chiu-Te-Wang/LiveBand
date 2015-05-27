@@ -5,7 +5,8 @@ public class spotlightMove : MonoBehaviour {
 
 	// Use this for initialization
 	public float tumble = 10f;
-	public float speed = 0.005f;
+	//public float speed = 0.005f;
+	public float speed2 = 0.5f;
 	void Start () {
 		InvokeRepeating("rotateSpotlight", 0, 0.2f);
 	}
@@ -24,6 +25,7 @@ public class spotlightMove : MonoBehaviour {
 		//if (xRotation < -125f/360f) { zRotation = -125f/360f; }
 		//if (xRotation > 60f/360f) { zRotation = 60f/360f; }
 		Quaternion newRotation = new Quaternion (xRotation, yRotation, zRotation,0f);
-		transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.time*speed);
+		//transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.time*0.005f);
+		transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime*speed2);
 	}
 }

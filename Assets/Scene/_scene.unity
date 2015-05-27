@@ -491,7 +491,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tumble: 10
-  speed: .00499999989
+  speed2: .5
 --- !u!1001 &170831426
 Prefab:
   m_ObjectHideFlags: 0
@@ -809,7 +809,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11469404, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 2}
       propertyPath: m_JumpPower
-      value: 10
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 13615390, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 2}
       propertyPath: m_IsTrigger
@@ -823,6 +823,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 1fb503fc06b320746a381d9d598de109, type: 2}
+    - target: {fileID: 5426510, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 2}
+      propertyPath: m_Drag
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 2}
   m_IsPrefabParent: 0
@@ -1334,7 +1338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tumble: 10
-  speed: .00499999989
+  speed2: .5
 --- !u!4 &573121045 stripped
 Transform:
   m_PrefabParentObject: {fileID: 435274, guid: 35facf0ef95821e46b7970f6d2af1f78, type: 2}
@@ -3151,7 +3155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tumble: 10
-  speed: .00499999989
+  speed2: .5
 --- !u!1 &1497016778
 GameObject:
   m_ObjectHideFlags: 0
@@ -3620,7 +3624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tumble: 10
-  speed: .00499999989
+  speed2: .5
 --- !u!1 &1823478066
 GameObject:
   m_ObjectHideFlags: 0
@@ -3958,7 +3962,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tumble: 10
-  speed: .00499999989
+  speed2: .5
 --- !u!1 &2111267427
 GameObject:
   m_ObjectHideFlags: 0
