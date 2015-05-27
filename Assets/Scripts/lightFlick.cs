@@ -8,7 +8,7 @@ public class lightFlick : MonoBehaviour {
 		Invoke("flickLight", 0.5f);
 	}
 	
-	// Update is called once per frame
+	// Update is called once per frame ctw
 	void Update () {
 
 	}
