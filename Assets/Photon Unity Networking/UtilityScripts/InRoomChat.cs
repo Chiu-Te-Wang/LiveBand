@@ -23,7 +23,6 @@ public class InRoomChat : Photon.MonoBehaviour
 			this.GuiRect.y = Screen.height - this.GuiRect.height - offset;
         }
 		this.GuiRect.x = offset;
-
     }
 
     public void OnGUI()

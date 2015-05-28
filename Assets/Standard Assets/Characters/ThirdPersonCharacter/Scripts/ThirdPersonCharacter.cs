@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UnityStandardAssets.Characters.ThirdPerson
 {
@@ -32,6 +33,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		Vector3 posTo;
 		GameObject moveMark;
 		public Material moveMarkMaterial;
+		//for instrument pick
+		public GameObject instrumentPanel;
+		public GameObject characterPanel;
 
 
 		void Start()
@@ -229,43 +233,30 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		void OnTriggerEnter(Collider other) 
 		{
 			if (other.tag == "Stage") {
-				Debug.Log ("hit stage!!!");
-				//main singer
-				transform.position = new Vector3(-0.65f,1.7f,4.2f);
-				//keyboard
-				//transform.position = new Vector3(4.55f,1.7f,1.4f);
-				//bass
-				//transform.position = new Vector3(-0.03f,1.7f,1.02f);
-				//guitar
-				//transform.position = new Vector3(-5.45f,1.7f,0.37f);
-				//drum
-				//transform.position = new Vector3(0f,1.7f,-5.4f);
-				
-
-				transform.rotation = new Quaternion(0f,0f,0f,0f);
+				instrumentPanel.SetActive(true);
 				m_MoveSpeedMultiplier = 0f;
-				CancelInvoke("moveTo");
-				if(!(moveMark == null)){ Destroy(moveMark); }
 			}
 		}
 		void Update(){
 			if (Input.GetMouseButtonDown(0)){
 				//Pressed left click
-				RaycastHit hit;
-				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-				if (Physics.Raycast(ray, out hit, 1000)){
-					if(hit.collider.tag == "Floor"){
-						if(!(moveMark == null)){ Destroy(moveMark); }
-						moveMark = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-						moveMark.name = "moveMark";
-						moveMark.transform.localScale = new Vector3(5f,0.5f,5f);
-						moveMark.transform.position = new Vector3(hit.point.x, -0.4f, hit.point.z);
-						moveMark.GetComponent<Collider>().enabled = false;
-						Renderer rend = moveMark.GetComponent<Renderer>();
-						rend.material = moveMarkMaterial;
-						posTo = hit.point;
-						moveTo();
-;					}
+				if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject ()){
+					RaycastHit hit;
+					Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+					if (Physics.Raycast(ray, out hit, 1000)){
+						if(hit.collider.tag == "Floor"){
+							if(!(moveMark == null)){ Destroy(moveMark); }
+							moveMark = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+							moveMark.name = "moveMark";
+							moveMark.transform.localScale = new Vector3(5f,0.5f,5f);
+							moveMark.transform.position = new Vector3(hit.point.x, -0.4f, hit.point.z);
+							moveMark.GetComponent<Collider>().enabled = false;
+							Renderer rend = moveMark.GetComponent<Renderer>();
+							rend.material = moveMarkMaterial;
+							posTo = hit.point;
+							moveTo();
+						}
+					}
 				}
 			}
 		}
@@ -278,6 +269,54 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			} else {
 				CancelInvoke("moveTo");
 				if(!(moveMark == null)){ Destroy(moveMark); }
+			}
+		}
+		public void chooseInstrument(string choose){
+			instrumentPanel.SetActive(false);
+			if (choose == "EXIT") {
+				//press exit button
+				m_MoveSpeedMultiplier = 1f;
+			} else {
+				string characterImgName = "";
+				string characterTextName = "";
+				transform.rotation = new Quaternion(0f,0f,0f,0f);
+				CancelInvoke("moveTo");
+				if(!(moveMark == null)){ Destroy(moveMark); }
+
+				if (choose == "PIANO") {
+					//keyboard
+					transform.position = new Vector3 (4.55f, 1.7f, 1.4f);
+					characterImgName = "piano";
+					characterTextName = "Keyboard";
+				} else if (choose == "GUITAR") {
+					//guitar
+					transform.position = new Vector3 (-5.45f, 1.7f, 0.37f);
+					characterImgName = "guitar";
+					characterTextName = "Guitarist";
+				} else if (choose == "DRUM") {
+					//drum
+					transform.position = new Vector3 (0f, 1.7f, -5.4f);
+					characterImgName = "drum";
+					characterTextName = "Drummer";
+				} else if (choose == "SINGER") {
+					//main singer
+					transform.position = new Vector3 (-0.65f, 1.7f, 4.2f);
+					characterImgName = "singer";
+					characterTextName = "Vocalist";
+				} else if (choose == "BASS") {
+					//main singer
+					transform.position = new Vector3(-0.65f,1.7f,4.2f);
+					characterImgName = "bass";
+					characterTextName = "Bassist";
+				}else{
+					Debug.Log("Error parameter in chooseInstrument");
+					characterImgName = "audience";
+					characterTextName = "Audience";
+				}
+				Image characterImg = characterPanel.GetComponentsInChildren<Image>()[1];
+				characterImg.sprite = Resources.Load(characterImgName, typeof(Sprite)) as Sprite;
+				Text characterText = characterPanel.GetComponentInChildren<Text>();
+				characterText.text = characterTextName;
 			}
 		}
 	}
