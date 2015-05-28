@@ -6,7 +6,7 @@ SubstanceImporter:
   - serializedVersion: 15
     name: Pavement_01
     prototypeName: Pavement_01
-    shader: {instanceID: 0}
+    shader: {fileID: 45, guid: 0000000000000000f000000000000000, type: 0}
     shaderKeywords: 
     renderQueue: -1
     inputs:
@@ -136,16 +136,14 @@ SubstanceImporter:
           first:
             name: _MainTex
           second:
-            texture: {fileID: -1080819097, guid: 00000000000000000000000000000000,
-              type: 0}
+            texture: {instanceID: 0}
             scale: {x: 1, y: 1}
             offset: {x: 0, y: 0}
         data:
           first:
             name: _BumpMap
           second:
-            texture: {fileID: -383799082, guid: 00000000000000000000000000000000,
-              type: 0}
+            texture: {instanceID: 0}
             scale: {x: 1, y: 1}
             offset: {x: 0, y: 0}
       floats:
@@ -198,7 +196,15 @@ SubstanceImporter:
       filterMode: 1
       aniso: 1
       wrapMode: 0
-    textureAssignments: []
+    textureAssignments:
+    - shaderProp:
+        name: _MainTex
+      material: {instanceID: 0}
+      baseUID: 1224163837
+    - shaderProp:
+        name: _BumpMap
+      material: {instanceID: 0}
+      baseUID: 1224163822
     buildTargetSettings:
     - serializedVersion: 2
       buildTarget: 
