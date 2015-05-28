@@ -11,6 +11,8 @@ public class InRoomChat : Photon.MonoBehaviour
     public List<string> messages = new List<string>();
     private string inputLine = "";
     private Vector2 scrollPos = Vector2.zero;
+	private float offset = 10f;
+	private int MAXLINES = 50;
 
     public static readonly string ChatRPC = "Chat";
 
@@ -18,8 +20,10 @@ public class InRoomChat : Photon.MonoBehaviour
     {
         if (this.AlignBottom)
         {
-            this.GuiRect.y = Screen.height - this.GuiRect.height;
+			this.GuiRect.y = Screen.height - this.GuiRect.height - offset;
         }
+		this.GuiRect.x = offset;
+
     }
 
     public void OnGUI()
@@ -49,7 +53,7 @@ public class InRoomChat : Photon.MonoBehaviour
 
         scrollPos = GUILayout.BeginScrollView(scrollPos);
         GUILayout.FlexibleSpace();
-        for (int i = messages.Count - 1; i >= 0; i--)
+		for (int i = 0; i < messages.Count; i++)
         {
             GUILayout.Label(messages[i]);
         }
@@ -86,6 +90,10 @@ public class InRoomChat : Photon.MonoBehaviour
         }
 
         this.messages.Add(senderName +": " + newLine);
+		while (messages.Count > MAXLINES) {
+			messages.RemoveAt(0);
+		}
+		scrollPos.y = 1000;
     }
 
     public void AddLine(string newLine)
