@@ -14,7 +14,7 @@ PlayerSettings:
   companyName: DefaultCompany
   productName: liveBand
   cloudProjectId: 
-  defaultCursor: {fileID: 0}
+  defaultCursor: {fileID: 2800000, guid: 892eb12a1abfe274bb7f85d1831f918f, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_ShowUnitySplashScreen: 1
   defaultScreenWidth: 1024
@@ -75,7 +75,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleIdentifier: com.Company.ProductName
+  bundleIdentifier: com.NMLAB.LIVEBAND
   bundleVersion: 1.0
   preloadedAssets: []
   metroEnableIndependentInputSource: 0
@@ -134,7 +134,11 @@ PlayerSettings:
     banner: {fileID: 0}
   androidGamepadSupportLevel: 0
   resolutionDialogBanner: {fileID: 0}
-  m_BuildTargetIcons: []
+  m_BuildTargetIcons:
+  - m_BuildTarget: 
+    m_Icons:
+    - m_Icon: {fileID: 2800000, guid: 892eb12a1abfe274bb7f85d1831f918f, type: 3}
+      m_Size: 128
   m_BuildTargetBatching: []
   webPlayerTemplate: APPLICATION:Default
   m_TemplateCustomTags: {}
