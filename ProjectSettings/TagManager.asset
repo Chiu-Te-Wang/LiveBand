@@ -8,6 +8,11 @@ TagManager:
   - Floor
   - instrumentPanel
   - characterPanel
+  - pedh
+  - pedk
+  - bar
+  - Player_M
+  - buttonSet
   layers:
   - Default
   - TransparentFX

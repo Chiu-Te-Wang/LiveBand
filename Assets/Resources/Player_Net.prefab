@@ -21,7 +21,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &173352
 GameObject:
   m_ObjectHideFlags: 0
@@ -58,7 +58,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &179644
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,7 +94,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173352}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -5.44999981, y: 1.70000005, z: .370000005}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 478446}
@@ -139,7 +139,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!82 &8253318
 AudioSource:
@@ -309,7 +309,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ca786d81a04f264abc95a5a404d36df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
   moveMarkMaterial: {fileID: 2100000, guid: 96bcf33f66c659045944ddfc9315e879, type: 2}
 --- !u!114 &11474246
 MonoBehaviour:
@@ -396,10 +395,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: .5
-  m_Height: 1.20000005
+  m_Radius: .699999988
+  m_Height: 1
   m_Direction: 1
-  m_Center: {x: .200000003, y: .600000024, z: 0}
+  m_Center: {x: .300000012, y: .699999988, z: 0}
 --- !u!137 &13743172
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

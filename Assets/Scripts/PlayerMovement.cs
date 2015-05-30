@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class PlayerMovement : Photon.MonoBehaviour
 {
-	public float speed = 6f;
+	private float speed = 6f;
 	private Vector3 tarPos;
 	private Vector3 tarRot;
 
@@ -23,15 +23,9 @@ public class PlayerMovement : Photon.MonoBehaviour
 	public Material moveMarkMaterial;
 	//for instrument pick
 	private GameObject instrumentPanel;
-	private GameObject characterPanel;
 	//-------------
 	void Start() {
 		tarPos = this.transform.position;
-		instrumentPanel = GameObject.FindWithTag("instrumentPanel");
-		characterPanel = GameObject.FindWithTag("characterPanel");
-		if (!instrumentPanel) {
-			print ("erroe");
-		}
 	} 
 	//-------------
 	void Awake(){
@@ -40,6 +34,15 @@ public class PlayerMovement : Photon.MonoBehaviour
 
 		playerRigidbody = GetComponent<Rigidbody> ();
 		walking = false;
+		instrumentPanel = GameObject.FindWithTag("instrumentPanel");
+		GameObject ButtonSet = GameObject.FindWithTag ("buttonSet");
+		ButtonSet.GetComponentsInChildren<Button> () [0].onClick.AddListener (()=>chooseInstrument("PIANO"));
+		ButtonSet.GetComponentsInChildren<Button> () [1].onClick.AddListener (()=>chooseInstrument("GUITAR"));
+		ButtonSet.GetComponentsInChildren<Button> () [2].onClick.AddListener (()=>chooseInstrument("DRUM"));
+		ButtonSet.GetComponentsInChildren<Button> () [3].onClick.AddListener (()=>chooseInstrument("BASS"));
+		ButtonSet.GetComponentsInChildren<Button> () [4].onClick.AddListener (()=>chooseInstrument("SINGER"));
+		ButtonSet.GetComponentsInChildren<Button> () [5].onClick.AddListener (()=>chooseInstrument("EXIT"));
+
 
 	}
 	void FixedUpdate(){
@@ -48,10 +51,21 @@ public class PlayerMovement : Photon.MonoBehaviour
 		}
 		float h = Input.GetAxisRaw("Horizontal");
 		float v = Input.GetAxisRaw("Vertical");
+		if (Mathf.Abs (h) > 0f || Mathf.Abs (v) > 0f) {
+			_Move (h, v);
+		}
+	}
+
+	void Move(float h , float v){
+		movement.Set (-h, 0f, -v);
+		movement = movement.normalized * speed * Time.deltaTime;
+		playerRigidbody.MovePosition (transform.position + movement);
+	}
+	void _Move(float h , float v){
 		if (photonView.isMine) {
-						Move (h, v);
-						Turning ();
-						Animating (h, v);
+			Move (h, v);
+			Turning ();
+			Animating (h, v);
 			photonView.RPC("SetStatus", PhotonTargets.Others, transform.position, transform.eulerAngles, walking);
 			//photonView.RPC("ReceiveInput", PhotonTargets.Others, h, v, tarRot);
 		}
@@ -60,14 +74,6 @@ public class PlayerMovement : Photon.MonoBehaviour
 			TurningClient ();
 			AnimatingClient ();		
 		}
-	}
-
-	void Move(float h , float v){
-		movement.Set (-h, 0f, -v);
-
-		movement = movement.normalized * speed * Time.deltaTime;
-
-		playerRigidbody.MovePosition (transform.position + movement);
 	}
 	void MoveClient(){
 		transform.position = Vector3.Lerp (transform.position, tarPos, Time.deltaTime * 5);
@@ -114,14 +120,17 @@ public class PlayerMovement : Photon.MonoBehaviour
 	void OnTriggerEnter(Collider other) 
 	{
 		if (other.tag == "Stage") {
-			instrumentPanel.SetActive(true);
+			_Move(0f,0f);
+			if(!(moveMark == null)){ Destroy(moveMark); }
+			posTo = transform.position;
 			speed = 0f;
+			instrumentPanel.SetActive(true);
 		}
 	}
 	void Update(){
 		if (Input.GetMouseButtonDown(0)){
 			//Pressed left click
-			if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject ()){
+			if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject () && speed > 0f){
 				RaycastHit hit;
 				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 				if (Physics.Raycast(ray, out hit, 1000)){
@@ -144,15 +153,16 @@ public class PlayerMovement : Photon.MonoBehaviour
 	void moveTo(){
 		Vector3 posFrom = transform.position;
 		if (!(Mathf.Abs(posFrom.x - posTo.x)<0.05 && Mathf.Abs(posFrom.z - posTo.z)<0.05 )) {
-			Vector3 myMove = new Vector3 (Mathf.Clamp ((posTo.x - posFrom.x), -1.0f, 1.0f), 0f, Mathf.Clamp ((posTo.z - posFrom.z), -1.0f, 1.0f));
-			Move (myMove.x, myMove.z);
+			Vector3 myMove = new Vector3 (Mathf.Clamp ((posFrom.x-posTo.x), -1.0f, 1.0f), 0f, Mathf.Clamp ((posFrom.z-posTo.z), -1.0f, 1.0f));
+			_Move (myMove.x, myMove.z);
 			Invoke ("moveTo", 0.001f);
 		} else {
-			CancelInvoke("moveTo");
+			_Move(0f,0f);
 			if(!(moveMark == null)){ Destroy(moveMark); }
 		}
 	}
 	public void chooseInstrument(string choose){
+		instrumentPanel = GameObject.FindWithTag("instrumentPanel");
 		instrumentPanel.SetActive(false);
 		if (choose == "EXIT") {
 			//press exit button
@@ -161,7 +171,6 @@ public class PlayerMovement : Photon.MonoBehaviour
 			string characterImgName = "";
 			string characterTextName = "";
 			transform.rotation = new Quaternion(0f,0f,0f,0f);
-			CancelInvoke("moveTo");
 			if(!(moveMark == null)){ Destroy(moveMark); }
 			
 			if (choose == "PIANO") {
@@ -186,7 +195,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 				characterTextName = "Vocalist";
 			} else if (choose == "BASS") {
 				//main singer
-				transform.position = new Vector3(-0.65f,1.7f,4.2f);
+				transform.position = new Vector3(-0.13f,1.7f,0.66f);
 				characterImgName = "bass";
 				characterTextName = "Bassist";
 			}else{
@@ -194,9 +203,9 @@ public class PlayerMovement : Photon.MonoBehaviour
 				characterImgName = "audience";
 				characterTextName = "Audience";
 			}
-			Image characterImg = characterPanel.GetComponentsInChildren<Image>()[1];
+			Image characterImg = GameObject.FindWithTag("characterPanel").GetComponentsInChildren<Image>()[1];
 			characterImg.sprite = Resources.Load(characterImgName, typeof(Sprite)) as Sprite;
-			Text characterText = characterPanel.GetComponentInChildren<Text>();
+			Text characterText = GameObject.FindWithTag("characterPanel").GetComponentInChildren<Text>();
 			characterText.text = characterTextName;
 		}
 	}
