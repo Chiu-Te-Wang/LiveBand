@@ -30,10 +30,10 @@ public class KeyTouch : MonoBehaviour {
 						} touchesNew.Add(key);
 					}
 				}
-			} foreach ( GameObject g in touchesOld ) {
-				g.GetComponent<AudioSource>().Stop();
-				g.transform.Translate(0,0.09f,0);
-			} touchesOld = touchesNew;
-		}
+			}
+		} foreach ( GameObject g in touchesOld ) {
+			g.GetComponent<AudioSource>().Stop();
+			g.transform.Translate(0,0.09f,0);
+		} touchesOld = touchesNew;
 	}
 }
