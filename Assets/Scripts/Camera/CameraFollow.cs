@@ -9,6 +9,7 @@ public class CameraFollow : Photon.MonoBehaviour {
 	Vector3 offset;
 	private string characterName;
 	private Vector3 namePosition;
+	private bool onStageOrNot = false;
 
 	void Awake()
 	{
@@ -35,10 +36,25 @@ public class CameraFollow : Photon.MonoBehaviour {
 	}
 
 	void FixedUpdate(){
+		if (!onStageOrNot) {
+			normalCamera ();
+		}
+	}
+
+	void OnTriggerEnter(Collider other) 
+	{
+		if (other.tag == "Stage") {
+			onStageOrNot = true;
+			camera.transform.position = new Vector3(0f,3.73f,-3.24f);
+			camera.transform.rotation = Quaternion.Euler(90f, 0f,0f);
+		}
+	}
+
+	void normalCamera(){
 		if (photonView.isMine) {
-						Vector3 targetCamPos = target.position + offset;
-						camera.transform.position = Vector3.Lerp (camera.transform.position, targetCamPos, smoothing * Time.deltaTime);
-				}
+			Vector3 targetCamPos = target.position + offset;
+			camera.transform.position = Vector3.Lerp (camera.transform.position, targetCamPos, smoothing * Time.deltaTime);
+		}
 		namePosition = camera.WorldToScreenPoint (new Vector3(this.transform.position.x, this.transform.position.y+1.8f, this.transform.position.z));
 	}
 }
