@@ -23,6 +23,10 @@ public class PlayerMovement : Photon.MonoBehaviour
 	public Material moveMarkMaterial;
 	//for instrument pick
 	private GameObject instrumentPanel;
+	private GameObject drumFake;
+	private GameObject drumReal;
+	private GameObject pianoFake;
+	private GameObject pianoReal;
 	//-------------
 	void Start() {
 		tarPos = this.transform.position;
@@ -42,6 +46,14 @@ public class PlayerMovement : Photon.MonoBehaviour
 		ButtonSet.GetComponentsInChildren<Button> () [3].onClick.AddListener (()=>chooseInstrument("BASS"));
 		ButtonSet.GetComponentsInChildren<Button> () [4].onClick.AddListener (()=>chooseInstrument("SINGER"));
 		ButtonSet.GetComponentsInChildren<Button> () [5].onClick.AddListener (()=>chooseInstrument("EXIT"));
+
+		//instrument setting
+		drumFake = GameObject.FindWithTag("drumFake");
+		drumReal = GameObject.FindWithTag("drumReal");
+		drumReal.SetActive (false);
+		pianoFake = GameObject.FindWithTag("pianoFake");
+		pianoReal = GameObject.FindWithTag("pianoReal");
+		pianoReal.SetActive (false);
 
 
 	}
@@ -178,6 +190,8 @@ public class PlayerMovement : Photon.MonoBehaviour
 				transform.position = new Vector3 (4.55f, 1.7f, 1.4f);
 				characterImgName = "piano";
 				characterTextName = "Keyboard";
+				pianoFake.SetActive(false);
+				pianoReal.SetActive(true);
 			} else if (choose == "GUITAR") {
 				//guitar
 				transform.position = new Vector3 (-5.45f, 1.7f, 0.37f);
@@ -188,6 +202,8 @@ public class PlayerMovement : Photon.MonoBehaviour
 				transform.position = new Vector3 (0f, 1.7f, -5.4f);
 				characterImgName = "drum";
 				characterTextName = "Drummer";
+				drumFake.SetActive(false);
+				drumReal.SetActive(true);
 			} else if (choose == "SINGER") {
 				//main singer
 				transform.position = new Vector3 (-0.65f, 1.7f, 4.2f);

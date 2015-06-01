@@ -13,6 +13,10 @@ TagManager:
   - bar
   - Player_M
   - buttonSet
+  - drumFake
+  - drumReal
+  - pianoFake
+  - pianoReal
   layers:
   - Default
   - TransparentFX
