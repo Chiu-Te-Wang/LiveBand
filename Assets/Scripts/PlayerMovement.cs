@@ -13,7 +13,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 	Rigidbody playerRigidbody;
 	int floorMask;
 
-	float camRayLength = 100f;
+	float camRayLength = 1000f;
 
 	bool walking;
 
@@ -39,23 +39,9 @@ public class PlayerMovement : Photon.MonoBehaviour
 		playerRigidbody = GetComponent<Rigidbody> ();
 		walking = false;
 		instrumentPanel = GameObject.FindWithTag("instrumentPanel");
-		GameObject ButtonSet = GameObject.FindWithTag ("buttonSet");
-		ButtonSet.GetComponentsInChildren<Button> () [0].onClick.AddListener (()=>chooseInstrument("PIANO"));
-		ButtonSet.GetComponentsInChildren<Button> () [1].onClick.AddListener (()=>chooseInstrument("GUITAR"));
-		ButtonSet.GetComponentsInChildren<Button> () [2].onClick.AddListener (()=>chooseInstrument("DRUM"));
-		ButtonSet.GetComponentsInChildren<Button> () [3].onClick.AddListener (()=>chooseInstrument("BASS"));
-		ButtonSet.GetComponentsInChildren<Button> () [4].onClick.AddListener (()=>chooseInstrument("SINGER"));
-		ButtonSet.GetComponentsInChildren<Button> () [5].onClick.AddListener (()=>chooseInstrument("EXIT"));
-
-		//instrument setting
-		drumFake = GameObject.FindWithTag("drumFake");
-		drumReal = GameObject.FindWithTag("drumReal");
-		drumReal.SetActive (false);
-		pianoFake = GameObject.FindWithTag("pianoFake");
-		pianoReal = GameObject.FindWithTag("pianoReal");
-		pianoReal.SetActive (false);
-
-
+		if (photonView.isMine) {
+			buttonSetControl();
+		}
 	}
 	void FixedUpdate(){
 		if (PhotonNetwork.connectionStateDetailed != PeerState.Joined) {
@@ -224,6 +210,24 @@ public class PlayerMovement : Photon.MonoBehaviour
 			Text characterText = GameObject.FindWithTag("characterPanel").GetComponentInChildren<Text>();
 			characterText.text = characterTextName;
 		}
+	}
+
+	void buttonSetControl(){
+		GameObject ButtonSet = GameObject.FindWithTag ("buttonSet");
+		ButtonSet.GetComponentsInChildren<Button> () [0].onClick.AddListener (() => chooseInstrument ("PIANO"));
+		ButtonSet.GetComponentsInChildren<Button> () [1].onClick.AddListener (() => chooseInstrument ("GUITAR"));
+		ButtonSet.GetComponentsInChildren<Button> () [2].onClick.AddListener (() => chooseInstrument ("DRUM"));
+		ButtonSet.GetComponentsInChildren<Button> () [3].onClick.AddListener (() => chooseInstrument ("BASS"));
+		ButtonSet.GetComponentsInChildren<Button> () [4].onClick.AddListener (() => chooseInstrument ("SINGER"));
+		ButtonSet.GetComponentsInChildren<Button> () [5].onClick.AddListener (() => chooseInstrument ("EXIT"));
+		
+		//instrument setting
+		drumFake = GameObject.FindWithTag ("drumFake");
+		drumReal = GameObject.FindWithTag ("drumReal");
+		drumReal.SetActive (false);
+		pianoFake = GameObject.FindWithTag ("pianoFake");
+		pianoReal = GameObject.FindWithTag ("pianoReal");
+		pianoReal.SetActive (false);
 	}
 	
 }

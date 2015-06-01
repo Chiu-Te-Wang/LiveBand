@@ -13,7 +13,7 @@ public class CharacterInGame : Photon.MonoBehaviour {
 		Vector3 movement = new Vector3();
 		movement.Set (-0.5f,0f,15f);
 		PhotonNetwork.Instantiate (this.playerPrefab.name, movement, new Quaternion(0f,180f,0f,0f), 0);
-
+		PhotonNetwork.
 	}
 
 	public void OnMasterClientSwitched(PhotonPlayer player){

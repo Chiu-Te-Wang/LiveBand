@@ -26,13 +26,10 @@ public class CameraFollow : Photon.MonoBehaviour {
 		gameObject.name = gameObject.name + photonView.viewID;
 		characterName = photonView.owner.name;
 
-		GameObject ButtonSet = GameObject.FindWithTag ("buttonSet");
-		ButtonSet.GetComponentsInChildren<Button> () [0].onClick.AddListener (()=>SetCameraToInstrument("PIANO"));
-		ButtonSet.GetComponentsInChildren<Button> () [1].onClick.AddListener (()=>SetCameraToInstrument("GUITAR"));
-		ButtonSet.GetComponentsInChildren<Button> () [2].onClick.AddListener (()=>SetCameraToInstrument("DRUM"));
-		ButtonSet.GetComponentsInChildren<Button> () [3].onClick.AddListener (()=>SetCameraToInstrument("BASS"));
-		ButtonSet.GetComponentsInChildren<Button> () [4].onClick.AddListener (()=>SetCameraToInstrument("SINGER"));
-		ButtonSet.GetComponentsInChildren<Button> () [5].onClick.AddListener (()=>SetCameraToInstrument("EXIT"));
+		if (photonView.isMine) {
+			buttonSetControl();
+		}
+
 
 	}
 
@@ -55,6 +52,16 @@ public class CameraFollow : Photon.MonoBehaviour {
 			camera.transform.position = Vector3.Lerp (camera.transform.position, targetCamPos, smoothing * Time.deltaTime);
 		}
 		namePosition = camera.WorldToScreenPoint (new Vector3(this.transform.position.x, this.transform.position.y+1.8f, this.transform.position.z));
+	}
+
+	void buttonSetControl(){
+		GameObject ButtonSet = GameObject.FindWithTag ("buttonSet");
+		ButtonSet.GetComponentsInChildren<Button> () [0].onClick.AddListener (()=>SetCameraToInstrument("PIANO"));
+		ButtonSet.GetComponentsInChildren<Button> () [1].onClick.AddListener (()=>SetCameraToInstrument("GUITAR"));
+		ButtonSet.GetComponentsInChildren<Button> () [2].onClick.AddListener (()=>SetCameraToInstrument("DRUM"));
+		ButtonSet.GetComponentsInChildren<Button> () [3].onClick.AddListener (()=>SetCameraToInstrument("BASS"));
+		ButtonSet.GetComponentsInChildren<Button> () [4].onClick.AddListener (()=>SetCameraToInstrument("SINGER"));
+		ButtonSet.GetComponentsInChildren<Button> () [5].onClick.AddListener (()=>SetCameraToInstrument("EXIT"));
 	}
 
 	void SetCameraToInstrument(string choose){
