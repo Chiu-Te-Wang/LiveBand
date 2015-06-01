@@ -112,13 +112,13 @@ public class PhotonRoomMenu : Photon.MonoBehaviour {
 				}
 			}*/
 			RoomInfo[] roomInfo = PhotonNetwork.GetRoomList();
-			if(roomInfo.Length>0){
+			if(roomInfo.Length == 0){
 				string[] roomNames = new string[roomInfo.Length];
 				string[] temp = {"sssss", "ssss", "aaaa", "bbbb"};
 				for(int i = 0; i<roomInfo.Length;++i){
 					roomNames[i] = roomInfo[i].name;
 				}
-				roomSel = GUILayout.SelectionGrid(roomSel, roomNames, 1, mystyle2,GUILayout.Width(200));
+				roomSel = GUILayout.SelectionGrid(roomSel, temp, 1, mystyle2,GUILayout.Width(200));
 
 				if(GUILayout.Button("Join Room",mystyle2)){
 					ErrorMessage = "";
@@ -141,12 +141,12 @@ public class PhotonRoomMenu : Photon.MonoBehaviour {
 	public void OnJoinedRoom()
 	{
 		Debug.Log("OnJoinedRoom");
-		PhotonNetwork.LoadLevel("test_scene");
+		PhotonNetwork.LoadLevel("CharacterSelection");
 	}
 	
 	public void OnCreatedRoom()
 	{
 		Debug.Log("OnCreatedRoom");
-		PhotonNetwork.LoadLevel("test_scene");
+		PhotonNetwork.LoadLevel("CharacterSelection");
 	}
 }
