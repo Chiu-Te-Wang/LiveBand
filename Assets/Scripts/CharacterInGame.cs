@@ -4,7 +4,10 @@ using UnityEngine.UI;
 
 public class CharacterInGame : Photon.MonoBehaviour {
 
-	public Transform playerPrefab;
+	public Transform playerPrefab1;
+	public Transform playerPrefab2;
+	public Transform playerPrefab3;
+	public Transform playerPrefab4;
 	public void Awake(){
 		if (!PhotonNetwork.connected) {
 			Application.LoadLevel("MenuScene");	
@@ -12,7 +15,15 @@ public class CharacterInGame : Photon.MonoBehaviour {
 		}
 		Vector3 movement = new Vector3();
 		movement.Set (-0.5f,0f,15f);
-		PhotonNetwork.Instantiate (this.playerPrefab.name, movement, new Quaternion(0f,180f,0f,0f), 0);
+		if (PlayerPrefs.GetInt ("Character") == 1) {
+			PhotonNetwork.Instantiate (this.playerPrefab1.name, movement, new Quaternion (0f, 180f, 0f, 0f), 0);
+		} else if (PlayerPrefs.GetInt ("Character") == 2) {
+			PhotonNetwork.Instantiate (this.playerPrefab2.name, movement, new Quaternion (0f, 180f, 0f, 0f), 0);
+		} else if (PlayerPrefs.GetInt ("Character") == 3) {
+			PhotonNetwork.Instantiate (this.playerPrefab3.name, movement, new Quaternion (0f, 180f, 0f, 0f), 0);
+		} else if (PlayerPrefs.GetInt ("Character") == 4) {
+			PhotonNetwork.Instantiate (this.playerPrefab4.name, movement, new Quaternion (0f, 180f, 0f, 0f), 0);
+		}
 	}
 
 	public void OnMasterClientSwitched(PhotonPlayer player){

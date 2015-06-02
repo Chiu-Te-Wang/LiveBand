@@ -20,7 +20,7 @@ public class GuitarTouch : MonoBehaviour {
 			Ray ray = Camera.main.ScreenPointToRay(touch.position);
 			RaycastHit hit;
 			test.color = Color.red;
-			if ( Physics.Raycast(ray, out hit) ) {
+			if ( Physics.Raycast(ray, out hit,Mathf.Infinity) ) {
 				if ( hit.collider != null ) {
 					GameObject grid = hit.collider.gameObject;
 					test.color = Color.cyan;

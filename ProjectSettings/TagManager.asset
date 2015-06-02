@@ -17,6 +17,9 @@ TagManager:
   - drumReal
   - pianoFake
   - pianoReal
+  - PlayerName
+  - guitarReal
+  - guitarFake
   layers:
   - Default
   - TransparentFX

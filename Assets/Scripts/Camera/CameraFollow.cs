@@ -73,12 +73,11 @@ public class CameraFollow : Photon.MonoBehaviour {
 			Quaternion cameraRotation = Quaternion.Euler(90f, 0f,0f); 
 			if (choose == "PIANO") {
 				//keyboard
-//				cameraPosition = new Vector3(4.52f,5.41f,2.43f);
-				cameraPosition = new Vector3(4.52f,4.87f,2.43f);
+				cameraPosition = new Vector3(4.52f,4.87f,3.02f);
 				cameraRotation = Quaternion.Euler(90f, 0f,0f);
 			} else if (choose == "GUITAR") {
 				//guitar
-				cameraPosition = new Vector3(0f,0f,0f);
+				cameraPosition = new Vector3(-5.47f,4.2f,1.945f);
 				cameraRotation = Quaternion.Euler(90f, 0f,0f);
 			} else if (choose == "DRUM") {
 				//drum

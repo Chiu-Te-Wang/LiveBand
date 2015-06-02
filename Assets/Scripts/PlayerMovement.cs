@@ -27,6 +27,8 @@ public class PlayerMovement : Photon.MonoBehaviour
 	private GameObject drumReal;
 	private GameObject pianoFake;
 	private GameObject pianoReal;
+	private GameObject guitarFake;
+	private GameObject guitarReal;
 	//-------------
 	void Start() {
 		tarPos = this.transform.position;
@@ -183,6 +185,10 @@ public class PlayerMovement : Photon.MonoBehaviour
 				transform.position = new Vector3 (-5.45f, 1.7f, 0.37f);
 				characterImgName = "guitar";
 				characterTextName = "Guitarist";
+				print (guitarFake);
+				print (guitarReal);
+				guitarFake.SetActive(false);
+				guitarReal.SetActive(true);
 			} else if (choose == "DRUM") {
 				//drum
 				transform.position = new Vector3 (0f, 1.7f, -5.4f);
@@ -228,6 +234,9 @@ public class PlayerMovement : Photon.MonoBehaviour
 		pianoFake = GameObject.FindWithTag ("pianoFake");
 		pianoReal = GameObject.FindWithTag ("pianoReal");
 		pianoReal.SetActive (false);
+		guitarFake = GameObject.FindWithTag ("guitarFake");
+		guitarReal = GameObject.FindWithTag ("guitarReal");
+		guitarReal.SetActive (false);
 	}
 	
 }
