@@ -34,4 +34,5 @@ MonoBehaviour:
   - RequestForPickupTimes
   - TaggedPlayer
   - SetStatus
+  - setstagePos
   DisableAutoOpenWizard: 0

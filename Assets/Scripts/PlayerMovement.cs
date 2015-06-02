@@ -6,6 +6,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 	private float speed = 6f;
 	private Vector3 tarPos;
 	private Vector3 tarRot;
+	private int instrumentNum = 5;
 
 
 	Vector3 movement;
@@ -32,6 +33,9 @@ public class PlayerMovement : Photon.MonoBehaviour
 	//stage
 	private GameObject functionPanel;
 	private Vector3 positionBeforeOnStage;
+	private Quaternion rotationBeforeOnStage;
+	private int stagePosition;
+	private bool[] instrumentSet;
 	//-------------
 	void Start() {
 		tarPos = this.transform.position;
@@ -46,6 +50,10 @@ public class PlayerMovement : Photon.MonoBehaviour
 		instrumentPanel = GameObject.FindWithTag("instrumentPanel");
 		if (photonView.isMine) {
 			buttonSetControl();
+			instrumentSet = new bool[instrumentNum];
+			for(int i=0; i<instrumentSet.Length; i++){
+				instrumentSet[i] = false;
+			}
 		}
 	}
 	void FixedUpdate(){
@@ -119,6 +127,11 @@ public class PlayerMovement : Photon.MonoBehaviour
 		tarRot = newRot;
 		walking = w;
 	}
+	[RPC]
+	void setstagePos(int stagePlace, bool OnOrNot){
+		print ("receive : "+stagePlace);
+		instrumentSet [stagePlace] = OnOrNot;
+	}
 	//
 	void OnTriggerEnter(Collider other) 
 	{
@@ -136,7 +149,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 			if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject () && speed > 0f){
 				RaycastHit hit;
 				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-				if (Physics.Raycast(ray, out hit, 1000)){
+				if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1<<0)){
 					if(hit.collider.tag == "Floor"){
 						if(!(moveMark == null)){ Destroy(moveMark); }
 						moveMark = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
@@ -172,6 +185,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 			speed = 6f;
 		} else {
 			positionBeforeOnStage = new Vector3(transform.position.x,transform.position.y,transform.position.z);
+			rotationBeforeOnStage = transform.rotation;
 			functionPanel.SetActive (true);
 			string characterImgName = "";
 			string characterTextName = "";
@@ -180,6 +194,10 @@ public class PlayerMovement : Photon.MonoBehaviour
 			
 			if (choose == "PIANO") {
 				//keyboard
+				if(instrumentSet[0]){ return; }
+				stagePosition = 0;
+				instrumentSet[stagePosition] = true;
+				photonView.RPC("setstagePos", PhotonTargets.Others, 0,true);
 				transform.position = new Vector3 (4.55f, 1.7f, 1.4f);
 				characterImgName = "piano";
 				characterTextName = "Keyboard";
@@ -187,6 +205,10 @@ public class PlayerMovement : Photon.MonoBehaviour
 				pianoReal.SetActive(true);
 			} else if (choose == "GUITAR") {
 				//guitar
+				if(instrumentSet[1]){ return; }
+				stagePosition = 1;
+				instrumentSet[stagePosition] = true;
+				photonView.RPC("setstagePos", PhotonTargets.Others, 1,true);
 				transform.position = new Vector3 (-5.45f, 1.7f, 0.37f);
 				characterImgName = "guitar";
 				characterTextName = "Guitarist";
@@ -196,6 +218,10 @@ public class PlayerMovement : Photon.MonoBehaviour
 				guitarReal.SetActive(true);
 			} else if (choose == "DRUM") {
 				//drum
+				if(instrumentSet[2]){ return; }
+				stagePosition = 2;
+				instrumentSet[stagePosition] = true;
+				photonView.RPC("setstagePos", PhotonTargets.Others, 2,true);
 				transform.position = new Vector3 (0f, 1.7f, -5.4f);
 				characterImgName = "drum";
 				characterTextName = "Drummer";
@@ -203,11 +229,19 @@ public class PlayerMovement : Photon.MonoBehaviour
 				drumReal.SetActive(true);
 			} else if (choose == "SINGER") {
 				//main singer
+				if(instrumentSet[3]){ return; }
+				stagePosition = 3;
+				instrumentSet[stagePosition] = true;
+				photonView.RPC("setstagePos", PhotonTargets.Others, 3,true);
 				transform.position = new Vector3 (-0.65f, 1.7f, 4.2f);
 				characterImgName = "singer";
 				characterTextName = "Vocalist";
 			} else if (choose == "BASS") {
 				//main singer
+				if(instrumentSet[4]){ return; }
+				stagePosition = 4;
+				instrumentSet[stagePosition] = true;
+				photonView.RPC("setstagePos", PhotonTargets.Others, 4,true);
 				transform.position = new Vector3(-0.13f,1.7f,0.66f);
 				characterImgName = "bass";
 				characterTextName = "Bassist";
@@ -220,6 +254,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 			characterImg.sprite = Resources.Load(characterImgName, typeof(Sprite)) as Sprite;
 			Text characterText = GameObject.FindWithTag("characterPanel").GetComponentInChildren<Text>();
 			characterText.text = characterTextName;
+			photonView.RPC("SetStatus", PhotonTargets.Others, transform.position, transform.eulerAngles, walking);
 		}
 	}
 
@@ -230,6 +265,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 		Text characterText = GameObject.FindWithTag("characterPanel").GetComponentInChildren<Text>();
 		characterText.text = "Audience";
 		transform.position = positionBeforeOnStage;
+		transform.rotation = rotationBeforeOnStage;
 		functionPanel.SetActive (false);
 		pianoFake.SetActive(true);
 		pianoReal.SetActive(false);
@@ -237,6 +273,13 @@ public class PlayerMovement : Photon.MonoBehaviour
 		drumReal.SetActive(false);
 		guitarFake.SetActive(true);
 		guitarReal.SetActive(false);
+
+		if(!instrumentSet[stagePosition]){ 
+			Debug.Log ("Error stage position!");
+			return; 
+		}
+		instrumentSet [stagePosition] = false;
+		photonView.RPC("setstagePos", PhotonTargets.Others, stagePosition,false);
 	}
 
 	void buttonSetControl(){
@@ -261,7 +304,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 		guitarReal.SetActive (false);
 
 		functionPanel = GameObject.FindWithTag ("functionPanel");
-		functionPanel.SetActive (false);
+		//functionPanel.SetActive (false);
 	}
 	
 }

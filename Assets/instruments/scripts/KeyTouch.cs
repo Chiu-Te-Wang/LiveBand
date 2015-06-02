@@ -15,7 +15,7 @@ public class KeyTouch : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		trans.position = new Vector3 (2.28f, 5.83f, -11.56f);
+		trans.position = new Vector3 ((-1)*(slider.value)+3.929463f,3.387265f,2.723639f);
 		touchesNew = new List<GameObject>();
 		foreach ( Touch touch in Input.touches ) {
 
