@@ -54,4 +54,5 @@ public class drumpress : MonoBehaviour {
 		GetComponent<AudioSource> ().Play ();
 
 	}
+
 }
