@@ -48,6 +48,7 @@ function SelectedCharacter1() {
 				character2Glow.GetComponent.<Renderer>().enabled = false;
 				character3Glow.GetComponent.<Renderer>().enabled = false;
 				character4Glow.GetComponent.<Renderer>().enabled = false; 
+				Application.LoadLevel("_scene");	
 }
 
 function SelectedCharacter2() {
