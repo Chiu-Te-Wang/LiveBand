@@ -24,6 +24,9 @@ public class InRoomChat : Photon.MonoBehaviour
         }
 		this.GuiRect.x = offset;
     }
+	public void Awake(){
+		Debug.Log ("characterChoose" + PlayerPrefs.GetInt("Character"));
+	}
 
     public void OnGUI()
     {

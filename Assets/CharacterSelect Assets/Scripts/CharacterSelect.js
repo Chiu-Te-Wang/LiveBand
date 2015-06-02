@@ -1,4 +1,6 @@
 #pragma strict
+
+import UnityEngine.UI;
 //this is the currently selected object. Unused variable at the moment.
 static var currentObject : GameObject;
 
@@ -9,12 +11,17 @@ var character2Glow : GameObject;
 var character3Glow : GameObject;
 var character4Glow : GameObject;
 
+var button : Transform;
+var chooseCharacter: int;
+
 function Start()
 {
 character1Glow.GetComponent.<Renderer>().enabled = false;  // We're going to make sure all of the highlighted glows are OFF at scene start.
 character2Glow.GetComponent.<Renderer>().enabled = false;
 character3Glow.GetComponent.<Renderer>().enabled = false;
 character4Glow.GetComponent.<Renderer>().enabled = false;
+
+
 }
 
 function Update() 
@@ -39,7 +46,17 @@ if (Input.GetMouseButtonUp (0)) {
 				if(hit.collider.name == "_Character4")
 				SelectedCharacter4();
 		}                
-	} 
+}
+}
+
+function Confirm(){
+	if(chooseCharacter == 0){
+		Debug.Log("You have to choose a character.");
+		return ;
+	}
+	PlayerPrefs.SetInt("Character", chooseCharacter);
+	Debug.Log("Confirm press: "+ chooseCharacter);
+	Application.LoadLevel("test_scene");
 }
 
 function SelectedCharacter1() {
@@ -57,6 +74,7 @@ function SelectedCharacter2() {
 				character1Glow.GetComponent.<Renderer>().enabled = false;
 				character3Glow.GetComponent.<Renderer>().enabled = false;
 				character4Glow.GetComponent.<Renderer>().enabled = false;
+				chooseCharacter = 2;
 }
 
 function SelectedCharacter3() {
@@ -65,6 +83,7 @@ function SelectedCharacter3() {
 				character1Glow.GetComponent.<Renderer>().enabled = false;
 				character2Glow.GetComponent.<Renderer>().enabled = false;
 				character4Glow.GetComponent.<Renderer>().enabled = false;
+				chooseCharacter = 3;
 }
 
 function SelectedCharacter4() {
@@ -73,4 +92,6 @@ function SelectedCharacter4() {
 				character3Glow.GetComponent.<Renderer>().enabled = false;
 				character2Glow.GetComponent.<Renderer>().enabled = false;
 				character1Glow.GetComponent.<Renderer>().enabled = false;
+				chooseCharacter = 4;
 }
+
