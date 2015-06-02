@@ -10,7 +10,10 @@ public class CameraFollow : Photon.MonoBehaviour {
 	Vector3 offset;
 	private string characterName;
 	private Vector3 namePosition;
+	//stage 
 	private bool onStageOrNot = false;
+	private Vector3 positionBeforeOnStage;
+	private Quaternion rotationBeforeOnStage;
 
 	void Awake()
 	{
@@ -62,22 +65,28 @@ public class CameraFollow : Photon.MonoBehaviour {
 		ButtonSet.GetComponentsInChildren<Button> () [3].onClick.AddListener (()=>SetCameraToInstrument("BASS"));
 		ButtonSet.GetComponentsInChildren<Button> () [4].onClick.AddListener (()=>SetCameraToInstrument("SINGER"));
 		ButtonSet.GetComponentsInChildren<Button> () [5].onClick.AddListener (()=>SetCameraToInstrument("EXIT"));
+		Button exitStageButton = GameObject.FindWithTag ("functionPanel").GetComponentInChildren<Button>();
+		exitStageButton.onClick.AddListener(()=>setDownStage());
 	}
 
 	void SetCameraToInstrument(string choose){
 		if (choose == "EXIT") {
 			//press exit button
 		} else {
+			positionBeforeOnStage = camera.transform.position;
+			rotationBeforeOnStage = camera.transform.rotation;
 			onStageOrNot = true;
 			Vector3 cameraPosition = new Vector3(0f,0f,0f);
 			Quaternion cameraRotation = Quaternion.Euler(90f, 0f,0f); 
 			if (choose == "PIANO") {
 				//keyboard
-				cameraPosition = new Vector3(4.52f,4.87f,3.02f);
-				cameraRotation = Quaternion.Euler(90f, 0f,0f);
+				cameraPosition = new Vector3(2.28f,12.95f,-13.96f);
+				cameraRotation = Quaternion.Euler(70f, 0f,0f);
+				camera.fieldOfView = 10;
 			} else if (choose == "GUITAR") {
 				//guitar
-				cameraPosition = new Vector3(-5.47f,4.2f,1.945f);
+//				cameraPosition = new Vector3(-5.38f,4.82f,2.36f);
+				cameraPosition = new Vector3(-5.38f,4.07f,2.36f);
 				cameraRotation = Quaternion.Euler(90f, 0f,0f);
 			} else if (choose == "DRUM") {
 				//drum
@@ -99,5 +108,11 @@ public class CameraFollow : Photon.MonoBehaviour {
 			camera.transform.position = cameraPosition;
 			camera.transform.rotation = cameraRotation;
 		}
+	}
+	void setDownStage(){
+		camera.transform.position = positionBeforeOnStage;
+		camera.transform.rotation = rotationBeforeOnStage;
+		camera.fieldOfView = 60;
+		onStageOrNot = false;
 	}
 }

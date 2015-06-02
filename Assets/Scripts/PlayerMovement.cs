@@ -29,6 +29,9 @@ public class PlayerMovement : Photon.MonoBehaviour
 	private GameObject pianoReal;
 	private GameObject guitarFake;
 	private GameObject guitarReal;
+	//stage
+	private GameObject functionPanel;
+	private Vector3 positionBeforeOnStage;
 	//-------------
 	void Start() {
 		tarPos = this.transform.position;
@@ -168,6 +171,8 @@ public class PlayerMovement : Photon.MonoBehaviour
 			//press exit button
 			speed = 6f;
 		} else {
+			positionBeforeOnStage = new Vector3(transform.position.x,transform.position.y,transform.position.z);
+			functionPanel.SetActive (true);
 			string characterImgName = "";
 			string characterTextName = "";
 			transform.rotation = new Quaternion(0f,0f,0f,0f);
@@ -218,6 +223,22 @@ public class PlayerMovement : Photon.MonoBehaviour
 		}
 	}
 
+	void setDownStage(){
+		speed = 6f;
+		Image characterImg = GameObject.FindWithTag("characterPanel").GetComponentsInChildren<Image>()[1];
+		characterImg.sprite = Resources.Load("audience", typeof(Sprite)) as Sprite;
+		Text characterText = GameObject.FindWithTag("characterPanel").GetComponentInChildren<Text>();
+		characterText.text = "Audience";
+		transform.position = positionBeforeOnStage;
+		functionPanel.SetActive (false);
+		pianoFake.SetActive(true);
+		pianoReal.SetActive(false);
+		drumFake.SetActive(true);
+		drumReal.SetActive(false);
+		guitarFake.SetActive(true);
+		guitarReal.SetActive(false);
+	}
+
 	void buttonSetControl(){
 		GameObject ButtonSet = GameObject.FindWithTag ("buttonSet");
 		ButtonSet.GetComponentsInChildren<Button> () [0].onClick.AddListener (() => chooseInstrument ("PIANO"));
@@ -226,7 +247,8 @@ public class PlayerMovement : Photon.MonoBehaviour
 		ButtonSet.GetComponentsInChildren<Button> () [3].onClick.AddListener (() => chooseInstrument ("BASS"));
 		ButtonSet.GetComponentsInChildren<Button> () [4].onClick.AddListener (() => chooseInstrument ("SINGER"));
 		ButtonSet.GetComponentsInChildren<Button> () [5].onClick.AddListener (() => chooseInstrument ("EXIT"));
-		
+		Button exitStageButton = GameObject.FindWithTag ("downStageButton").GetComponent<Button>();
+		exitStageButton.onClick.AddListener(()=>setDownStage());
 		//instrument setting
 		drumFake = GameObject.FindWithTag ("drumFake");
 		drumReal = GameObject.FindWithTag ("drumReal");
@@ -237,6 +259,9 @@ public class PlayerMovement : Photon.MonoBehaviour
 		guitarFake = GameObject.FindWithTag ("guitarFake");
 		guitarReal = GameObject.FindWithTag ("guitarReal");
 		guitarReal.SetActive (false);
+
+		functionPanel = GameObject.FindWithTag ("functionPanel");
+		functionPanel.SetActive (false);
 	}
 	
 }
