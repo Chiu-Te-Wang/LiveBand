@@ -21,6 +21,9 @@ public class InRoomChat : Photon.MonoBehaviour
             this.GuiRect.y = Screen.height - this.GuiRect.height;
         }
     }
+	public void Awake(){
+		Debug.Log ("characterChoose" + PlayerPrefs.GetInt("Character"));
+	}
 
     public void OnGUI()
     {
