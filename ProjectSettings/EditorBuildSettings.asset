@@ -32,6 +32,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Photon Unity Networking/Demos/MarcoPolo-Tutorial/MarcoPolo-Scene.unity
   - enabled: 1
+    path: Assets/Scene/MenuScene.unity
+  - enabled: 0
     path: Assets/Scene/_testScene.unity
   - enabled: 1
     path: Assets/Scene/_scene.unity
+  - enabled: 1
+    path: Assets/Scene/CharacterSelection.unity

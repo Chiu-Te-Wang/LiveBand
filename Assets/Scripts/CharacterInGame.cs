@@ -7,7 +7,7 @@ public class CharacterInGame : Photon.MonoBehaviour {
 	public Transform playerPrefab;
 	public void Awake(){
 		if (!PhotonNetwork.connected) {
-			Application.LoadLevel("_testScene");	
+			Application.LoadLevel("MenuScene");	
 			return;
 		}
 		Vector3 movement = new Vector3();
@@ -58,13 +58,13 @@ public class CharacterInGame : Photon.MonoBehaviour {
 	{
 		Debug.Log("OnLeftRoom (local)");
 		// back to main menu 
-		Application.LoadLevel("_testScene");
+		Application.LoadLevel("MenuScene");
 	}
 	public void OnDisconnectedFromPhoton()
 	{
 		Debug.Log("OnDisconnectedFromPhoton");
 		// back to main menu 
-		Application.LoadLevel("_testScene");
+		Application.LoadLevel("MenuScene");
 	}
 	public void OnPhotonInstantiate(PhotonMessageInfo info) {
 		Debug.Log("OnPhotonInstantiate " + info.sender); // you could use this info to store this or react
@@ -73,7 +73,7 @@ public class CharacterInGame : Photon.MonoBehaviour {
 	{
 		Debug.Log("OnFailedToConnectToPhoton");
 		// back to main menu 
-		Application.LoadLevel("_testScene"); 
+		Application.LoadLevel("MenuScene"); 
 	}
 
 }
