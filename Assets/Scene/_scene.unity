@@ -208,7 +208,7 @@ GameObject:
   - 23: {fileID: 26429716}
   - 82: {fileID: 26429715}
   - 114: {fileID: 26429714}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -385,7 +385,7 @@ GameObject:
   - 23: {fileID: 43175450}
   - 82: {fileID: 43175449}
   - 114: {fileID: 43175448}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -692,7 +692,7 @@ GameObject:
   - 23: {fileID: 44028421}
   - 82: {fileID: 44028420}
   - 114: {fileID: 44028419}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -853,7 +853,7 @@ GameObject:
   - 23: {fileID: 81977399}
   - 82: {fileID: 81977398}
   - 114: {fileID: 81977397}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1014,7 +1014,7 @@ GameObject:
   - 23: {fileID: 83161263}
   - 82: {fileID: 83161262}
   - 114: {fileID: 83161261}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1238,7 +1238,7 @@ GameObject:
   - 23: {fileID: 108217412}
   - 82: {fileID: 108217411}
   - 114: {fileID: 108217410}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1399,7 +1399,7 @@ GameObject:
   - 23: {fileID: 122353596}
   - 82: {fileID: 122353595}
   - 114: {fileID: 122353594}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1555,7 +1555,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 142719584}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: step0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1590,7 +1590,7 @@ GameObject:
   - 23: {fileID: 152901901}
   - 82: {fileID: 152901900}
   - 114: {fileID: 152901899}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1780,7 +1780,7 @@ GameObject:
   - 23: {fileID: 163296956}
   - 82: {fileID: 163296955}
   - 114: {fileID: 163296954}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1936,7 +1936,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 165366554}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: step5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2143,7 +2143,7 @@ GameObject:
   - 23: {fileID: 190361040}
   - 82: {fileID: 190361039}
   - 114: {fileID: 190361038}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2420,6 +2420,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11450428, guid: 811df7857c68d4a408c6145195a7472f, type: 2}
+      propertyPath: ObservedComponents.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 433502, guid: 811df7857c68d4a408c6145195a7472f, type: 2}
       propertyPath: m_LocalPosition.x
       value: -3.23285341
@@ -2627,7 +2631,7 @@ GameObject:
   - 23: {fileID: 254558145}
   - 82: {fileID: 254558144}
   - 114: {fileID: 254558143}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2788,7 +2792,7 @@ GameObject:
   - 23: {fileID: 281973801}
   - 82: {fileID: 281973800}
   - 114: {fileID: 281973799}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2949,7 +2953,7 @@ GameObject:
   - 23: {fileID: 294066863}
   - 82: {fileID: 294066862}
   - 114: {fileID: 294066861}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3179,7 +3183,7 @@ GameObject:
   - 23: {fileID: 311176601}
   - 82: {fileID: 311176600}
   - 114: {fileID: 311176599}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3340,7 +3344,7 @@ GameObject:
   - 23: {fileID: 323989676}
   - 82: {fileID: 323989675}
   - 114: {fileID: 323989674}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3673,7 +3677,7 @@ GameObject:
   - 23: {fileID: 371694857}
   - 82: {fileID: 371694856}
   - 114: {fileID: 371694855}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3865,7 +3869,7 @@ GameObject:
   - 23: {fileID: 429388233}
   - 82: {fileID: 429388232}
   - 114: {fileID: 429388231}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4105,7 +4109,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 679269167}
   - 114: {fileID: 447247670}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: piano
   m_TagString: pianoReal
   m_Icon: {fileID: 0}
@@ -4234,7 +4238,7 @@ GameObject:
   - 23: {fileID: 491793989}
   - 82: {fileID: 491793988}
   - 114: {fileID: 491793987}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4395,7 +4399,7 @@ GameObject:
   - 23: {fileID: 498126171}
   - 82: {fileID: 498126170}
   - 114: {fileID: 498126169}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4556,7 +4560,7 @@ GameObject:
   - 23: {fileID: 513678563}
   - 82: {fileID: 513678562}
   - 114: {fileID: 513678561}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4744,7 +4748,7 @@ GameObject:
   - 23: {fileID: 543489145}
   - 82: {fileID: 543489144}
   - 114: {fileID: 543489143}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4962,7 +4966,7 @@ GameObject:
   - 23: {fileID: 566111986}
   - 82: {fileID: 566111985}
   - 114: {fileID: 566111984}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5127,7 +5131,7 @@ GameObject:
   - 23: {fileID: 581077499}
   - 82: {fileID: 581077498}
   - 114: {fileID: 581077497}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5288,7 +5292,7 @@ GameObject:
   - 23: {fileID: 589362019}
   - 82: {fileID: 589362018}
   - 114: {fileID: 589362017}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5449,7 +5453,7 @@ GameObject:
   - 23: {fileID: 607291775}
   - 82: {fileID: 607291774}
   - 114: {fileID: 607291773}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5610,7 +5614,7 @@ GameObject:
   - 23: {fileID: 610895368}
   - 82: {fileID: 610895367}
   - 114: {fileID: 610895366}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5988,7 +5992,7 @@ GameObject:
   - 23: {fileID: 658910568}
   - 82: {fileID: 658910567}
   - 114: {fileID: 658910566}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6897,7 +6901,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 730787673}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: step3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7004,7 +7008,7 @@ GameObject:
   - 23: {fileID: 769256705}
   - 82: {fileID: 769256704}
   - 114: {fileID: 769256703}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7165,7 +7169,7 @@ GameObject:
   - 23: {fileID: 778270311}
   - 82: {fileID: 778270310}
   - 114: {fileID: 778270309}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7326,7 +7330,7 @@ GameObject:
   - 23: {fileID: 785862258}
   - 82: {fileID: 785862257}
   - 114: {fileID: 785862256}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7645,7 +7649,7 @@ GameObject:
   - 23: {fileID: 828884530}
   - 82: {fileID: 828884529}
   - 114: {fileID: 828884528}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7869,7 +7873,7 @@ GameObject:
   - 23: {fileID: 850565906}
   - 82: {fileID: 850565905}
   - 114: {fileID: 850565904}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8025,7 +8029,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 854541546}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: step7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8125,7 +8129,7 @@ GameObject:
   - 23: {fileID: 934367058}
   - 82: {fileID: 934367057}
   - 114: {fileID: 934367056}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8302,7 +8306,7 @@ GameObject:
   - 23: {fileID: 960498984}
   - 82: {fileID: 960498983}
   - 114: {fileID: 960498982}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8463,7 +8467,7 @@ GameObject:
   - 23: {fileID: 961679757}
   - 82: {fileID: 961679756}
   - 114: {fileID: 961679755}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8788,7 +8792,7 @@ GameObject:
   - 23: {fileID: 1008410957}
   - 82: {fileID: 1008410956}
   - 114: {fileID: 1008410955}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9327,7 +9331,7 @@ GameObject:
   - 23: {fileID: 1062616235}
   - 82: {fileID: 1062616234}
   - 114: {fileID: 1062616233}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9488,7 +9492,7 @@ GameObject:
   - 23: {fileID: 1068414821}
   - 82: {fileID: 1068414820}
   - 114: {fileID: 1068414819}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9649,7 +9653,7 @@ GameObject:
   - 23: {fileID: 1095099916}
   - 82: {fileID: 1095099915}
   - 114: {fileID: 1095099914}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10068,7 +10072,7 @@ GameObject:
   - 23: {fileID: 1126623268}
   - 82: {fileID: 1126623267}
   - 114: {fileID: 1126623266}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10229,7 +10233,7 @@ GameObject:
   - 23: {fileID: 1130158971}
   - 82: {fileID: 1130158970}
   - 114: {fileID: 1130158969}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10419,7 +10423,7 @@ GameObject:
   - 23: {fileID: 1142664356}
   - 82: {fileID: 1142664355}
   - 114: {fileID: 1142664354}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10580,7 +10584,7 @@ GameObject:
   - 23: {fileID: 1153683291}
   - 82: {fileID: 1153683290}
   - 114: {fileID: 1153683289}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10741,7 +10745,7 @@ GameObject:
   - 23: {fileID: 1155755552}
   - 82: {fileID: 1155755551}
   - 114: {fileID: 1155755550}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10902,7 +10906,7 @@ GameObject:
   - 23: {fileID: 1169834524}
   - 82: {fileID: 1169834523}
   - 114: {fileID: 1169834522}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11063,7 +11067,7 @@ GameObject:
   - 23: {fileID: 1173995850}
   - 82: {fileID: 1173995849}
   - 114: {fileID: 1173995848}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11292,7 +11296,7 @@ GameObject:
   - 23: {fileID: 1250293900}
   - 82: {fileID: 1250293899}
   - 114: {fileID: 1250293898}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11522,7 +11526,7 @@ GameObject:
   - 23: {fileID: 1272233105}
   - 82: {fileID: 1272233104}
   - 114: {fileID: 1272233103}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11683,7 +11687,7 @@ GameObject:
   - 23: {fileID: 1276578356}
   - 82: {fileID: 1276578355}
   - 114: {fileID: 1276578354}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11844,7 +11848,7 @@ GameObject:
   - 23: {fileID: 1303469649}
   - 82: {fileID: 1303469648}
   - 114: {fileID: 1303469647}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12005,7 +12009,7 @@ GameObject:
   - 23: {fileID: 1315234035}
   - 82: {fileID: 1315234034}
   - 114: {fileID: 1315234033}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12242,7 +12246,7 @@ GameObject:
   - 23: {fileID: 1326133236}
   - 82: {fileID: 1326133235}
   - 114: {fileID: 1326133234}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12437,7 +12441,7 @@ GameObject:
   - 23: {fileID: 1332050558}
   - 82: {fileID: 1332050557}
   - 114: {fileID: 1332050556}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12598,7 +12602,7 @@ GameObject:
   - 23: {fileID: 1334433097}
   - 82: {fileID: 1334433096}
   - 114: {fileID: 1334433095}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12759,7 +12763,7 @@ GameObject:
   - 23: {fileID: 1355584392}
   - 82: {fileID: 1355584391}
   - 114: {fileID: 1355584390}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12920,7 +12924,7 @@ GameObject:
   - 23: {fileID: 1359722943}
   - 82: {fileID: 1359722942}
   - 114: {fileID: 1359722941}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13153,7 +13157,7 @@ GameObject:
   - 23: {fileID: 1388700972}
   - 82: {fileID: 1388700971}
   - 114: {fileID: 1388700970}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13398,7 +13402,7 @@ GameObject:
   - 23: {fileID: 1406698304}
   - 82: {fileID: 1406698303}
   - 114: {fileID: 1406698302}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13559,7 +13563,7 @@ GameObject:
   - 23: {fileID: 1408136198}
   - 82: {fileID: 1408136197}
   - 114: {fileID: 1408136196}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13783,7 +13787,7 @@ GameObject:
   - 23: {fileID: 1416441856}
   - 82: {fileID: 1416441855}
   - 114: {fileID: 1416441854}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14008,7 +14012,7 @@ GameObject:
   - 23: {fileID: 1430630972}
   - 82: {fileID: 1430630971}
   - 114: {fileID: 1430630970}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14169,7 +14173,7 @@ GameObject:
   - 23: {fileID: 1440028543}
   - 82: {fileID: 1440028542}
   - 114: {fileID: 1440028541}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14393,7 +14397,7 @@ GameObject:
   - 23: {fileID: 1452502343}
   - 82: {fileID: 1452502342}
   - 114: {fileID: 1452502341}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14571,7 +14575,7 @@ GameObject:
   - 23: {fileID: 1468979509}
   - 82: {fileID: 1468979508}
   - 114: {fileID: 1468979507}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14732,7 +14736,7 @@ GameObject:
   - 23: {fileID: 1477036941}
   - 82: {fileID: 1477036940}
   - 114: {fileID: 1477036939}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15190,7 +15194,7 @@ GameObject:
   - 23: {fileID: 1503980840}
   - 82: {fileID: 1503980839}
   - 114: {fileID: 1503980838}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15351,7 +15355,7 @@ GameObject:
   - 23: {fileID: 1516778068}
   - 82: {fileID: 1516778067}
   - 114: {fileID: 1516778066}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15646,7 +15650,7 @@ GameObject:
   - 23: {fileID: 1548766970}
   - 82: {fileID: 1548766969}
   - 114: {fileID: 1548766968}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15871,7 +15875,7 @@ GameObject:
   - 23: {fileID: 1566932946}
   - 82: {fileID: 1566932945}
   - 114: {fileID: 1566932944}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16061,7 +16065,7 @@ GameObject:
   - 23: {fileID: 1580758151}
   - 82: {fileID: 1580758150}
   - 114: {fileID: 1580758149}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16222,7 +16226,7 @@ GameObject:
   - 23: {fileID: 1599247826}
   - 82: {fileID: 1599247825}
   - 114: {fileID: 1599247824}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16383,7 +16387,7 @@ GameObject:
   - 23: {fileID: 1609546859}
   - 82: {fileID: 1609546858}
   - 114: {fileID: 1609546857}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16560,7 +16564,7 @@ GameObject:
   - 23: {fileID: 1612338836}
   - 82: {fileID: 1612338835}
   - 114: {fileID: 1612338834}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16721,7 +16725,7 @@ GameObject:
   - 23: {fileID: 1616091463}
   - 82: {fileID: 1616091462}
   - 114: {fileID: 1616091461}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16886,7 +16890,7 @@ GameObject:
   - 23: {fileID: 1628064971}
   - 82: {fileID: 1628064970}
   - 114: {fileID: 1628064969}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17047,7 +17051,7 @@ GameObject:
   - 23: {fileID: 1643227883}
   - 82: {fileID: 1643227882}
   - 114: {fileID: 1643227881}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17208,7 +17212,7 @@ GameObject:
   - 23: {fileID: 1667625918}
   - 82: {fileID: 1667625917}
   - 114: {fileID: 1667625916}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17641,7 +17645,7 @@ GameObject:
   - 23: {fileID: 1750450487}
   - 82: {fileID: 1750450486}
   - 114: {fileID: 1750450485}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17985,7 +17989,7 @@ GameObject:
   - 23: {fileID: 1882071328}
   - 82: {fileID: 1882071327}
   - 114: {fileID: 1882071326}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18146,7 +18150,7 @@ GameObject:
   - 23: {fileID: 1910024179}
   - 82: {fileID: 1910024178}
   - 114: {fileID: 1910024177}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18302,7 +18306,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1917700714}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: step2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18341,7 +18345,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1929176382}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: step1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18507,7 +18511,7 @@ GameObject:
   - 23: {fileID: 1941590752}
   - 82: {fileID: 1941590751}
   - 114: {fileID: 1941590750}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18668,7 +18672,7 @@ GameObject:
   - 23: {fileID: 1945711323}
   - 82: {fileID: 1945711322}
   - 114: {fileID: 1945711321}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18910,7 +18914,7 @@ GameObject:
   - 23: {fileID: 1980380139}
   - 82: {fileID: 1980380138}
   - 114: {fileID: 1980380137}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19087,7 +19091,7 @@ GameObject:
   - 23: {fileID: 2009561382}
   - 82: {fileID: 2009561381}
   - 114: {fileID: 2009561380}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21706,7 +21710,7 @@ GameObject:
   - 23: {fileID: 2033650562}
   - 82: {fileID: 2033650561}
   - 114: {fileID: 2033650560}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22098,7 +22102,7 @@ GameObject:
   - 23: {fileID: 2078750574}
   - 82: {fileID: 2078750573}
   - 114: {fileID: 2078750572}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22384,7 +22388,7 @@ GameObject:
   - 23: {fileID: 2091938912}
   - 82: {fileID: 2091938911}
   - 114: {fileID: 2091938910}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22624,7 +22628,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2109343258}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: step4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22728,7 +22732,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2119368101}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: step6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22772,7 +22776,7 @@ GameObject:
   - 23: {fileID: 2137108141}
   - 82: {fileID: 2137108140}
   - 114: {fileID: 2137108139}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

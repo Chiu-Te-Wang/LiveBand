@@ -18,7 +18,7 @@ public class KeyTouch : MonoBehaviour {
 			Ray ray = Camera.main.ScreenPointToRay(touch.position);
 			RaycastHit hit;
 
-			if ( Physics.Raycast(ray, out hit)) {
+			if ( Physics.Raycast(ray, out hit, Mathf.Infinity, 1<<8 )) {
 				if (hit.collider != null) {
 					GameObject key = hit.collider.gameObject;
 					if ( touch.phase == TouchPhase.Began
