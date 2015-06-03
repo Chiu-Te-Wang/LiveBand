@@ -35,4 +35,15 @@ MonoBehaviour:
   - TaggedPlayer
   - SetStatus
   - setstagePos
+  - PP
+  - OnMouseUp
+  - PPP
+  - PPPP
+  - drumm
+  - OnMouseUpRPC
+  - PPRPC
+  - playone
+  - playtwo
+  - OnMouseUpGRPC
+  - PPGRPC
   DisableAutoOpenWizard: 0

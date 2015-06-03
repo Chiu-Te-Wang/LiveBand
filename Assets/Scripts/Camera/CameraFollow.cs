@@ -22,8 +22,9 @@ public class CameraFollow : Photon.MonoBehaviour {
 				camera = Camera.main;
 			}		
 		}
-		camera.transform.position.Set(1f,15f,-22f);
-		camera.transform.rotation.SetLookRotation(new Vector3(30f,0f,0f));
+		float rand = transform.position.z - 15f;
+		camera.transform.position.Set(1f,15f,-22f+rand);
+		camera.transform.rotation = Quaternion.Euler(35f,180f,0f);
 		offset = camera.transform.position - target.position;
 		//assigned name
 		gameObject.name = gameObject.name + photonView.viewID;
@@ -85,8 +86,8 @@ public class CameraFollow : Photon.MonoBehaviour {
 				camera.fieldOfView = 10;
 			} else if (choose == "GUITAR") {
 				//guitar
-//				cameraPosition = new Vector3(-5.38f,4.82f,2.36f);
-				cameraPosition = new Vector3(-5.38f,4.07f,2.36f);
+				cameraPosition = new Vector3(-5.38f,4.82f,2.36f);
+//				cameraPosition = new Vector3(-5.38f,4.07f,2.36f);
 				cameraRotation = Quaternion.Euler(90f, 0f,0f);
 			} else if (choose == "DRUM") {
 				//drum

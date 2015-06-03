@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class GuitarTouch : MonoBehaviour {
+	public Text test;
 	private GameObject[] stringPlays;
 	private GameObject[] stringReplay = new GameObject[6];
 	private GameObject[] stringPlaying = new GameObject[6];
@@ -18,10 +19,11 @@ public class GuitarTouch : MonoBehaviour {
 			
 			Ray ray = Camera.main.ScreenPointToRay(touch.position);
 			RaycastHit hit;
-			if ( Physics.Raycast(ray, out hit,Mathf.Infinity, 1<<8) ) {
+			test.color = Color.red;
+			if ( Physics.Raycast(ray, out hit,Mathf.Infinity, 1<<10) ) {
 				if ( hit.collider != null ) {
 					GameObject grid = hit.collider.gameObject;
-					Destroy(grid);
+					test.color = Color.cyan;
 					int i;
 					switch ( grid.transform.parent.name ) {
 						case "E":
@@ -41,17 +43,22 @@ public class GuitarTouch : MonoBehaviour {
 					} if ( touch.phase == TouchPhase.Began
 					    || touch.phase == TouchPhase.Stationary
 					    || touch.phase == TouchPhase.Moved ) {
+						test.text = grid.transform.parent.name;
 						if ( stringPlays[i] == null
 						  || grid.transform.localPosition.y < stringPlays[i].transform.localPosition.y ){
 							stringPlays[i] = grid;
+							test.color = Color.green;
 						}
 					}
 				}
 			}
 		} for ( int i = 0; i < 6; i++ ) {
 			if ( stringPlays[i] != null && stringPlays[i] != stringPlaying[i] ) {
-				if( stringPlaying[i] != null) stringPlaying[i].GetComponent<AudioSource>().Stop();
+				if( stringPlaying[i] != null) {
+					stringPlaying[i].GetComponent<AudioSource>().Stop();
+				}
 				stringPlays[i].GetComponent<AudioSource>().Play();
+				test.text = "played";
 			}
 		} stringPlaying = stringPlays;
 	}

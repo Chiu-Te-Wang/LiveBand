@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class drumpress : MonoBehaviour {
+public class drumpress : Photon.MonoBehaviour {
 	private bool pedkdown = false;
 	private bool pedhdown = false;
 	// Use this for initialization
@@ -35,23 +35,31 @@ public class drumpress : MonoBehaviour {
 		}
 	}
 	public void PP( string struck) {
-
-		if(struck == "Ped1"){
-			GameObject bar = GameObject.FindWithTag("bar");
-			GameObject ped = GameObject.FindWithTag("pedk");
-			bar.transform.Rotate(Vector3.right, 30);
-			bar.transform.Translate(0,0,0.15f);
-			ped.transform.Translate(0,-0.06f,0);
-			ped.transform.Rotate(Vector3.right, 25);
+		print (photonView.isMine);
+		print (photonView.viewID);
+		print (photonView.ownerId);
+		if (struck == "Ped1") {
+			GameObject bar = GameObject.FindWithTag ("bar");
+			GameObject ped = GameObject.FindWithTag ("pedk");
+			bar.transform.Rotate (Vector3.right, 30);
+			bar.transform.Translate (0, 0, 0.15f);
+			ped.transform.Translate (0, -0.06f, 0);
+			ped.transform.Rotate (Vector3.right, 25);
 			pedkdown = true;
 		}
 		if (struck == "Ped2") {
-			GameObject ped = GameObject.FindWithTag("pedh");
-			ped.transform.Translate(0,-0.06f,0);
-			ped.transform.Rotate(Vector3.right, 25);
+			GameObject ped = GameObject.FindWithTag ("pedh");
+			ped.transform.Translate (0, -0.06f, 0);
+			ped.transform.Rotate (Vector3.right, 25);
 			pedhdown = true;
 		}
 		GetComponent<AudioSource> ().Play ();
+		photonView.RPC ("drumm", PhotonTargets.Others);
 
+	}
+
+	[RPC]
+	void drumm(){
+		GetComponent<AudioSource> ().Play ();
 	}
 }

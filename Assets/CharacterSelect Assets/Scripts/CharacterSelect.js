@@ -54,9 +54,10 @@ function Confirm(){
 		Debug.Log("You have to choose a character.");
 		return ;
 	}
+
 	PlayerPrefs.SetInt("Character", chooseCharacter);
 	Debug.Log("Confirm press: "+ chooseCharacter);
-	Application.LoadLevel("_scene");
+	//Application.LoadLevel("_scene");
 }
 
 function SelectedCharacter1() {

@@ -29,15 +29,17 @@ public class KeyTouch : MonoBehaviour {
 				  	|| touch.phase == TouchPhase.Stationary
 				  	|| touch.phase == TouchPhase.Moved ) {
 						if ( !touchesOld.Remove(key) ) {
-							key.GetComponent<AudioSource>().Play();
-							key.transform.Translate(0,-0.09f,0);
+							//key.GetComponent<AudioSource>().Play();
+							key.GetComponent<keypress>().PP ();
+							//key.transform.Translate(0,-0.09f,0);
 						} touchesNew.Add(key);
 					}
 				}
 			}
 		} foreach ( GameObject g in touchesOld ) {
-			g.GetComponent<AudioSource>().Stop();
-			g.transform.Translate(0,0.09f,0);
+			//g.GetComponent<AudioSource>().Stop();
+			//g.transform.Translate(0,0.09f,0);
+			g.GetComponent<keypress>().OnMouseUp();
 		} touchesOld = touchesNew;
 	}
 }

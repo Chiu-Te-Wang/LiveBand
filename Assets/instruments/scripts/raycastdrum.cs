@@ -14,7 +14,7 @@ public class raycastdrum : MonoBehaviour {
 			
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit hit;
-			if (Physics.Raycast(ray, out hit)) {
+			if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1<<9)) {
 				if (hit.collider != null) {
 					GameObject target = hit.collider.gameObject;
 					target.GetComponent<drumpress>().PP(target.name);

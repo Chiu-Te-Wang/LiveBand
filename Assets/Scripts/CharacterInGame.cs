@@ -14,7 +14,7 @@ public class CharacterInGame : Photon.MonoBehaviour {
 			return;
 		}
 		Vector3 movement = new Vector3();
-		movement.Set (-0.5f,0f,15f);
+		movement.Set (-0.5f,0f,15f+(Random.Range(1f, 5f)*2));
 		if (PlayerPrefs.GetInt ("Character") == 1) {
 			PhotonNetwork.Instantiate (this.playerPrefab1.name, movement, new Quaternion (0f, 180f, 0f, 0f), 0);
 		} else if (PlayerPrefs.GetInt ("Character") == 2) {
@@ -44,16 +44,16 @@ public class CharacterInGame : Photon.MonoBehaviour {
 	}
 
 	public void OnPhotonPlayerConnected(PhotonPlayer player) {
-		Debug.Log("OnPhotonPlayerConnected: " + player);
+		Debug.Log ("OnPhotonPlayerConnected: " + player);
 		string message; 
-		InRoomChat chatComponent = GetComponent<InRoomChat>();
+		InRoomChat chatComponent = GetComponent<InRoomChat> ();
 		
-		if (chatComponent != null)
-		{
+		if (chatComponent != null) {
 			message = "OnPhotonPlayerConnected: " + player; 
-			chatComponent.AddLine(message);
+			chatComponent.AddLine (message);
 		}
-	} 
+
+	}
 	public void OnPhotonPlayerDisconnected(PhotonPlayer player) {
 		Debug.Log("OnPlayerDisconneced: " + player);
 		string message;

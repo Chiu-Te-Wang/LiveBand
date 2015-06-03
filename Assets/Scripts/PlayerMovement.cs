@@ -47,14 +47,15 @@ public class PlayerMovement : Photon.MonoBehaviour
 
 		playerRigidbody = GetComponent<Rigidbody> ();
 		walking = false;
-		instrumentPanel = GameObject.FindWithTag("instrumentPanel");
-		if (photonView.isMine) {
-			buttonSetControl();
-			instrumentSet = new bool[instrumentNum];
-			for(int i=0; i<instrumentSet.Length; i++){
-				instrumentSet[i] = false;
-			}
+		instrumentSet = new bool[instrumentNum];
+		for(int i=0; i<instrumentSet.Length; i++){
+			instrumentSet[i] = false;
 		}
+		//_Move (transform.position.x,transform.position.z);
+		if (photonView.isMine) {
+			instrumentPanel = GameObject.FindWithTag ("instrumentPanel");
+			buttonSetControl ();
+		} 
 	}
 	void FixedUpdate(){
 		if (PhotonNetwork.connectionStateDetailed != PeerState.Joined) {
@@ -62,9 +63,10 @@ public class PlayerMovement : Photon.MonoBehaviour
 		}
 		float h = Input.GetAxisRaw("Horizontal");
 		float v = Input.GetAxisRaw("Vertical");
-		if (Mathf.Abs (h) > 0f || Mathf.Abs (v) > 0f) {
+		if ((Mathf.Abs (h) > 0f || Mathf.Abs (v) > 0f) || !photonView.isMine) {
 			_Move (h, v);
 		}
+		pressMouseMove ();
 	}
 
 	void Move(float h , float v){
@@ -136,14 +138,16 @@ public class PlayerMovement : Photon.MonoBehaviour
 	void OnTriggerEnter(Collider other) 
 	{
 		if (other.tag == "Stage") {
-			_Move(0f,0f);
-			if(!(moveMark == null)){ Destroy(moveMark); }
-			posTo = transform.position;
-			speed = 0f;
-			instrumentPanel.SetActive(true);
+			if (photonView.isMine) {
+				_Move(0f,0f);
+				if(!(moveMark == null)){ Destroy(moveMark); }
+				posTo = transform.position;
+				speed = 0f;
+				instrumentPanel.SetActive(true);
+			}
 		}
 	}
-	void Update(){
+	void pressMouseMove(){
 		if (Input.GetMouseButtonDown(0)){
 			//Pressed left click
 			if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject () && speed > 0f){
@@ -201,8 +205,8 @@ public class PlayerMovement : Photon.MonoBehaviour
 				transform.position = new Vector3 (4.55f, 1.7f, 1.4f);
 				characterImgName = "piano";
 				characterTextName = "Keyboard";
-				pianoFake.SetActive(false);
-				pianoReal.SetActive(true);
+				switchPresent(pianoFake,false);
+				switchPresent(pianoReal,true);
 			} else if (choose == "GUITAR") {
 				//guitar
 				if(instrumentSet[1]){ return; }
@@ -212,10 +216,8 @@ public class PlayerMovement : Photon.MonoBehaviour
 				transform.position = new Vector3 (-5.45f, 1.7f, 0.37f);
 				characterImgName = "guitar";
 				characterTextName = "Guitarist";
-				print (guitarFake);
-				print (guitarReal);
-				guitarFake.SetActive(false);
-				guitarReal.SetActive(true);
+				switchPresent(guitarFake,false);
+				switchPresent(guitarReal,true);
 			} else if (choose == "DRUM") {
 				//drum
 				if(instrumentSet[2]){ return; }
@@ -225,8 +227,8 @@ public class PlayerMovement : Photon.MonoBehaviour
 				transform.position = new Vector3 (0f, 1.7f, -5.4f);
 				characterImgName = "drum";
 				characterTextName = "Drummer";
-				drumFake.SetActive(false);
-				drumReal.SetActive(true);
+				switchPresent(drumFake,false);
+				switchPresent(drumReal,true);
 			} else if (choose == "SINGER") {
 				//main singer
 				if(instrumentSet[3]){ return; }
@@ -267,12 +269,12 @@ public class PlayerMovement : Photon.MonoBehaviour
 		transform.position = positionBeforeOnStage;
 		transform.rotation = rotationBeforeOnStage;
 		functionPanel.SetActive (false);
-		pianoFake.SetActive(true);
-		pianoReal.SetActive(false);
-		drumFake.SetActive(true);
-		drumReal.SetActive(false);
-		guitarFake.SetActive(true);
-		guitarReal.SetActive(false);
+		switchPresent(pianoReal,false);
+		switchPresent(pianoFake,true);
+		switchPresent(drumReal,false);
+		switchPresent(drumFake,true);
+		switchPresent(guitarReal,false);
+		switchPresent(guitarFake,true);
 
 		if(!instrumentSet[stagePosition]){ 
 			Debug.Log ("Error stage position!");
@@ -295,16 +297,25 @@ public class PlayerMovement : Photon.MonoBehaviour
 		//instrument setting
 		drumFake = GameObject.FindWithTag ("drumFake");
 		drumReal = GameObject.FindWithTag ("drumReal");
-		drumReal.SetActive (false);
+		switchPresent (drumReal,false);
 		pianoFake = GameObject.FindWithTag ("pianoFake");
 		pianoReal = GameObject.FindWithTag ("pianoReal");
-		pianoReal.SetActive (false);
+		switchPresent (pianoReal,false);
 		guitarFake = GameObject.FindWithTag ("guitarFake");
 		guitarReal = GameObject.FindWithTag ("guitarReal");
-		guitarReal.SetActive (false);
+		switchPresent (guitarReal,false);
 
 		functionPanel = GameObject.FindWithTag ("functionPanel");
 		//functionPanel.SetActive (false);
+	}
+
+	void switchPresent(GameObject target, bool trueOrFalse){
+		Renderer[] listOfChildren = target.GetComponentsInChildren<Renderer> ();
+		foreach(Renderer child in listOfChildren)
+		{
+			child.enabled = trueOrFalse;
+			
+		}
 	}
 	
 }

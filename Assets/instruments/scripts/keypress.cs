@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class keypress : MonoBehaviour {
+public class keypress : Photon.MonoBehaviour {
 	private bool pressing;
 	// Use this for initialization
 	void Start () {	
@@ -14,13 +14,28 @@ public class keypress : MonoBehaviour {
 	void OnMouseDown () {
 		//GetComponent<AudioSource>().Play ();
 	}
-	void OnMouseUp (){
+
+	public void OnMouseUp (){
 		GetComponent<AudioSource> ().Stop ();
-		GetComponent<Transform> ().Translate(0,0.09f,0) ;
+		GetComponent<Transform> ().Translate (0, 0.09f, 0);
+		photonView.RPC ("OnMouseUpRPC", PhotonTargets.Others);
 	}
+
 	public void PP() {
 		GetComponent<AudioSource> ().Play ();
-		GetComponent<Transform> ().Translate(0,-0.09f,0) ;
+		GetComponent<Transform> ().Translate (0, -0.09f, 0);
+		photonView.RPC ("PPRPC", PhotonTargets.Others);
+	}
+
+	[RPC]
+	void OnMouseUpRPC(){
+		GetComponent<AudioSource> ().Stop ();
+	}
+
+	[RPC]
+	void PPRPC(){
+		GetComponent<AudioSource> ().Play ();
+		print ("ssss");
 	}
 }
 

@@ -78,7 +78,10 @@ public class PhotonRoomMenu : Photon.MonoBehaviour {
 	private void CreateRoom(){
 		if (roomName.Length != 0) {
 			ErrorMessage ="";
-			PhotonNetwork.CreateRoom(roomName, new RoomOptions(){maxPlayers = 4}, null);
+			PlayerPrefs.SetInt("CreateOrJoin", 0);
+			PlayerPrefs.SetString("Create_RoomName", roomName);
+			Application.LoadLevel("CharacterSelection");
+			//PhotonNetwork.CreateRoom(roomName, new RoomOptions(){maxPlayers = 4}, null);
 		} else {
 			ErrorMessage = "You must input roomname.";
 		}
@@ -111,6 +114,8 @@ public class PhotonRoomMenu : Photon.MonoBehaviour {
 					ErrorMessage = "You must input playername and roomname.";
 				}
 			}*/
+
+
 			RoomInfo[] roomInfo = PhotonNetwork.GetRoomList();
 			if(roomInfo.Length > 0){
 				string[] roomNames = new string[roomInfo.Length];
@@ -123,8 +128,11 @@ public class PhotonRoomMenu : Photon.MonoBehaviour {
 				if(GUILayout.Button("Join Room",mystyle2)){
 					ErrorMessage = "";
 					if(playerName.Length >0){
-						PhotonNetwork.playerName = playerName;
-						PhotonNetwork.JoinRoom(roomNames[roomSel]);
+						//PhotonNetwork.playerName = playerName;
+						//PhotonNetwork.JoinRoom(roomNames[roomSel]);
+						PlayerPrefs.SetString("Join_RoomName", roomNames[roomSel]);
+						PlayerPrefs.SetInt("CreateOrJoin", 1);
+						Application.LoadLevel("CharacterSelection");
 					}
 					else{
 						ErrorMessage = "You must input playername.";
@@ -138,7 +146,7 @@ public class PhotonRoomMenu : Photon.MonoBehaviour {
 		}
 	}
 
-	public void OnJoinedRoom()
+	/*public void OnJoinedRoom()
 	{
 		Debug.Log("OnJoinedRoom");
 		PhotonNetwork.LoadLevel("CharacterSelection");
@@ -148,5 +156,5 @@ public class PhotonRoomMenu : Photon.MonoBehaviour {
 	{
 		Debug.Log("OnCreatedRoom");
 		PhotonNetwork.LoadLevel("CharacterSelection");
-	}
+	}*/
 }
