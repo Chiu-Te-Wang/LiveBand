@@ -22,6 +22,7 @@ TagManager:
   - guitarFake
   - downStageButton
   - functionPanel
+  - pianoSlider
   layers:
   - Default
   - TransparentFX
