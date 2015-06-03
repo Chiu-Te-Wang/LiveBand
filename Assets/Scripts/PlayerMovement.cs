@@ -36,6 +36,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 	private Quaternion rotationBeforeOnStage;
 	private int stagePosition;
 	private bool[] instrumentSet;
+	private GameObject pianoSlider;
 	//-------------
 	void Start() {
 		tarPos = this.transform.position;
@@ -54,6 +55,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 		//_Move (transform.position.x,transform.position.z);
 		if (photonView.isMine) {
 			instrumentPanel = GameObject.FindWithTag ("instrumentPanel");
+			pianoSlider = GameObject.FindWithTag("pianoSlider");
 			buttonSetControl ();
 		} 
 	}
@@ -191,8 +193,8 @@ public class PlayerMovement : Photon.MonoBehaviour
 			positionBeforeOnStage = new Vector3(transform.position.x,transform.position.y,transform.position.z);
 			rotationBeforeOnStage = transform.rotation;
 			functionPanel.SetActive (true);
-			string characterImgName = "";
-			string characterTextName = "";
+			string characterImgName = "audience";
+			string characterTextName = "Audience";
 			transform.rotation = new Quaternion(0f,0f,0f,0f);
 			if(!(moveMark == null)){ Destroy(moveMark); }
 			
@@ -207,6 +209,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 				characterTextName = "Keyboard";
 				switchPresent(pianoFake,false);
 				switchPresent(pianoReal,true);
+				pianoSlider.SetActive(true);
 			} else if (choose == "GUITAR") {
 				//guitar
 				if(instrumentSet[1]){ return; }
@@ -249,8 +252,6 @@ public class PlayerMovement : Photon.MonoBehaviour
 				characterTextName = "Bassist";
 			}else{
 				Debug.Log("Error parameter in chooseInstrument");
-				characterImgName = "audience";
-				characterTextName = "Audience";
 			}
 			Image characterImg = GameObject.FindWithTag("characterPanel").GetComponentsInChildren<Image>()[1];
 			characterImg.sprite = Resources.Load(characterImgName, typeof(Sprite)) as Sprite;
@@ -275,6 +276,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 		switchPresent(drumFake,true);
 		switchPresent(guitarReal,false);
 		switchPresent(guitarFake,true);
+		pianoSlider.SetActive (false);
 
 		if(!instrumentSet[stagePosition]){ 
 			Debug.Log ("Error stage position!");
@@ -306,7 +308,6 @@ public class PlayerMovement : Photon.MonoBehaviour
 		switchPresent (guitarReal,false);
 
 		functionPanel = GameObject.FindWithTag ("functionPanel");
-		//functionPanel.SetActive (false);
 	}
 
 	void switchPresent(GameObject target, bool trueOrFalse){

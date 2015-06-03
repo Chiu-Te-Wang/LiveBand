@@ -57,14 +57,18 @@ public class InRoomChat : Photon.MonoBehaviour
         GUILayout.FlexibleSpace();
 		for (int i = 0; i < messages.Count; i++)
         {
-            GUILayout.Label(messages[i]);
+			GUILayout.Label("<size=20>"+messages[i]+"</size>");
         }
         GUILayout.EndScrollView();
 
         GUILayout.BeginHorizontal();
         GUI.SetNextControlName("ChatInput");
-        inputLine = GUILayout.TextField(inputLine);
-        if (GUILayout.Button("Send", GUILayout.ExpandWidth(false)))
+        inputLine = GUILayout.TextField(inputLine,GUILayout.Height(50f));
+		GUILayoutOption[] options = new GUILayoutOption[3];
+		options [0] = GUILayout.ExpandWidth (false);
+		options [1] = GUILayout.Height (50f);
+		options [2] = GUILayout.Width (60f);
+		if (GUILayout.Button("Send", options))
         {
             this.photonView.RPC("Chat", PhotonTargets.All, this.inputLine);
             this.inputLine = "";
@@ -91,7 +95,7 @@ public class InRoomChat : Photon.MonoBehaviour
             }
         }
 
-        this.messages.Add(senderName +": " + newLine);
+        this.messages.Add("<b>"+senderName+"</b>" +": " + newLine);
 		while (messages.Count > MAXLINES) {
 			messages.RemoveAt(0);
 		}
