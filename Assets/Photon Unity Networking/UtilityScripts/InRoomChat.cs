@@ -5,24 +5,27 @@ using System.Collections;
 [RequireComponent(typeof(PhotonView))]
 public class InRoomChat : Photon.MonoBehaviour 
 {
-    public Rect GuiRect = new Rect(0,0, 250,300);
+	public Rect GuiRect;
     public bool IsVisible = true;
     public bool AlignBottom = false;
     public List<string> messages = new List<string>();
     private string inputLine = "";
     private Vector2 scrollPos = Vector2.zero;
-	private float offset = 10f;
 	private int MAXLINES = 50;
+	private float scale = 0.25f;
 
     public static readonly string ChatRPC = "Chat";
 
     public void Start()
-    {
-        if (this.AlignBottom)
+    {	
+		float GuiRectWidth = Mathf.Clamp (Screen.width * scale, 200f, Mathf.Infinity);
+		float GuiRectHeight = Mathf.Clamp (Screen.height * scale, 120f, Mathf.Infinity);
+		GuiRect = new Rect(0,0,GuiRectWidth,GuiRectHeight);
+		if (this.AlignBottom)
         {
-			this.GuiRect.y = Screen.height - this.GuiRect.height - offset;
+			this.GuiRect.y = Screen.height - this.GuiRect.height - GuiRect.height*0.1f;
         }
-		this.GuiRect.x = offset;
+		this.GuiRect.x = GuiRect.width*0.1f;
     }
 	public void Awake(){
 		Debug.Log ("characterChoose" + PlayerPrefs.GetInt("Character"));
@@ -51,23 +54,23 @@ public class InRoomChat : Photon.MonoBehaviour
         }
 
         GUI.SetNextControlName("");
-        GUILayout.BeginArea(this.GuiRect);
+		GUILayout.BeginArea(this.GuiRect);
 
         scrollPos = GUILayout.BeginScrollView(scrollPos);
         GUILayout.FlexibleSpace();
 		for (int i = 0; i < messages.Count; i++)
         {
-			GUILayout.Label("<size=20>"+messages[i]+"</size>");
+			GUILayout.Label("<size="+GuiRect.width*0.06+">"+messages[i]+"</size>");
         }
         GUILayout.EndScrollView();
 
-        GUILayout.BeginHorizontal();
+		GUILayout.BeginHorizontal();
         GUI.SetNextControlName("ChatInput");
-        inputLine = GUILayout.TextField(inputLine,GUILayout.Height(50f));
+		inputLine = GUILayout.TextField(inputLine,GUILayout.Height(GuiRect.height*0.2f));
 		GUILayoutOption[] options = new GUILayoutOption[3];
 		options [0] = GUILayout.ExpandWidth (false);
-		options [1] = GUILayout.Height (50f);
-		options [2] = GUILayout.Width (60f);
+		options [1] = GUILayout.Height (GuiRect.height*0.2f);
+		options [2] = GUILayout.Width (GuiRect.width*0.2f);
 		if (GUILayout.Button("Send", options))
         {
             this.photonView.RPC("Chat", PhotonTargets.All, this.inputLine);

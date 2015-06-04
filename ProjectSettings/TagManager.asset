@@ -23,6 +23,7 @@ TagManager:
   - downStageButton
   - functionPanel
   - pianoSlider
+  - chatroomPanel
   layers:
   - Default
   - TransparentFX
