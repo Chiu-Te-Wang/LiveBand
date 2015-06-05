@@ -155,8 +155,10 @@ public class PlayerMovement : Photon.MonoBehaviour
 			if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject () && speed > 0f){
 				RaycastHit hit;
 				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-				if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1<<0)){
+				if (Physics.Raycast(ray, out hit, Mathf.Infinity)){
+					print ("layer");
 					if(hit.collider.tag == "Floor"){
+						print ("layerFloor");
 						if(!(moveMark == null)){ Destroy(moveMark); }
 						moveMark = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
 						moveMark.name = "moveMark";
