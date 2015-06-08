@@ -86,13 +86,15 @@ public class CameraFollow : Photon.MonoBehaviour {
 				camera.fieldOfView = 10;
 			} else if (choose == "GUITAR") {
 				//guitar
-				cameraPosition = new Vector3(-5.38f,4.82f,2.36f);
-//				cameraPosition = new Vector3(-5.38f,4.07f,2.36f);
-				cameraRotation = Quaternion.Euler(90f, 0f,0f);
+				cameraPosition = new Vector3(-5.385f,10.2f,-0.21f);
+				//				cameraPosition = new Vector3(-5.38f,4.07f,2.36f);
+				cameraRotation = Quaternion.Euler(70f, 0f,0f);
+				camera.fieldOfView = 10;
 			} else if (choose == "DRUM") {
 				//drum
-				cameraPosition = new Vector3(0f,3.78f,-3.44f);
-				cameraRotation = Quaternion.Euler(90f, 0f,0f);
+				cameraPosition = new Vector3(0f,6.6f,-4.05f);
+				cameraRotation = Quaternion.Euler(80f, 0f,15f);
+				camera.fieldOfView = 10;
 			} else if (choose == "SINGER") {
 				//main singer
 				cameraPosition = new Vector3(0f,0f,0f);
@@ -105,7 +107,7 @@ public class CameraFollow : Photon.MonoBehaviour {
 				cameraPosition = new Vector3(0f,0f,0f);
 				cameraRotation = Quaternion.Euler(90f, 0f,0f);
 			}
-
+			
 			camera.transform.position = cameraPosition;
 			camera.transform.rotation = cameraRotation;
 		}
