@@ -88,15 +88,21 @@ public class PhotonRoomMenu : Photon.MonoBehaviour {
 	}
 
 
+	public void SearchRoom(){
+		ErrorMessage = "";
+		PlayerPrefs.SetInt("CreateOrJoin", 1);
+		Application.LoadLevel("CharacterSelection");
+	}
+
+
 	void OnGUI(){
 		GUILayout.Label ("Connection status: " + PhotonNetwork.connectionStateDetailed);
 		
 		if (!PhotonNetwork.connected && !PhotonNetwork.connecting) {
-				if (GUILayout.Button ("Connect")) {
-						PhotonNetwork.ConnectUsingSettings ("1.0");
-				}		
-		} 
-		else if(!islogin){
+			if (GUILayout.Button ("Connect")) {
+				PhotonNetwork.ConnectUsingSettings ("1.0");
+			}		
+		} else if (!islogin) {
 
 		}
 		else {
@@ -117,27 +123,27 @@ public class PhotonRoomMenu : Photon.MonoBehaviour {
 
 
 			RoomInfo[] roomInfo = PhotonNetwork.GetRoomList();
-			if(roomInfo.Length > 0){
+			if(roomInfo.Length != 0 ){
 				string[] roomNames = new string[roomInfo.Length];
-				string[] temp = {"sssss", "ssss", "aaaa", "bbbb"};
+				//string[] temp = {"sssss", "ssss", "aaaa", "bbbb", "cccccccc"};
 				for(int i = 0; i<roomInfo.Length;++i){
 					roomNames[i] = roomInfo[i].name;
 				}
-				roomSel = GUILayout.SelectionGrid(roomSel, roomNames, 1, mystyle2,GUILayout.Width(200));
+				GUILayout.BeginArea (new Rect (Screen.width/2 - 100f,Screen.height*3/4,Screen.width,Screen.height));
+				roomSel = GUILayout.SelectionGrid(roomSel, roomNames, 1, mystyle2, GUILayout.Width(200));
 
-				if(GUILayout.Button("Join Room",mystyle2)){
-					ErrorMessage = "";
 					if(playerName.Length >0){
 						//PhotonNetwork.playerName = playerName;
 						//PhotonNetwork.JoinRoom(roomNames[roomSel]);
 						PlayerPrefs.SetString("Join_RoomName", roomNames[roomSel]);
-						PlayerPrefs.SetInt("CreateOrJoin", 1);
-						Application.LoadLevel("CharacterSelection");
+						//PlayerPrefs.SetInt("CreateOrJoin", 1);
+						//Application.LoadLevel("CharacterSelection");
 					}
 					else{
 						ErrorMessage = "You must input playername.";
 					}
-				}
+				
+				GUILayout.EndArea();
 			}
 
 		}
