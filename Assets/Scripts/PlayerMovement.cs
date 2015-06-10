@@ -83,6 +83,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 			Animating (h, v);
 			photonView.RPC("SetStatus", PhotonTargets.Others, transform.position, transform.eulerAngles, walking);
 			//photonView.RPC("ReceiveInput", PhotonTargets.Others, h, v, tarRot);
+			CancelInvoke("_publicUpdateMove");
 		}
 		else {
 			MoveClient ();
@@ -90,6 +91,20 @@ public class PlayerMovement : Photon.MonoBehaviour
 			AnimatingClient ();		
 		}
 	}
+	public void publicUpdateMove(){
+		if (photonView.isMine) {
+			InvokeRepeating ("_publicUpdateMove", 2.5f, 1.0f);
+		}
+	}
+
+	void _publicUpdateMove(){
+		print ("_publicUpdateMove");
+		Move (0f, 0f);
+		Turning ();
+		Animating (0f, 0f);
+		photonView.RPC ("SetStatus", PhotonTargets.Others, transform.position, transform.eulerAngles, walking);
+	}
+
 	void MoveClient(){
 		transform.position = Vector3.Lerp (transform.position, tarPos, Time.deltaTime * 5);
 	}
@@ -116,8 +131,8 @@ public class PlayerMovement : Photon.MonoBehaviour
 	}
 	void AnimatingClient(){
 		if (walking) {
-						anim.SetBool ("IsWalking", true);
-				} else {
+			anim.SetBool ("IsWalking", true);
+		} else {
 			anim.SetBool("IsWalking", false);		
 		}
 	}
@@ -133,7 +148,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 	}
 	[RPC]
 	void setstagePos(int stagePlace, bool OnOrNot){
-		print ("receive : "+stagePlace);
+//		print ("receive : "+stagePlace);
 		instrumentSet [stagePlace] = OnOrNot;
 	}
 	//
@@ -156,9 +171,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 				RaycastHit hit;
 				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 				if (Physics.Raycast(ray, out hit, Mathf.Infinity)){
-					print ("layer");
 					if(hit.collider.tag == "Floor"){
-						print ("layerFloor");
 						if(!(moveMark == null)){ Destroy(moveMark); }
 						moveMark = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
 						moveMark.name = "moveMark";

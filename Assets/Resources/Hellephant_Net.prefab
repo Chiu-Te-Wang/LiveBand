@@ -32,7 +32,7 @@ GameObject:
   - 114: {fileID: 11412172}
   m_Layer: 0
   m_Name: Hellephant_Net
-  m_TagString: Untagged
+  m_TagString: Player_M
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

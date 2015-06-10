@@ -32,7 +32,7 @@ GameObject:
   - 136: {fileID: 13615572}
   m_Layer: 0
   m_Name: ZomBear_Net
-  m_TagString: Untagged
+  m_TagString: Player_M
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

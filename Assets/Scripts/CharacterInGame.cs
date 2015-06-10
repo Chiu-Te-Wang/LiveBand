@@ -52,6 +52,10 @@ public class CharacterInGame : Photon.MonoBehaviour {
 			message = "OnPhotonPlayerConnected: " + player; 
 			chatComponent.AddLine (message);
 		}
+		GameObject[] playerList = GameObject.FindGameObjectsWithTag("Player_M");
+		for (int i = 0; i<playerList.Length; i++) {
+			playerList[i].GetComponent<PlayerMovement>().publicUpdateMove();
+		}
 
 	}
 	public void OnPhotonPlayerDisconnected(PhotonPlayer player) {
