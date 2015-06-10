@@ -6501,7 +6501,8 @@ Prefab:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11498968, guid: b75ce20968f60064f89c381819960263, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: b75ce20968f60064f89c381819960263, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &225386038
@@ -12768,7 +12769,8 @@ MonoBehaviour:
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 30
   instantiationId: 30
@@ -30980,6 +30982,10 @@ Prefab:
       propertyPath: test
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8290728, guid: f222c31a2e5018b449e2ad826c677917, type: 2}
+      propertyPath: BypassEffects
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f222c31a2e5018b449e2ad826c677917, type: 2}
   m_IsPrefabParent: 0
@@ -45987,7 +45993,8 @@ MonoBehaviour:
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 107
   instantiationId: 107
@@ -46841,6 +46848,17 @@ CanvasRenderer:
 GameObject:
   m_PrefabParentObject: {fileID: 145282, guid: b75ce20968f60064f89c381819960263, type: 2}
   m_PrefabInternal: {fileID: 220842687}
+--- !u!114 &1739347371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1739347370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ce7d1e9f78ec8a478ca8f764f6069f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1739347372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49443,7 +49461,8 @@ MonoBehaviour:
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 108
   instantiationId: 108
@@ -53809,7 +53828,8 @@ MonoBehaviour:
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 104
   instantiationId: 104

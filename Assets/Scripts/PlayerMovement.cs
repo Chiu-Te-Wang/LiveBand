@@ -35,7 +35,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 	private Vector3 positionBeforeOnStage;
 	private Quaternion rotationBeforeOnStage;
 	private int stagePosition;
-	private bool[] instrumentSet;
+	public bool[] instrumentSet;
 	private GameObject pianoSlider;
 	//-------------
 	void Start() {
@@ -48,15 +48,15 @@ public class PlayerMovement : Photon.MonoBehaviour
 
 		playerRigidbody = GetComponent<Rigidbody> ();
 		walking = false;
-		instrumentSet = new bool[instrumentNum];
-		for(int i=0; i<instrumentSet.Length; i++){
-			instrumentSet[i] = false;
-		}
 		//_Move (transform.position.x,transform.position.z);
 		if (photonView.isMine) {
 			instrumentPanel = GameObject.FindWithTag ("instrumentPanel");
 			pianoSlider = GameObject.FindWithTag("pianoSlider");
 			buttonSetControl ();
+			instrumentSet = new bool[instrumentNum];
+			for(int i=0; i<instrumentSet.Length; i++){
+				instrumentSet[i] = false;
+			}
 		} 
 	}
 	void FixedUpdate(){
@@ -68,7 +68,9 @@ public class PlayerMovement : Photon.MonoBehaviour
 		if ((Mathf.Abs (h) > 0f || Mathf.Abs (v) > 0f) || !photonView.isMine) {
 			_Move (h, v);
 		}
-		pressMouseMove ();
+		if (photonView.isMine) {
+			pressMouseMove ();
+		}
 	}
 
 	void Move(float h , float v){
@@ -149,7 +151,9 @@ public class PlayerMovement : Photon.MonoBehaviour
 	[RPC]
 	void setstagePos(int stagePlace, bool OnOrNot){
 //		print ("receive : "+stagePlace);
-		instrumentSet [stagePlace] = OnOrNot;
+		if (photonView.isMine) {
+			instrumentSet [stagePlace] = OnOrNot;
+		}
 	}
 	//
 	void OnTriggerEnter(Collider other) 
@@ -157,7 +161,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 		if (other.tag == "Stage") {
 			if (photonView.isMine) {
 				_Move(0f,0f);
-				if(!(moveMark == null)){ Destroy(moveMark); }
+				moveMark.SetActive(false);
 				posTo = transform.position;
 				speed = 0f;
 				instrumentPanel.SetActive(true);
@@ -172,14 +176,16 @@ public class PlayerMovement : Photon.MonoBehaviour
 				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 				if (Physics.Raycast(ray, out hit, Mathf.Infinity)){
 					if(hit.collider.tag == "Floor"){
-						if(!(moveMark == null)){ Destroy(moveMark); }
-						moveMark = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-						moveMark.name = "moveMark";
+						if(moveMark == null){
+							moveMark = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+							moveMark.name = "moveMark";
+							moveMark.GetComponent<Collider>().enabled = false;
+							Renderer rend = moveMark.GetComponent<Renderer>();
+							rend.material = moveMarkMaterial;
+						}
 						moveMark.transform.localScale = new Vector3(5f,0.5f,5f);
 						moveMark.transform.position = new Vector3(hit.point.x, -0.4f, hit.point.z);
-						moveMark.GetComponent<Collider>().enabled = false;
-						Renderer rend = moveMark.GetComponent<Renderer>();
-						rend.material = moveMarkMaterial;
+						moveMark.SetActive(true);
 						posTo = hit.point;
 						moveTo();
 					}
@@ -195,7 +201,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 			Invoke ("moveTo", 0.001f);
 		} else {
 			_Move(0f,0f);
-			if(!(moveMark == null)){ Destroy(moveMark); }
+			moveMark.SetActive(false);
 		}
 	}
 	public void chooseInstrument(string choose){
@@ -211,11 +217,14 @@ public class PlayerMovement : Photon.MonoBehaviour
 			string characterImgName = "audience";
 			string characterTextName = "Audience";
 			transform.rotation = new Quaternion(0f,0f,0f,0f);
-			if(!(moveMark == null)){ Destroy(moveMark); }
+			moveMark.SetActive(false);
 			
 			if (choose == "PIANO") {
 				//keyboard
-				if(instrumentSet[0]){ return; }
+//				if(instrumentSet[0]){
+//					setDownStage();
+//					return; 
+//				}
 				stagePosition = 0;
 				instrumentSet[stagePosition] = true;
 				photonView.RPC("setstagePos", PhotonTargets.Others, 0,true);
@@ -227,7 +236,6 @@ public class PlayerMovement : Photon.MonoBehaviour
 				pianoSlider.SetActive(true);
 			} else if (choose == "GUITAR") {
 				//guitar
-				if(instrumentSet[1]){ return; }
 				stagePosition = 1;
 				instrumentSet[stagePosition] = true;
 				photonView.RPC("setstagePos", PhotonTargets.Others, 1,true);
@@ -238,7 +246,6 @@ public class PlayerMovement : Photon.MonoBehaviour
 				switchPresent(guitarReal,true);
 			} else if (choose == "DRUM") {
 				//drum
-				if(instrumentSet[2]){ return; }
 				stagePosition = 2;
 				instrumentSet[stagePosition] = true;
 				photonView.RPC("setstagePos", PhotonTargets.Others, 2,true);
@@ -249,7 +256,6 @@ public class PlayerMovement : Photon.MonoBehaviour
 				switchPresent(drumReal,true);
 			} else if (choose == "SINGER") {
 				//main singer
-				if(instrumentSet[3]){ return; }
 				stagePosition = 3;
 				instrumentSet[stagePosition] = true;
 				photonView.RPC("setstagePos", PhotonTargets.Others, 3,true);
@@ -258,7 +264,6 @@ public class PlayerMovement : Photon.MonoBehaviour
 				characterTextName = "Vocalist";
 			} else if (choose == "BASS") {
 				//main singer
-				if(instrumentSet[4]){ return; }
 				stagePosition = 4;
 				instrumentSet[stagePosition] = true;
 				photonView.RPC("setstagePos", PhotonTargets.Others, 4,true);

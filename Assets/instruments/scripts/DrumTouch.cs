@@ -19,12 +19,12 @@ public class DrumTouch : MonoBehaviour {
 			Ray ray = Camera.main.ScreenPointToRay(touch.position);
 			RaycastHit hit;
 			string struck;
-			if ( Physics.Raycast(ray, out hit)) {
+			if ( Physics.Raycast(ray, out hit,Mathf.Infinity, 1<<9) ) {
 				if (hit.collider != null) {
 					GameObject key = hit.collider.gameObject;
 					struck = key.name;
 					if ( touch.phase == TouchPhase.Began) {
-						key.GetComponent<AudioSource>().Play();
+						key.GetComponent<drumpress>().PP();
 						if(struck == "Ped1"){
 							GameObject bar = GameObject.FindWithTag("bar");
 							GameObject ped = GameObject.FindWithTag("pedk");
@@ -39,8 +39,8 @@ public class DrumTouch : MonoBehaviour {
 							ped.transform.Rotate(Vector3.right, 25);
 							pedhDown = true;
 						}
-					} else if ( touch.phase == TouchPhase.Stationary
-					         || touch.phase == TouchPhase.Moved ) {
+					} else if ( touch.phase != TouchPhase.Ended
+					         && touch.phase != TouchPhase.Canceled ) {
 						if ( struck == "Ped1" && pedkDown ) pedkExit = false;
 						else if ( struck == "Ped2" && pedhDown ) pedhExit = false;
 					}
