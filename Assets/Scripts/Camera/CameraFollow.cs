@@ -22,15 +22,16 @@ public class CameraFollow : Photon.MonoBehaviour {
 				camera = Camera.main;
 			}		
 		}
-		float rand = transform.position.z - 15f;
-		camera.transform.position.Set(1f,15f,-22f+rand);
-		camera.transform.rotation = Quaternion.Euler(35f,180f,0f);
-		offset = camera.transform.position - target.position;
 		//assigned name
 		gameObject.name = gameObject.name + photonView.viewID;
 		characterName = photonView.owner.name;
 
 		if (photonView.isMine) {
+			float rand = transform.position.z - 15f;
+			camera.transform.position.Set(1f,15f,-22f+rand);
+			camera.transform.rotation = Quaternion.Euler(35f,180f,0f);
+			offset = camera.transform.position - target.position;
+		
 			buttonSetControl();
 		}
 
@@ -46,8 +47,8 @@ public class CameraFollow : Photon.MonoBehaviour {
 	}
 
 	void FixedUpdate(){
-		if (!onStageOrNot) {
-			normalCamera ();
+		if (photonView.isMine) {
+			if (!onStageOrNot) { normalCamera (); }
 		}
 	}
 	void normalCamera(){
@@ -80,31 +81,31 @@ public class CameraFollow : Photon.MonoBehaviour {
 			Quaternion cameraRotation = Quaternion.Euler(90f, 0f,0f); 
 			if (choose == "PIANO") {
 				//keyboard
-//				if(GetComponent<PlayerMovement>().instrumentSet[0]){ return;}
+				if(GetComponent<PlayerMovement>().isStagePositionEmpty(0)){ return; }
 				cameraPosition = new Vector3(3.929463f,10.407265f,0.323639f);
 				cameraRotation = Quaternion.Euler(70f, 0f,0f);
 				camera.fieldOfView = 10;
 			} else if (choose == "GUITAR") {
 				//guitar
-//				if(GetComponent<PlayerMovement>().instrumentSet[1]){ return;}
+				if(GetComponent<PlayerMovement>().isStagePositionEmpty(1)){ return; }
 				cameraPosition = new Vector3(-5.385f,10.2f,-0.21f);
 				//				cameraPosition = new Vector3(-5.38f,4.07f,2.36f);
 				cameraRotation = Quaternion.Euler(70f, 0f,0f);
 				camera.fieldOfView = 10;
 			} else if (choose == "DRUM") {
 				//drum
-//				if(GetComponent<PlayerMovement>().instrumentSet[2]){ return;}
+				if(GetComponent<PlayerMovement>().isStagePositionEmpty(2)){ return; }
 				cameraPosition = new Vector3(0f,6.6f,-4.05f);
 				cameraRotation = Quaternion.Euler(80f, 0f,15f);
 				camera.fieldOfView = 10;
 			} else if (choose == "SINGER") {
 				//main singer
-//				if(GetComponent<PlayerMovement>().instrumentSet[3]){ return;}
+				if(GetComponent<PlayerMovement>().isStagePositionEmpty(3)){ return; }
 				cameraPosition = new Vector3(0f,0f,0f);
 				cameraRotation = Quaternion.Euler(90f, 0f,0f);
 			} else if (choose == "BASS") {
 				//main singer
-//				if(GetComponent<PlayerMovement>().instrumentSet[4]){ return;}
+				if(GetComponent<PlayerMovement>().isStagePositionEmpty(4)){ return; }
 				cameraPosition = new Vector3(0f,0f,0f);
 				cameraRotation = Quaternion.Euler(90f, 0f,0f);
 			}else{
@@ -122,4 +123,5 @@ public class CameraFollow : Photon.MonoBehaviour {
 		camera.fieldOfView = 60;
 		onStageOrNot = false;
 	}
+
 }

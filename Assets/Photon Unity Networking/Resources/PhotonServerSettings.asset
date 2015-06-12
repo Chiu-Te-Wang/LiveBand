@@ -46,4 +46,6 @@ MonoBehaviour:
   - playtwo
   - OnMouseUpGRPC
   - PPGRPC
+  - setPosAndRotationDirectly
+  - syncPlayerDirectly
   DisableAutoOpenWizard: 0
