@@ -171,7 +171,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 				RaycastHit hit;
 				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 				if (Physics.Raycast(ray, out hit, Mathf.Infinity)){
-					if(hit.collider.tag == "Floor"){
+					if(hit.collider.tag == "Floor" || hit.collider.tag == "Stage"){
 						if(moveMark == null){
 							moveMark = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
 							moveMark.name = "moveMark";
