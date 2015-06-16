@@ -23,9 +23,9 @@ public class drumpress : Photon.MonoBehaviour {
 		print (photonView.isMine);
 		print (photonView.viewID);
 		print (photonView.ownerId);
-
-		GetComponent<AudioSource> ().Play ();
-		photonView.RPC ("drumm", PhotonTargets.Others);
+		photonView.RPC ("drumm",PhotonTargets.AllViaServer);
+		PhotonNetwork.SendOutgoingCommands ();
+		//GetComponent<AudioSource> ().Play ();
 
 	}
 
