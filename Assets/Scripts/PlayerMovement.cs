@@ -216,7 +216,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 			
 			if (choose == "PIANO") {
 				//keyboard
-				if(isStagePositionEmpty(0)){
+				if(isStagePositionNotEmpty(0)){
 					transform.eulerAngles = rotationBeforeOnStage;
 					speed = 6f;
 					return;
@@ -230,7 +230,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 				pianoSlider.SetActive(true);
 			} else if (choose == "GUITAR") {
 				//guitar
-				if(isStagePositionEmpty(1)){
+				if(isStagePositionNotEmpty(1)){
 					transform.eulerAngles = rotationBeforeOnStage;
 					speed = 6f;
 					return;
@@ -243,7 +243,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 				switchPresent(guitarReal,true);
 			} else if (choose == "DRUM") {
 				//drum
-				if(isStagePositionEmpty(2)){
+				if(isStagePositionNotEmpty(2)){
 					transform.eulerAngles = rotationBeforeOnStage;
 					speed = 6f;
 					return;
@@ -256,7 +256,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 				switchPresent(drumReal,true);
 			} else if (choose == "SINGER") {
 				//main singer
-				if(isStagePositionEmpty(3)){
+				if(isStagePositionNotEmpty(3)){
 					transform.eulerAngles = rotationBeforeOnStage;
 					speed = 6f;
 					return;
@@ -267,7 +267,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 				characterTextName = "Vocalist";
 			} else if (choose == "BASS") {
 				//main singer
-				if(isStagePositionEmpty(4)){
+				if(isStagePositionNotEmpty(4)){
 					transform.eulerAngles = rotationBeforeOnStage;
 					speed = 6f;
 					return;
@@ -310,6 +310,8 @@ public class PlayerMovement : Photon.MonoBehaviour
 		switchPresent(guitarReal,false);
 		switchPresent(guitarFake,true);
 		pianoSlider.SetActive (false);
+
+		GameObject.FindWithTag ("metronome").GetComponent<TempoController>().stopMetronome();
 	}
 
 	void buttonSetControl(){
@@ -345,11 +347,11 @@ public class PlayerMovement : Photon.MonoBehaviour
 		}
 	}
 
-	public bool isStagePositionEmpty(int onStagePos){
+	public bool isStagePositionNotEmpty(int onStagePos){
 		GameObject[] playerList = GameObject.FindGameObjectsWithTag("Player_M");
 		for (int i = 0; i<playerList.Length; i++) {
 			if(playerList[i].GetComponent<PlayerMovement>().stagePosition == onStagePos){
-				return true;
+				if(!playerList[i].GetComponent<PhotonView>().isMine){ return true; }
 			}
 		}
 		return false;
