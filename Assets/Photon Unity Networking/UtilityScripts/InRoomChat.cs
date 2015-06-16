@@ -42,7 +42,7 @@ public class InRoomChat : Photon.MonoBehaviour
         {
             if (!string.IsNullOrEmpty(this.inputLine))
             {
-                this.photonView.RPC("Chat", PhotonTargets.All, this.inputLine);
+				this.photonView.RPC("Chat", PhotonTargets.All, this.inputLine);
                 this.inputLine = "";
                 GUI.FocusControl("");
                 return; // printing the now modified list would result in an error. to avoid this, we just skip this single frame
@@ -73,6 +73,8 @@ public class InRoomChat : Photon.MonoBehaviour
 		options [2] = GUILayout.Width (GuiRect.width*0.2f);
 		if (GUILayout.Button("Send", options))
         {
+			this.inputLine = " (Ping):" +PhotonNetwork.GetPing();
+
             this.photonView.RPC("Chat", PhotonTargets.All, this.inputLine);
             this.inputLine = "";
             GUI.FocusControl("");

@@ -13,6 +13,7 @@ public class PhotonRoomMenu : Photon.MonoBehaviour {
 	InputField inputField2;
 	Button b;
 	Button c;
+	public Button j;
 	bool islogin;
 
 
@@ -47,7 +48,6 @@ public class PhotonRoomMenu : Photon.MonoBehaviour {
 		var de = new Button.ButtonClickedEvent ();
 		de.AddListener (CreateRoom);
 		c.onClick = de;
-
 		playerInput2.SetActive (false);
 	}
 	private void SubmitName(string arg0){
@@ -72,6 +72,7 @@ public class PhotonRoomMenu : Photon.MonoBehaviour {
 			PhotonNetwork.playerName = playerName;
 			islogin = true;
 			playerInput2.SetActive (true);
+			j.interactable = false;
 		}
 	}
 
@@ -124,6 +125,7 @@ public class PhotonRoomMenu : Photon.MonoBehaviour {
 
 			RoomInfo[] roomInfo = PhotonNetwork.GetRoomList();
 			if(roomInfo.Length != 0 ){
+				j.interactable = true;
 				string[] roomNames = new string[roomInfo.Length];
 				//string[] temp = {"sssss", "ssss", "aaaa", "bbbb", "cccccccc"};
 				for(int i = 0; i<roomInfo.Length;++i){
