@@ -52,6 +52,8 @@ public class PlayerMovement : Photon.MonoBehaviour
 			instrumentPanel = GameObject.FindWithTag ("instrumentPanel");
 			pianoSlider = GameObject.FindWithTag ("pianoSlider");
 			buttonSetControl ();
+			Text usernameText = GameObject.FindWithTag("characterPanel").GetComponentsInChildren<Text>()[1];
+			usernameText.text = photonView.owner.name;
 		}
 	}
 	void FixedUpdate(){
@@ -284,7 +286,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 			}
 			Image characterImg = GameObject.FindWithTag("characterPanel").GetComponentsInChildren<Image>()[1];
 			characterImg.sprite = Resources.Load(characterImgName, typeof(Sprite)) as Sprite;
-			Text characterText = GameObject.FindWithTag("characterPanel").GetComponentInChildren<Text>();
+			Text characterText = GameObject.FindWithTag("characterPanel").GetComponentsInChildren<Text>()[0];
 			characterText.text = characterTextName;
 			functionPanel.SetActive (true);
 			instrumentPanel.SetActive(false);
