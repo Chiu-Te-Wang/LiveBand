@@ -8,10 +8,10 @@ private var note : String;
 
 // Show the web view (with margins) and load the index page.
 private function ActivateWebView() {
-//    WebMediator.LoadUrl("https://www.youtube.com/watch?v=9RTZedryctw");
-//    WebMediator.SetMargin(12, Screen.height / 2 + 12, 12, 12);
-//    WebMediator.Show();
-		Application.OpenURL("https://www.youtube.com/watch?v=9RTZedryctw");
+    WebMediator.LoadUrl("https://www.youtube.com/watch?v=9RTZedryctw");
+    WebMediator.SetMargin(12, Screen.height / 2 + 12, 12, 12);
+    WebMediator.Show();
+//		Application.OpenURL("https://www.youtube.com/watch?v=9RTZedryctw");
 }
 
 // Hide the web view.

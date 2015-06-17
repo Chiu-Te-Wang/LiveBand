@@ -16,7 +16,6 @@ public class keypress : Photon.MonoBehaviour {
 	}
 
 	public void OnMouseUp (){
-		
 		photonView.RPC ("OnMouseUpRPC", PhotonTargets.AllViaServer);
 		PhotonNetwork.SendOutgoingCommands ();
 		//GetComponent<AudioSource> ().Stop ();
@@ -24,7 +23,7 @@ public class keypress : Photon.MonoBehaviour {
 	}
 
 	public void PP() {
-		photonView.RPC ("PPRPC", PhotonTargets.All);
+		photonView.RPC ("PPRPC", PhotonTargets.AllViaServer);
 		PhotonNetwork.SendOutgoingCommands ();
 		//GetComponent<AudioSource> ().Play ();
 		GetComponent<Transform> ().Translate (0, -0.09f, 0);

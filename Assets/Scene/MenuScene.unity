@@ -3952,6 +3952,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7196a61676477e439a0d1f7abbc83c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  j: {fileID: 1630248511}
   mystyle:
     m_Name: 
     m_Normal:
@@ -4535,7 +4536,7 @@ GameObject:
   - 114: {fileID: 1630248511}
   m_Layer: 5
   m_Name: JoinRoom
-  m_TagString: Untagged
+  m_TagString: JoinRoom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4580,7 +4581,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
     m_PressedColor: {r: .698529422, g: .72421068, b: .72421068, a: 1}
-    m_DisabledColor: {r: .784313738, g: .784313738, b: .784313738, a: .501960814}
+    m_DisabledColor: {r: 1, g: 0, b: 0, a: .486274511}
     m_ColorMultiplier: 1
     m_FadeDuration: .100000001
   m_SpriteState:

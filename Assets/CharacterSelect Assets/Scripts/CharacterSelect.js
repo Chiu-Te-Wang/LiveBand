@@ -20,8 +20,7 @@ character1Glow.GetComponent.<Renderer>().enabled = false;  // We're going to mak
 character2Glow.GetComponent.<Renderer>().enabled = false;
 character3Glow.GetComponent.<Renderer>().enabled = false;
 character4Glow.GetComponent.<Renderer>().enabled = false;
-
-
+button.GetComponent.<Button>().interactable = false;
 }
 
 function Update() 
@@ -66,7 +65,8 @@ function SelectedCharacter1() {
 				character2Glow.GetComponent.<Renderer>().enabled = false;
 				character3Glow.GetComponent.<Renderer>().enabled = false;
 				character4Glow.GetComponent.<Renderer>().enabled = false; 
-				chooseCharacter = 1;	
+				chooseCharacter = 1;
+				button.GetComponent.<Button>().interactable = true;
 }
 
 function SelectedCharacter2() {
@@ -76,6 +76,7 @@ function SelectedCharacter2() {
 				character3Glow.GetComponent.<Renderer>().enabled = false;
 				character4Glow.GetComponent.<Renderer>().enabled = false;
 				chooseCharacter = 2;
+				button.GetComponent.<Button>().interactable = true;
 }
 
 function SelectedCharacter3() {
@@ -85,6 +86,7 @@ function SelectedCharacter3() {
 				character2Glow.GetComponent.<Renderer>().enabled = false;
 				character4Glow.GetComponent.<Renderer>().enabled = false;
 				chooseCharacter = 3;
+				button.GetComponent.<Button>().interactable = true;
 }
 
 function SelectedCharacter4() {
@@ -94,5 +96,7 @@ function SelectedCharacter4() {
 				character2Glow.GetComponent.<Renderer>().enabled = false;
 				character1Glow.GetComponent.<Renderer>().enabled = false;
 				chooseCharacter = 4;
+				button.GetComponent.<Button>().interactable = true;
+
 }
 
