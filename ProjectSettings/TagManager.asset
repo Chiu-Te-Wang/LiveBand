@@ -24,7 +24,6 @@ TagManager:
   - functionPanel
   - pianoSlider
   - chatroomPanel
-  - JoinRoom
   layers:
   - Default
   - TransparentFX

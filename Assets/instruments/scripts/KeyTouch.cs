@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public class KeyTouch : MonoBehaviour {
+public class KeyTouch : Photon.MonoBehaviour {
 	private List<GameObject> touchesNew = new List<GameObject>();
 	private List<GameObject> touchesOld = new List<GameObject>();
 	public Slider slider;

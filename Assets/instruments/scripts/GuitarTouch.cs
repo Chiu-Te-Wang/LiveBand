@@ -50,9 +50,9 @@ public class GuitarTouch : MonoBehaviour {
 		} for ( int i = 0; i < 6; i++ ) {
 			if ( stringPlays[i] != null && stringPlays[i] != stringPlaying[i] ) {
 				if( stringPlaying[i] != null) {
-					stringPlaying[i].GetComponent<AudioSource>().Stop();
+					stringPlaying[i].GetComponent<guitarpress>().OnMouseUpGuitar();
 				}
-				stringPlays[i].GetComponent<AudioSource>().Play();
+				stringPlays[i].GetComponent<guitarpress>().PPGuitar();
 			}
 		} stringPlaying = stringPlays;
 	}

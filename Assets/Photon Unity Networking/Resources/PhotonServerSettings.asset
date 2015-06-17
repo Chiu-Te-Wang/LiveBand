@@ -48,4 +48,6 @@ MonoBehaviour:
   - PPGRPC
   - setPosAndRotationDirectly
   - syncPlayerDirectly
+  - OnMouseUpGuitarRPC
+  - PPGuitarRPC
   DisableAutoOpenWizard: 0
