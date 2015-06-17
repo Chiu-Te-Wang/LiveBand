@@ -9,10 +9,12 @@ public class TempoController : MonoBehaviour {
 	public float tempo;
 	private bool playing = false;
 	public AudioSource tempo_strike;
+	private GameObject functionPanel;
 	
 	// Use this for initialization
 	void Start () {
 		playButton.onClick.AddListener ( () => playTempo() );
+		functionPanel = GameObject.FindWithTag ("functionPanel");
 	} 
 	// Update is called once per frame
 	void Update () {
@@ -48,18 +50,22 @@ public class TempoController : MonoBehaviour {
 	void S1() { 
 		tempo_strike.Play (); 
 		playButton.interactable = true;
+		playButton.image.transform.localRotation = Quaternion.Euler (0f, 0f, 0f);
 	}
 	void S2() { 
 		tempo_strike.Play (); 
 		playButton.interactable = false;
+		playButton.image.transform.localRotation = Quaternion.Euler (0f, 180f, 0f);
 	}
 	void S3() { 
 		tempo_strike.Play (); 
 		playButton.interactable = true;
+		playButton.image.transform.localRotation = Quaternion.Euler (0f, 0f, 0f);
 	}
 	void S4() { 
 		tempo_strike.Play (); 
 		playButton.interactable = false;
+		playButton.image.transform.localRotation = Quaternion.Euler (0f, 180f, 0f);
 	}
 	public void stopMetronome(){
 		playButton.interactable = true;

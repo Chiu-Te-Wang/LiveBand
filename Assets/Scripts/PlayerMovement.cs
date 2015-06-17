@@ -256,7 +256,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 				characterTextName = "Drummer";
 				switchPresent(drumFake,false);
 				switchPresent(drumReal,true);
-			} else if (choose == "SINGER") {
+			} else if (choose == "SYNTHESIZER") {
 				//main singer
 				if(isStagePositionNotEmpty(3)){
 					transform.eulerAngles = rotationBeforeOnStage;
@@ -265,8 +265,8 @@ public class PlayerMovement : Photon.MonoBehaviour
 				}
 				stagePosition = 3;
 				transform.position = new Vector3 (-0.65f, 1.7f, 4.2f);
-				characterImgName = "singer";
-				characterTextName = "Vocalist";
+				characterImgName = "synthesizer";
+				characterTextName = "synthesizer";
 			} else if (choose == "BASS") {
 				//main singer
 				if(isStagePositionNotEmpty(4)){
@@ -322,7 +322,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 		ButtonSet.GetComponentsInChildren<Button> () [1].onClick.AddListener (() => chooseInstrument ("GUITAR"));
 		ButtonSet.GetComponentsInChildren<Button> () [2].onClick.AddListener (() => chooseInstrument ("DRUM"));
 		ButtonSet.GetComponentsInChildren<Button> () [3].onClick.AddListener (() => chooseInstrument ("BASS"));
-		ButtonSet.GetComponentsInChildren<Button> () [4].onClick.AddListener (() => chooseInstrument ("SINGER"));
+		ButtonSet.GetComponentsInChildren<Button> () [4].onClick.AddListener (() => chooseInstrument ("SYNTHESIZER"));
 		ButtonSet.GetComponentsInChildren<Button> () [5].onClick.AddListener (() => chooseInstrument ("EXIT"));
 		Button exitStageButton = GameObject.FindWithTag ("downStageButton").GetComponent<Button>();
 		exitStageButton.onClick.AddListener(()=>setDownStage());

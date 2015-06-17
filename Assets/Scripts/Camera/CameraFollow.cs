@@ -65,7 +65,7 @@ public class CameraFollow : Photon.MonoBehaviour {
 		ButtonSet.GetComponentsInChildren<Button> () [1].onClick.AddListener (()=>SetCameraToInstrument("GUITAR"));
 		ButtonSet.GetComponentsInChildren<Button> () [2].onClick.AddListener (()=>SetCameraToInstrument("DRUM"));
 		ButtonSet.GetComponentsInChildren<Button> () [3].onClick.AddListener (()=>SetCameraToInstrument("BASS"));
-		ButtonSet.GetComponentsInChildren<Button> () [4].onClick.AddListener (()=>SetCameraToInstrument("SINGER"));
+		ButtonSet.GetComponentsInChildren<Button> () [4].onClick.AddListener (()=>SetCameraToInstrument("SYNTHESIZER"));
 		ButtonSet.GetComponentsInChildren<Button> () [5].onClick.AddListener (()=>SetCameraToInstrument("EXIT"));
 		Button exitStageButton = GameObject.FindWithTag ("functionPanel").GetComponentInChildren<Button>();
 		exitStageButton.onClick.AddListener(()=>setDownStage());
@@ -99,7 +99,7 @@ public class CameraFollow : Photon.MonoBehaviour {
 				cameraPosition = new Vector3(0f,6.6f,-4.05f);
 				cameraRotation = Quaternion.Euler(80f, 0f,15f);
 				camera.fieldOfView = 10;
-			} else if (choose == "SINGER") {
+			} else if (choose == "SYNTHESIZER") {
 				//main singer
 				if(GetComponent<PlayerMovement>().isStagePositionNotEmpty(3)){ return; }
 				cameraPosition = new Vector3(0f,0f,0f);
