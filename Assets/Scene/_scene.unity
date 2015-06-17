@@ -6605,6 +6605,10 @@ Prefab:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 8275118, guid: b75ce20968f60064f89c381819960263, type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 67e03b322149699408c91c985d88fa00, type: 3}
     m_RemovedComponents:
     - {fileID: 11498968, guid: b75ce20968f60064f89c381819960263, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: b75ce20968f60064f89c381819960263, type: 2}

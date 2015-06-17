@@ -220,7 +220,6 @@ public class PlayerMovement : Photon.MonoBehaviour
 				//keyboard
 				if(isStagePositionNotEmpty(0)){
 					transform.eulerAngles = rotationBeforeOnStage;
-					speed = 6f;
 					return;
 				}
 				stagePosition = 0;
@@ -234,7 +233,6 @@ public class PlayerMovement : Photon.MonoBehaviour
 				//guitar
 				if(isStagePositionNotEmpty(1)){
 					transform.eulerAngles = rotationBeforeOnStage;
-					speed = 6f;
 					return;
 				}
 				stagePosition = 1;
@@ -247,7 +245,6 @@ public class PlayerMovement : Photon.MonoBehaviour
 				//drum
 				if(isStagePositionNotEmpty(2)){
 					transform.eulerAngles = rotationBeforeOnStage;
-					speed = 6f;
 					return;
 				}
 				stagePosition = 2;
@@ -260,7 +257,6 @@ public class PlayerMovement : Photon.MonoBehaviour
 				//main singer
 				if(isStagePositionNotEmpty(3)){
 					transform.eulerAngles = rotationBeforeOnStage;
-					speed = 6f;
 					return;
 				}
 				stagePosition = 3;
@@ -271,7 +267,6 @@ public class PlayerMovement : Photon.MonoBehaviour
 				//main singer
 				if(isStagePositionNotEmpty(4)){
 					transform.eulerAngles = rotationBeforeOnStage;
-					speed = 6f;
 					return;
 				}
 				stagePosition = 4;
@@ -281,7 +276,6 @@ public class PlayerMovement : Photon.MonoBehaviour
 			}else{
 				Debug.Log("Error parameter in chooseInstrument");
 				transform.eulerAngles = rotationBeforeOnStage;
-				speed = 6f;
 				return;
 			}
 			Image characterImg = GameObject.FindWithTag("characterPanel").GetComponentsInChildren<Image>()[1];
