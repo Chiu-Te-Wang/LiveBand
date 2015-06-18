@@ -47,9 +47,7 @@ public class CameraFollow : Photon.MonoBehaviour {
 	}
 
 	void FixedUpdate(){
-		if (photonView.isMine) {
-			if (!onStageOrNot) { normalCamera (); }
-		}
+		if (!onStageOrNot) { normalCamera (); }
 	}
 	void normalCamera(){
 		if (photonView.isMine) {
