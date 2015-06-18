@@ -48,6 +48,13 @@ public class CameraFollow : Photon.MonoBehaviour {
 
 	void FixedUpdate(){
 		if (!onStageOrNot) { normalCamera (); }
+		if (photonView.isMine) {
+			if (Input.GetKeyDown(KeyCode.Escape)) { 
+				if(onStageOrNot){
+					setDownStage();
+				}
+			}
+		}
 	}
 	void normalCamera(){
 		if (photonView.isMine) {

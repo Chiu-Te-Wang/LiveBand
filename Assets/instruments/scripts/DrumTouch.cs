@@ -19,7 +19,7 @@ public class DrumTouch : MonoBehaviour {
 			Ray ray = Camera.main.ScreenPointToRay(touch.position);
 			RaycastHit hit;
 			string struck;
-			if ( Physics.Raycast(ray, out hit,Mathf.Infinity, 1<<9) ) {
+			if ( Physics.Raycast(ray, out hit,Mathf.Infinity, 1<<9 | 1<<5) ) {
 				if (hit.collider != null) {
 					GameObject key = hit.collider.gameObject;
 					struck = key.name;

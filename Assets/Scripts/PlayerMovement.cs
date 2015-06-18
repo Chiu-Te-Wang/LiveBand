@@ -66,6 +66,14 @@ public class PlayerMovement : Photon.MonoBehaviour
 			_Move (h, v);
 		}
 		if (photonView.isMine) {
+			if (Input.GetKeyDown(KeyCode.Escape)) { 
+				if(stagePosition >= 0){
+					setDownStage();
+				}
+				else{
+					//Application.Quit();
+				}
+			}
 			pressMouseMove ();
 		}
 	}
@@ -78,7 +86,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 	void _Move(float h , float v){
 		if (photonView.isMine) {
 			Move (h, v);
-			Turning ();
+//			Turning ();
 			Animating (h, v);
 			photonView.RPC("SetStatus", PhotonTargets.Others, transform.position, transform.eulerAngles, walking);
 			//photonView.RPC("ReceiveInput", PhotonTargets.Others, h, v, tarRot);
@@ -86,7 +94,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 		}
 		else {
 			MoveClient ();
-			TurningClient ();
+//			TurningClient ();
 			AnimatingClient ();		
 		}
 	}
@@ -104,7 +112,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 		transform.position = Vector3.Lerp (transform.position, tarPos, Time.deltaTime * 5);
 	}
 
-	void Turning(){
+	/*void Turning(){
 		Ray camRay = Camera.main.ScreenPointToRay (Input.mousePosition);
 		RaycastHit floorHit;
 
@@ -118,7 +126,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 
 	void TurningClient(){
 		this.transform.eulerAngles = tarRot;
-	}
+	}*/
 
 	void Animating(float h, float v){
 		walking = h != 0f || v != 0f;

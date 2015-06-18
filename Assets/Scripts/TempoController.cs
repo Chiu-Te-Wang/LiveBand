@@ -49,32 +49,42 @@ public class TempoController : MonoBehaviour {
 	}
 	void S1() { 
 		tempo_strike.Play (); 
-		playButton.interactable = true;
-		playButton.image.transform.localRotation = Quaternion.Euler (0f, 0f, 0f);
+		changeColor (new Color(192f/255f, 101f/255f, 218f/255f, 103f/255f));
+		playButton.GetComponentsInChildren<Image>()[1].transform.localRotation = Quaternion.Euler (0f, 0f, 0f);
 	}
 	void S2() { 
 		tempo_strike.Play (); 
-		playButton.interactable = false;
-		playButton.image.transform.localRotation = Quaternion.Euler (0f, 180f, 0f);
+		changeColor (new Color(227f/255f, 50f/255f, 142f/255f, 103f/255f));
+		Sprite newSprite =  Resources.Load <Sprite>("piano");
+		playButton.GetComponentsInChildren<Image>()[1].transform.localRotation = Quaternion.Euler (0f, 180f, 0f);
 	}
 	void S3() { 
 		tempo_strike.Play (); 
-		playButton.interactable = true;
-		playButton.image.transform.localRotation = Quaternion.Euler (0f, 0f, 0f);
+		changeColor (new Color(192f/255f, 101f/255f, 218f/255f, 103f/255f));
+		playButton.GetComponentsInChildren<Image>()[1].transform.localRotation = Quaternion.Euler (0f, 0f, 0f);
 	}
 	void S4() { 
 		tempo_strike.Play (); 
-		playButton.interactable = false;
-		playButton.image.transform.localRotation = Quaternion.Euler (0f, 180f, 0f);
+		changeColor (new Color(227f/255f, 50f/255f, 142f/255f, 103f/255f));
+		playButton.GetComponentsInChildren<Image>()[1].transform.localRotation = Quaternion.Euler (0f, 180f, 0f);
 	}
 	public void stopMetronome(){
-		playButton.interactable = true;
 		playing = false;
 		timer = 0;
 		start_time = 0;
+		changeColor (new Color(192f/255f, 101f/255f, 218f/255f, 103f/255f));
 		CancelInvoke("S1");
 		CancelInvoke("S2");
 		CancelInvoke("S3");
 		CancelInvoke("S4");
+	}
+
+	void changeColor(Color color){
+		ColorBlock colorblock = ColorBlock.defaultColorBlock;
+		colorblock.normalColor = color;
+		colorblock.highlightedColor = color;
+		colorblock.pressedColor = playButton.colors.pressedColor;
+		colorblock.disabledColor = playButton.colors.disabledColor;
+		playButton.colors = colorblock;
 	}
 }

@@ -22,17 +22,19 @@ public class KeyTouch : Photon.MonoBehaviour {
 			Ray ray = Camera.main.ScreenPointToRay(touch.position);
 			RaycastHit hit;
 
-			if ( Physics.Raycast(ray, out hit, Mathf.Infinity, 1<<8 )) {
-				if (hit.collider != null) {
-					GameObject key = hit.collider.gameObject;
-					if ( touch.phase == TouchPhase.Began
-				  	|| touch.phase == TouchPhase.Stationary
-				  	|| touch.phase == TouchPhase.Moved ) {
-						if ( !touchesOld.Remove(key) ) {
-							//key.GetComponent<AudioSource>().Play();
-							key.GetComponent<keypress>().PP ();
-							//key.transform.Translate(0,-0.09f,0);
-						} touchesNew.Add(key);
+			if ( Physics.Raycast(ray, out hit, Mathf.Infinity, 1<<8 | 1<<5)) {
+				if (hit.transform.gameObject.layer == LayerMask.NameToLayer("PIANOTOUCH")) {
+					if (hit.collider != null) {
+						GameObject key = hit.collider.gameObject;
+						if ( touch.phase == TouchPhase.Began
+					  	|| touch.phase == TouchPhase.Stationary
+					  	|| touch.phase == TouchPhase.Moved ) {
+							if ( !touchesOld.Remove(key) ) {
+								//key.GetComponent<AudioSource>().Play();
+								key.GetComponent<keypress>().PP ();
+								//key.transform.Translate(0,-0.09f,0);
+							} touchesNew.Add(key);
+						}
 					}
 				}
 			}

@@ -18,7 +18,7 @@ public class GuitarTouch : MonoBehaviour {
 			
 			Ray ray = Camera.main.ScreenPointToRay(touch.position);
 			RaycastHit hit;
-			if ( Physics.Raycast(ray, out hit,Mathf.Infinity, 1<<10) ) {
+			if ( Physics.Raycast(ray, out hit,Mathf.Infinity, 1<<10| 1<<5) ) {
 				if ( hit.collider != null ) {
 					GameObject grid = hit.collider.gameObject;
 					int i;
