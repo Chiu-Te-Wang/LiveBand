@@ -52,6 +52,8 @@ public class PlayerMovement : Photon.MonoBehaviour
 			instrumentPanel = GameObject.FindWithTag ("instrumentPanel");
 			pianoSlider = GameObject.FindWithTag ("pianoSlider");
 			buttonSetControl ();
+			Text usernameText = GameObject.FindWithTag("characterPanel").GetComponentsInChildren<Text>()[1];
+			usernameText.text = photonView.owner.name;
 		}
 	}
 	void FixedUpdate(){
@@ -171,7 +173,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 				RaycastHit hit;
 				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 				if (Physics.Raycast(ray, out hit, Mathf.Infinity)){
-					if(hit.collider.tag == "Floor"){
+					if(hit.collider.tag == "Floor" || hit.collider.tag == "Stage"){
 						if(moveMark == null){
 							moveMark = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
 							moveMark.name = "moveMark";
@@ -216,9 +218,8 @@ public class PlayerMovement : Photon.MonoBehaviour
 			
 			if (choose == "PIANO") {
 				//keyboard
-				if(isStagePositionEmpty(0)){
+				if(isStagePositionNotEmpty(0)){
 					transform.eulerAngles = rotationBeforeOnStage;
-					speed = 6f;
 					return;
 				}
 				stagePosition = 0;
@@ -230,9 +231,8 @@ public class PlayerMovement : Photon.MonoBehaviour
 				pianoSlider.SetActive(true);
 			} else if (choose == "GUITAR") {
 				//guitar
-				if(isStagePositionEmpty(1)){
+				if(isStagePositionNotEmpty(1)){
 					transform.eulerAngles = rotationBeforeOnStage;
-					speed = 6f;
 					return;
 				}
 				stagePosition = 1;
@@ -243,9 +243,8 @@ public class PlayerMovement : Photon.MonoBehaviour
 				switchPresent(guitarReal,true);
 			} else if (choose == "DRUM") {
 				//drum
-				if(isStagePositionEmpty(2)){
+				if(isStagePositionNotEmpty(2)){
 					transform.eulerAngles = rotationBeforeOnStage;
-					speed = 6f;
 					return;
 				}
 				stagePosition = 2;
@@ -254,22 +253,20 @@ public class PlayerMovement : Photon.MonoBehaviour
 				characterTextName = "Drummer";
 				switchPresent(drumFake,false);
 				switchPresent(drumReal,true);
-			} else if (choose == "SINGER") {
+			} else if (choose == "SYNTHESIZER") {
 				//main singer
-				if(isStagePositionEmpty(3)){
+				if(isStagePositionNotEmpty(3)){
 					transform.eulerAngles = rotationBeforeOnStage;
-					speed = 6f;
 					return;
 				}
 				stagePosition = 3;
 				transform.position = new Vector3 (-0.65f, 1.7f, 4.2f);
-				characterImgName = "singer";
-				characterTextName = "Vocalist";
+				characterImgName = "synthesizer";
+				characterTextName = "synthesizer";
 			} else if (choose == "BASS") {
 				//main singer
-				if(isStagePositionEmpty(4)){
+				if(isStagePositionNotEmpty(4)){
 					transform.eulerAngles = rotationBeforeOnStage;
-					speed = 6f;
 					return;
 				}
 				stagePosition = 4;
@@ -279,12 +276,11 @@ public class PlayerMovement : Photon.MonoBehaviour
 			}else{
 				Debug.Log("Error parameter in chooseInstrument");
 				transform.eulerAngles = rotationBeforeOnStage;
-				speed = 6f;
 				return;
 			}
 			Image characterImg = GameObject.FindWithTag("characterPanel").GetComponentsInChildren<Image>()[1];
 			characterImg.sprite = Resources.Load(characterImgName, typeof(Sprite)) as Sprite;
-			Text characterText = GameObject.FindWithTag("characterPanel").GetComponentInChildren<Text>();
+			Text characterText = GameObject.FindWithTag("characterPanel").GetComponentsInChildren<Text>()[0];
 			characterText.text = characterTextName;
 			functionPanel.SetActive (true);
 			instrumentPanel.SetActive(false);
@@ -310,6 +306,8 @@ public class PlayerMovement : Photon.MonoBehaviour
 		switchPresent(guitarReal,false);
 		switchPresent(guitarFake,true);
 		pianoSlider.SetActive (false);
+
+		GameObject.FindWithTag ("metronome").GetComponent<TempoController>().stopMetronome();
 	}
 
 	void buttonSetControl(){
@@ -318,7 +316,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 		ButtonSet.GetComponentsInChildren<Button> () [1].onClick.AddListener (() => chooseInstrument ("GUITAR"));
 		ButtonSet.GetComponentsInChildren<Button> () [2].onClick.AddListener (() => chooseInstrument ("DRUM"));
 		ButtonSet.GetComponentsInChildren<Button> () [3].onClick.AddListener (() => chooseInstrument ("BASS"));
-		ButtonSet.GetComponentsInChildren<Button> () [4].onClick.AddListener (() => chooseInstrument ("SINGER"));
+		ButtonSet.GetComponentsInChildren<Button> () [4].onClick.AddListener (() => chooseInstrument ("SYNTHESIZER"));
 		ButtonSet.GetComponentsInChildren<Button> () [5].onClick.AddListener (() => chooseInstrument ("EXIT"));
 		Button exitStageButton = GameObject.FindWithTag ("downStageButton").GetComponent<Button>();
 		exitStageButton.onClick.AddListener(()=>setDownStage());
@@ -345,11 +343,11 @@ public class PlayerMovement : Photon.MonoBehaviour
 		}
 	}
 
-	public bool isStagePositionEmpty(int onStagePos){
+	public bool isStagePositionNotEmpty(int onStagePos){
 		GameObject[] playerList = GameObject.FindGameObjectsWithTag("Player_M");
 		for (int i = 0; i<playerList.Length; i++) {
 			if(playerList[i].GetComponent<PlayerMovement>().stagePosition == onStagePos){
-				return true;
+				if(!playerList[i].GetComponent<PhotonView>().isMine){ return true; }
 			}
 		}
 		return false;
