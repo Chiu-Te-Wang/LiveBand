@@ -28,9 +28,11 @@ public class InRoomChat : Photon.MonoBehaviour
         }
 		this.GuiRect.x = GuiRect.width*0.1f;
 		GameObject chatroomShieldPanel = GameObject.FindWithTag("chatroomShieldPanel");
-		chatroomShieldPanel.GetComponent<BoxCollider> ().size = new Vector3 (GuiRectWidth, GuiRectHeight, 1f);
+		chatroomShieldPanel.GetComponent<BoxCollider> ().size = new Vector3 (GuiRectWidth/2f, GuiRectHeight/2f, 1f);
 		Vector3 BoxColliderCenter = chatroomShieldPanel.GetComponent<BoxCollider> ().center;
-		chatroomShieldPanel.GetComponent<BoxCollider> ().center = new Vector3 (BoxColliderCenter.x+GuiRect.width*0.2f, BoxColliderCenter.y+GuiRect.height*0.2f, BoxColliderCenter.z);
+		//chatroomShieldPanel.GetComponent<BoxCollider> ().center = new Vector3 (BoxColliderCenter.x+GuiRect.width*0.2f, BoxColliderCenter.y+GuiRect.height*0.2f, BoxColliderCenter.z);
+		chatroomShieldPanel.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (GuiRectWidth/4f,GuiRectHeight/4f);
+		chatroomShieldPanel.GetComponent<RectTransform> ().sizeDelta = new Vector2 (GuiRectWidth/2,GuiRectHeight/2f);
 	}
 	public void Awake(){
 		Debug.Log ("characterChoose" + PlayerPrefs.GetInt("Character"));
