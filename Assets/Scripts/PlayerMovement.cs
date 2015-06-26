@@ -36,11 +36,11 @@ public class PlayerMovement : Photon.MonoBehaviour
 	private Vector3 rotationBeforeOnStage;
 	public int stagePosition = -1;
 	private GameObject pianoSlider;
-	//-------------
+	private Button[] buttonSet;
+
 	void Start() {
 		tarPos = this.transform.position;
 	} 
-	//-------------
 	void Awake(){
 		floorMask = LayerMask.GetMask ("Floor");
 		anim = GetComponent<Animator> ();
@@ -170,7 +170,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 				moveMark.SetActive(false);
 				posTo = transform.position;
 				speed = 0f;
-				instrumentPanel.SetActive(true);
+				showInstrumentPanel();
 			}
 		}
 	}
@@ -297,7 +297,6 @@ public class PlayerMovement : Photon.MonoBehaviour
 	}
 
 	void setDownStage(){
-		speed = 6f;
 		Image characterImg = GameObject.FindWithTag("characterPanel").GetComponentsInChildren<Image>()[1];
 		characterImg.sprite = Resources.Load("audience", typeof(Sprite)) as Sprite;
 		Text characterText = GameObject.FindWithTag("characterPanel").GetComponentInChildren<Text>();
@@ -316,6 +315,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 		pianoSlider.SetActive (false);
 
 		GameObject.FindWithTag ("metronome").GetComponent<TempoController>().stopMetronome();
+		showInstrumentPanel ();
 	}
 
 	void buttonSetControl(){
@@ -340,6 +340,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 		switchPresent (guitarReal,false);
 
 		functionPanel = GameObject.FindWithTag ("functionPanel");
+		buttonSet = GameObject.FindWithTag ("buttonSet").GetComponentsInChildren<Button> ();
 	}
 
 	void switchPresent(GameObject target, bool trueOrFalse){
@@ -359,6 +360,19 @@ public class PlayerMovement : Photon.MonoBehaviour
 			}
 		}
 		return false;
+	}
+
+	void showInstrumentPanel(){
+		instrumentPanel.SetActive (true);
+		for (int i = 0; i< buttonSet.Length-1; i++) {
+			buttonSet[i].interactable = !isStagePositionNotEmpty(i);
+			if(isStagePositionNotEmpty(i)){
+				Color originColor = buttonSet[i].GetComponentsInChildren<Image>()[1].color;
+				print (""+originColor);
+				buttonSet[i].GetComponentsInChildren<Image>()[1].color = new Color(originColor.r, originColor.g, originColor.b, 70f/255f);
+				print (""+buttonSet[i].GetComponentsInChildren<Image>()[1].color);
+			}
+		}
 	}
 	
 }
