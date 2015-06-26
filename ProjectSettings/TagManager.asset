@@ -25,6 +25,7 @@ TagManager:
   - pianoSlider
   - chatroomPanel
   - metronome
+  - chatroomShieldPanel
   layers:
   - Default
   - TransparentFX

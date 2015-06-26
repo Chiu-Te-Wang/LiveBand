@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(PhotonView))]
 public class InRoomChat : Photon.MonoBehaviour 
@@ -26,7 +27,11 @@ public class InRoomChat : Photon.MonoBehaviour
 			this.GuiRect.y = Screen.height - this.GuiRect.height - GuiRect.height*0.1f;
         }
 		this.GuiRect.x = GuiRect.width*0.1f;
-    }
+		GameObject chatroomShieldPanel = GameObject.FindWithTag("chatroomShieldPanel");
+		chatroomShieldPanel.GetComponent<BoxCollider> ().size = new Vector3 (GuiRectWidth, GuiRectHeight, 1f);
+		Vector3 BoxColliderCenter = chatroomShieldPanel.GetComponent<BoxCollider> ().center;
+		chatroomShieldPanel.GetComponent<BoxCollider> ().center = new Vector3 (BoxColliderCenter.x+GuiRect.width*0.2f, BoxColliderCenter.y+GuiRect.height*0.2f, BoxColliderCenter.z);
+	}
 	public void Awake(){
 		Debug.Log ("characterChoose" + PlayerPrefs.GetInt("Character"));
 	}
