@@ -4,7 +4,14 @@ using System.Collections;
 public class functionPanelScript : MonoBehaviour {
 
 	void Start () {
-		GameObject functionPanel = GameObject.FindGameObjectsWithTag("functionPanel")[0];
-		functionPanel.SetActive(false);
+		functionPanelInactive ();
+	}
+
+	public void functionPanelActive(){
+		gameObject.SetActive (true);
+	}
+
+	public void functionPanelInactive(){
+		gameObject.SetActive (false);
 	}
 }
