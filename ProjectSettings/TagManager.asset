@@ -26,6 +26,8 @@ TagManager:
   - chatroomPanel
   - metronome
   - chatroomShieldPanel
+  - JoinRoom
+  - stave
   layers:
   - Default
   - TransparentFX
