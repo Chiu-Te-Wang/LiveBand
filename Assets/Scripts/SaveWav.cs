@@ -45,6 +45,7 @@ public class SaveWav : MonoBehaviour {
 			}
 			 
 			var filepath = "/storage/emulated/0/Music/" + "LiveBand/" + fileName;
+			//var filepath = Application.persistentDataPath + "/LiveBand/" + fileName;
 			Debug.Log (filepath);
 			debug.text = filepath;
 

@@ -3521,7 +3521,7 @@ RectTransform:
   m_Children:
   - {fileID: 1825397660}
   m_Father: {fileID: 1078766701}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: -47.2000008, y: 12.5}
@@ -10560,7 +10560,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &384209873
 Transform:
   m_ObjectHideFlags: 0
@@ -27891,6 +27891,7 @@ RectTransform:
   - {fileID: 2097377594}
   - {fileID: 219367077}
   - {fileID: 1531447880}
+  - {fileID: 119647467}
   m_Father: {fileID: 2077478109}
   m_RootOrder: 2
   m_AnchorMin: {x: 0, y: 1}
@@ -34875,7 +34876,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1327468139
 Transform:
   m_ObjectHideFlags: 0
@@ -38633,7 +38634,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2077478109}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 4, y: -0}
@@ -44629,7 +44630,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1617604332
 RectTransform:
   m_ObjectHideFlags: 0
@@ -44644,7 +44645,7 @@ RectTransform:
   - {fileID: 65852431}
   - {fileID: 1005708269}
   m_Father: {fileID: 2077478109}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -81.6000061}
@@ -55118,7 +55119,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2072925076
 Transform:
   m_ObjectHideFlags: 0
@@ -55168,7 +55169,10 @@ RectTransform:
   - {fileID: 1078766701}
   - {fileID: 75813410}
   - {fileID: 380415811}
+  - {fileID: 427087284}
   - {fileID: 1449184023}
+  - {fileID: 1617604332}
+  - {fileID: 2103448530}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_AnchorMin: {x: 0, y: 0}
@@ -56445,7 +56449,7 @@ RectTransform:
   - {fileID: 1574041255}
   - {fileID: 1129085857}
   m_Father: {fileID: 2077478109}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 0, y: 0}
