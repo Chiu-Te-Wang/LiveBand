@@ -150,7 +150,9 @@ public class PhotonRoomMenu : Photon.MonoBehaviour {
 
 		}
 		if (ErrorMessage.Length > 0) {
+			GUILayout.BeginArea(new Rect (Screen.width/2 - 200f,Screen.height*2/6,Screen.width,Screen.height));
 			GUILayout.Label(ErrorMessage,mystyle);
+			GUILayout.EndArea();
 		}
 	}
 
