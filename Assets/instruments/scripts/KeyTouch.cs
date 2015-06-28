@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class KeyTouch : Photon.MonoBehaviour {
 	private List<GameObject> touchesNew = new List<GameObject>();
 	private List<GameObject> touchesOld = new List<GameObject>();
-	public Slider slider;
+	public Slider slider; 
 	private Transform trans;
 	// Use this for initialization
 	void Start () {
@@ -31,7 +31,7 @@ public class KeyTouch : Photon.MonoBehaviour {
 					  	|| touch.phase == TouchPhase.Moved ) {
 							if ( !touchesOld.Remove(key) ) {
 								//key.GetComponent<AudioSource>().Play();
-								key.GetComponent<keypress>().PP ();
+								key.GetComponent<keypress>().PP ( GetComponent<recorder>().getBool());
 								//key.transform.Translate(0,-0.09f,0);
 							} touchesNew.Add(key);
 						}
@@ -41,7 +41,7 @@ public class KeyTouch : Photon.MonoBehaviour {
 		} foreach ( GameObject g in touchesOld ) {
 			//g.GetComponent<AudioSource>().Stop();
 			//g.transform.Translate(0,0.09f,0);
-			g.GetComponent<keypress>().OnMouseUp();
+			g.GetComponent<keypress>().OnMouseUp( GetComponent<recorder>().getBool());
 		} touchesOld = touchesNew;
 	}
 }

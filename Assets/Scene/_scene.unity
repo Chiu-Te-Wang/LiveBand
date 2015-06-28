@@ -11687,6 +11687,7 @@ GameObject:
   - 4: {fileID: 679269167}
   - 114: {fileID: 447247670}
   - 114: {fileID: 447247671}
+  - 114: {fileID: 447247672}
   m_Layer: 8
   m_Name: piano
   m_TagString: pianoReal
@@ -11732,6 +11733,20 @@ MonoBehaviour:
   viewIdField: 14
   instantiationId: 14
   isRuntimeInstantiated: 0
+--- !u!114 &447247672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 447247669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38cb237fde28a7f4d984302e06923e94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recording: 0
+  bpm: 0
+  start_time: 0
 --- !u!1 &455722347
 GameObject:
   m_ObjectHideFlags: 0
@@ -30906,6 +30921,20 @@ MonoBehaviour:
   viewIdField: 2
   instantiationId: 2
   isRuntimeInstantiated: 0
+--- !u!114 &1163736765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1163736763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38cb237fde28a7f4d984302e06923e94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recording: 0
+  bpm: 0
+  start_time: 0
 --- !u!1 &1164001990
 GameObject:
   m_ObjectHideFlags: 0
@@ -46987,6 +47016,20 @@ MonoBehaviour:
   viewIdField: 13
   instantiationId: 13
   isRuntimeInstantiated: 0
+--- !u!114 &1739347373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1739347370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38cb237fde28a7f4d984302e06923e94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recording: 0
+  bpm: 0
+  start_time: 0
 --- !u!1 &1739448597
 GameObject:
   m_ObjectHideFlags: 0
