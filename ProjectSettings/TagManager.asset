@@ -25,6 +25,9 @@ TagManager:
   - pianoSlider
   - chatroomPanel
   - metronome
+  - JoinRoom
+  - bassReal
+  - bassFake
   layers:
   - Default
   - TransparentFX
