@@ -25,12 +25,9 @@ TagManager:
   - pianoSlider
   - chatroomPanel
   - metronome
-  - chatroomShieldPanel
   - JoinRoom
-  - stave
-  - stavePanel
-  - exitPanel
-  - stavePanelButtonSet
+  - bassReal
+  - bassFake
   layers:
   - Default
   - TransparentFX

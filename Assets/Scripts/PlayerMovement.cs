@@ -30,6 +30,8 @@ public class PlayerMovement : Photon.MonoBehaviour
 	private GameObject pianoReal;
 	private GameObject guitarFake;
 	private GameObject guitarReal;
+	private GameObject bassFake;
+	private GameObject bassReal;
 	//stage
 	private GameObject functionPanel;
 	private Vector3 positionBeforeOnStage;
@@ -303,6 +305,8 @@ public class PlayerMovement : Photon.MonoBehaviour
 				transform.position = new Vector3(-0.13f,1.7f,0.66f);
 				characterImgName = "bass";
 				characterTextName = "Bassist";
+				switchPresent(bassFake,false);
+				switchPresent(bassReal,true);
 			}else{
 				Debug.Log("Error parameter in chooseInstrument");
 				transform.eulerAngles = rotationBeforeOnStage;
@@ -372,6 +376,10 @@ public class PlayerMovement : Photon.MonoBehaviour
 		guitarFake = GameObject.FindWithTag ("guitarFake");
 		guitarReal = GameObject.FindWithTag ("guitarReal");
 		switchPresent (guitarReal,false);
+		bassFake = GameObject.FindWithTag ("bassFake");
+		bassReal = GameObject.FindWithTag ("bassReal");
+		switchPresent (bassReal, false);
+
 
 		functionPanel = GameObject.FindWithTag ("functionPanel");
 		buttonSet = GameObject.FindWithTag ("buttonSet").GetComponentsInChildren<Button> ();

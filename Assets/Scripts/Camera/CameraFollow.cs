@@ -107,7 +107,7 @@ public class CameraFollow : Photon.MonoBehaviour {
 			} else if (choose == "BASS") {
 				//main singer
 				if(GetComponent<PlayerMovement>().isStagePositionNotEmpty(4)){ return; }
-				cameraPosition = new Vector3(0f,0f,0f);
+				cameraPosition = new Vector3(0f, 4.74f,2.41f);
 				cameraRotation = Quaternion.Euler(90f, 0f,0f);
 			}else{
 				Debug.Log("Error: wroung choose! in SetCameraToInstrument");
