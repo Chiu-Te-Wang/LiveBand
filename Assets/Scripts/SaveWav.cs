@@ -2,27 +2,75 @@
 using System.Collections;
 using System.IO;
 using System;
+using UnityEngine.UI;
 
 public class SaveWav : MonoBehaviour {
 	
 	private int bufferSize = 0;
 	private int numBuffers = 0;
 	private int outputRate= 44100;
-	private string fileName = "./AudioSave/recTest.wav";
+	private string fileName = "recTest";
 	private int headerSize = 44; //default for uncompressed wav
 	
 	private bool recOutput = false;
 	
 	private FileStream fileStream;
-	
+
+	public Transform REC;
+	private Image img;
+	private Color c;
+
+	public Transform text;
+	private Text debug;
 	void Awake() {
 		AudioSettings.outputSampleRate = outputRate;
 	}
 	
 	void Start() {
 		AudioSettings.GetDSPBufferSize(out bufferSize, out numBuffers);
+
+		img = REC.GetComponent<Image> ();
+
+		debug = text.GetComponent<Text> ();
+
 	}
-	
+	//-------------------
+	public void startREC(){
+		if(recOutput == false) {
+
+			fileName = "Music_";
+			fileName += System.DateTime.Now.ToString("MM-dd-yy_hh-mm-ss") +".wav";
+			if (!fileName.ToLower().EndsWith(".wav")) {
+				fileName += ".wav";
+			}
+			 
+			var filepath = "/storage/emulated/0/Music/" + "LiveBand/" + fileName;
+			Debug.Log (filepath);
+			debug.text = filepath;
+
+			Directory.CreateDirectory(Path.GetDirectoryName(filepath));
+
+
+			StartWriting(filepath);
+			recOutput = true;
+			print("rec");
+			c.r = 0.5f;
+			c.g = 0f;
+			c.b = 0f;
+			c.a = 0.5f;
+			img.color = c;
+		} else {
+			recOutput = false;
+			WriteHeader();     
+			print("rec stop");
+			c.r = 1f;
+			c.g = 1f;
+			c.b = 1f;
+			c.a = 0f;
+			img.color = c;
+		}
+	}
+	//-------------------
 	void Update() {
 		if(Input.GetKeyDown("r")) {
 			if(recOutput == false) {

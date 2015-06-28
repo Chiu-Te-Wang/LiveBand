@@ -10,10 +10,16 @@ public class LoadScene : Photon.MonoBehaviour {
 		int coj = PlayerPrefs.GetInt ("CreateOrJoin");
 
 		if (coj == 0) {
-			PhotonNetwork.CreateRoom(s, new RoomOptions(){maxPlayers = 4}, null);
+
+			if(!PhotonNetwork.CreateRoom(s, new RoomOptions(){maxPlayers = 4}, null)){
+			
+				PhotonNetwork.LoadLevel("MenuScene");
+			}
 		}
 		else if(coj == 1){
-			PhotonNetwork.JoinRoom(ss);
+			if(!PhotonNetwork.JoinRoom(ss)){
+				PhotonNetwork.LoadLevel("MenuScene");
+			}
 		}
 	}
 
