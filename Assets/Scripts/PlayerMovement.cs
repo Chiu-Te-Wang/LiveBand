@@ -37,6 +37,8 @@ public class PlayerMovement : Photon.MonoBehaviour
 	public int stagePosition = -1;
 	private GameObject pianoSlider;
 	private Button[] buttonSet;
+	//quit game
+	private GameObject exitPanel;
 
 	void Start() {
 		tarPos = this.transform.position;
@@ -51,6 +53,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 		if (photonView.isMine) {
 			instrumentPanel = GameObject.FindWithTag ("instrumentPanel");
 			pianoSlider = GameObject.FindWithTag ("pianoSlider");
+			exitPanel = GameObject.FindWithTag("exitPanel");
 			buttonSetControl ();
 			Text usernameText = GameObject.FindWithTag("characterPanel").GetComponentsInChildren<Text>()[1];
 			usernameText.text = photonView.owner.name;
@@ -66,15 +69,34 @@ public class PlayerMovement : Photon.MonoBehaviour
 			_Move (h, v);
 		}
 		if (photonView.isMine) {
-			if (Input.GetKeyDown(KeyCode.Escape)) { 
-				if(stagePosition >= 0){
-					setDownStage();
+			pressMouseMove ();
+		}
+	}
+
+	void Update(){
+		if (photonView.isMine) {
+			//when press BACK key
+			if (Input.GetKeyUp(KeyCode.Escape)) { 
+				if(GameObject.FindWithTag("stavePanel") != null){
+					//close stave
+					GameObject.FindWithTag("stavePanel").SetActive(false);
+					functionPanel.SetActive(true);
 				}
 				else{
-					//Application.Quit();
+					if(stagePosition >= 0){
+						//go down stage
+						setDownStage();
+						gameObject.GetComponent<CameraFollow>().setDownStage();
+						print ("downstage");
+					}
+					else{
+						//exit game or not
+						instrumentPanel.SetActive(false);
+						speed = 6f;
+						exitPanel.SetActive(true);
+					}
 				}
 			}
-			pressMouseMove ();
 		}
 	}
 
@@ -297,6 +319,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 	}
 
 	void setDownStage(){
+		//set all status to the origin
 		Image characterImg = GameObject.FindWithTag("characterPanel").GetComponentsInChildren<Image>()[1];
 		characterImg.sprite = Resources.Load("audience", typeof(Sprite)) as Sprite;
 		Text characterText = GameObject.FindWithTag("characterPanel").GetComponentInChildren<Text>();
@@ -305,17 +328,28 @@ public class PlayerMovement : Photon.MonoBehaviour
 		transform.eulerAngles = rotationBeforeOnStage;
 		stagePosition = -1;
 		photonView.RPC ("syncPlayerDirectly", PhotonTargets.Others, transform.position, transform.eulerAngles,stagePosition);
+
+		//cloae the functionPanel
 		functionPanel.SetActive (false);
+		pianoSlider.SetActive (false);
+
+		//change the instrument that user see
 		switchPresent(pianoReal,false);
 		switchPresent(pianoFake,true);
 		switchPresent(drumReal,false);
 		switchPresent(drumFake,true);
 		switchPresent(guitarReal,false);
 		switchPresent(guitarFake,true);
-		pianoSlider.SetActive (false);
 
+
+		//stop the metronome sound
 		GameObject.FindWithTag ("metronome").GetComponent<TempoController>().stopMetronome();
 		showInstrumentPanel ();
+
+		//close the stave panel
+		if (GameObject.FindWithTag ("stavePanel") != null) {
+			GameObject.FindWithTag("stavePanel").SetActive(false);
+		}
 	}
 
 	void buttonSetControl(){

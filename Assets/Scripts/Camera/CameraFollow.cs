@@ -13,7 +13,6 @@ public class CameraFollow : Photon.MonoBehaviour {
 	//stage 
 	private bool onStageOrNot = false;
 	private Vector3 positionBeforeOnStage;
-	private Quaternion rotationBeforeOnStage;
 
 	void Awake()
 	{
@@ -28,7 +27,9 @@ public class CameraFollow : Photon.MonoBehaviour {
 
 		if (photonView.isMine) {
 			float rand = transform.position.z - 15f;
-			camera.transform.position.Set(1f,15f,-22f+rand);
+//			camera.transform.position = new Vector3(1f,15f,-22f+rand);
+			camera.transform.position = new Vector3(0f,14f,36f);
+			print (camera.transform.position);
 			camera.transform.rotation = Quaternion.Euler(35f,180f,0f);
 			offset = camera.transform.position - target.position;
 		
@@ -48,14 +49,9 @@ public class CameraFollow : Photon.MonoBehaviour {
 
 	void FixedUpdate(){
 		if (!onStageOrNot) { normalCamera (); }
-		if (photonView.isMine) {
-			if (Input.GetKeyDown(KeyCode.Escape)) { 
-				if(onStageOrNot){
-					setDownStage();
-				}
-			}
-		}
 	}
+
+	//camera follow the player
 	void normalCamera(){
 		if (photonView.isMine) {
 			Vector3 targetCamPos = target.position + offset;
@@ -81,7 +77,6 @@ public class CameraFollow : Photon.MonoBehaviour {
 			//press exit button
 		} else {
 			positionBeforeOnStage = camera.transform.position;
-			rotationBeforeOnStage = camera.transform.rotation;
 			Vector3 cameraPosition = new Vector3(0f,0f,0f);
 			Quaternion cameraRotation = Quaternion.Euler(90f, 0f,0f); 
 			if (choose == "PIANO") {
@@ -123,9 +118,9 @@ public class CameraFollow : Photon.MonoBehaviour {
 			camera.transform.rotation = cameraRotation;
 		}
 	}
-	void setDownStage(){
+	public void setDownStage(){
 		camera.transform.position = positionBeforeOnStage;
-		camera.transform.rotation = rotationBeforeOnStage;
+		camera.transform.rotation = Quaternion.Euler(35f,180f,0f);
 		camera.fieldOfView = 60;
 		onStageOrNot = false;
 	}
