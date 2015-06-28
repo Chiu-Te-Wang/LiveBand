@@ -11,8 +11,11 @@ public class staveControl : MonoBehaviour {
 	private Vector3 stavePosition;
 	private RectTransform staveRect;
 	public GameObject stavePrefab;
+	private GameObject stavePanelButtonSet;
+	private bool stavePanelButtonSetActive = true;
 
 	void Start () {
+		stavePanelButtonSet = GameObject.FindWithTag ("stavePanelButtonSet");
 		staveObjectArray.Add(GameObject.FindGameObjectWithTag ("stave"));
 		staveNumber = staveObjectArray.Count;
 		stavePosition = staveObjectArray [0].transform.localPosition;
@@ -22,6 +25,10 @@ public class staveControl : MonoBehaviour {
 
 	public void stavePresent(){
 		gameObject.SetActive (true);
+	}
+	public void stavePanelButtonSetActivation(){
+		stavePanelButtonSetActive = !stavePanelButtonSetActive;
+		stavePanelButtonSet.SetActive (stavePanelButtonSetActive);
 	}
 
 	public void upStave(){
@@ -33,19 +40,28 @@ public class staveControl : MonoBehaviour {
 	public void downStave(){
 		if (nowSatvePosition == staveNumber) { return ; }
 		nowSatvePosition += 1;
-		if (nowSatvePosition >= staveNumber) {
+		if (nowSatvePosition == staveNumber) {
 			nowSatvePosition -= 1;
-			nowSatvePosition = createNewStave ();
+		} else if (nowSatvePosition < staveNumber) {
+			changePresentStave (nowSatvePosition - 1, nowSatvePosition);
 		} else {
-			changePresentStave (nowSatvePosition-1,nowSatvePosition);
+			Debug.Log("Error: Index out of space in downStave");
+			nowSatvePosition = staveNumber - 1;
 		}
 	}
 
 	public void downStaveToBottom(){
 		changePresentStave (nowSatvePosition,staveNumber-1);
+		nowSatvePosition = staveNumber - 1;
 	}
 	public void upStaveToTop(){
 		changePresentStave (nowSatvePosition,0);
+		nowSatvePosition = 0;
+	}
+	public void newStave(){
+		int newStavePosition = createNewStave ();
+		changePresentStave (nowSatvePosition,staveNumber-1);
+		nowSatvePosition = newStavePosition;
 	}
 
 	int createNewStave(){
@@ -65,8 +81,6 @@ public class staveControl : MonoBehaviour {
 			return;
 		} else if (oldSatveIndex >= staveNumber || newSatveIndex >= staveNumber) {
 			Debug.Log ("Error:Indexing out of space in changePresentStave!");
-			Debug.Log ("staveNumber = "+staveNumber);
-			Debug.Log ("newSatveIndex = "+newSatveIndex);
 			return;
 		}
 

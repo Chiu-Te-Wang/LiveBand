@@ -28,6 +28,9 @@ TagManager:
   - chatroomShieldPanel
   - JoinRoom
   - stave
+  - stavePanel
+  - exitPanel
+  - stavePanelButtonSet
   layers:
   - Default
   - TransparentFX
