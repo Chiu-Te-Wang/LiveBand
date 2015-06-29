@@ -15,6 +15,9 @@ public class staveControl : MonoBehaviour {
 	private bool stavePanelButtonSetActive = true;
 	private bool spreadOrNot = false;
 	private float offset = -113f;
+	//edit 
+	private bool editingOrNot = false;
+	private int editStavePosition = -1;
 
 	void Start () {
 		stavePanelButtonSet = GameObject.FindWithTag ("stavePanelButtonSet");
@@ -66,20 +69,24 @@ public class staveControl : MonoBehaviour {
 	//move to last stave
 	public void upStave(){
 		if (nowSatvePosition == 0) { return ; }
-		nowSatvePosition -= 1;
-		changePresentStave (nowSatvePosition+1,nowSatvePosition);
+		int resultNum = changePresentStave (nowSatvePosition,nowSatvePosition-1);
+		if (resultNum >= 0) {
+			nowSatvePosition = resultNum;
+		}
 	}
 	//move to next stave
 	public void downStave(){
 		if (nowSatvePosition == staveNumber) { return ; }
-		nowSatvePosition += 1;
-		if (nowSatvePosition == staveNumber-2) {
-			nowSatvePosition -= 1;
-		} else if (nowSatvePosition < staveNumber-2) {
-			changePresentStave (nowSatvePosition - 1, nowSatvePosition);
+		if (nowSatvePosition == staveNumber-staveNumberPer) {
+			//to the end , do nothing
+		} else if (nowSatvePosition < staveNumber-staveNumberPer) {
+			int resultNum = changePresentStave (nowSatvePosition, nowSatvePosition+1);
+			if (resultNum >= 0) {
+				nowSatvePosition = resultNum;
+			}
 		} else {
 			Debug.Log("Error: Index out of space in downStave");
-			nowSatvePosition = staveNumber - 1;
+			nowSatvePosition = staveNumber - staveNumberPer;
 		}
 	}
 
@@ -88,11 +95,16 @@ public class staveControl : MonoBehaviour {
 		if (spreadOrNot) {
 			staveOffset = staveNumberPer * 3;
 		}
-		nowSatvePosition = changePresentStave (nowSatvePosition,staveNumber-staveOffset);
+		int resultNum = changePresentStave (nowSatvePosition,staveNumber-staveOffset);
+		if (resultNum >= 0) {
+			nowSatvePosition = resultNum;
+		}
 	}
 	public void upStaveToTop(){
-		changePresentStave (nowSatvePosition,0);
-		nowSatvePosition = 0;
+		int resultNum = changePresentStave (nowSatvePosition,0);
+		if (resultNum >= 0) {
+			nowSatvePosition = resultNum;
+		}
 	}
 
 	//spread 3 line of stave
@@ -137,7 +149,10 @@ public class staveControl : MonoBehaviour {
 		if (spreadOrNot) {
 			staveOffset = staveNumberPer * 3;
 		}
-		nowSatvePosition = changePresentStave (nowSatvePosition,staveNumber-staveOffset);
+		int resultNum = changePresentStave (nowSatvePosition,staveNumber-staveOffset);
+		if (resultNum >= 0) {
+			nowSatvePosition = resultNum;
+		}
 	}
 
 	int createNewStave(){
@@ -145,6 +160,7 @@ public class staveControl : MonoBehaviour {
 		GameObject newStave = (GameObject) Instantiate(stavePrefab,stavePosition[staveNumberPer-1],Quaternion.Euler(Vector3.zero));
 		newStave.transform.SetParent (gameObject.transform,false);
 		newStave.transform.localPosition = stavePosition[staveNumberPer-1];
+		newStave.GetComponentInChildren<Button>().onClick.AddListener (() => pressStave (newStave));
 		staveObjectArray.Add (newStave);
 		staveNumber += 1;
 		return (staveNumber - 3);
@@ -154,7 +170,7 @@ public class staveControl : MonoBehaviour {
 		if (oldSatveIndex < 0 ) {
 			Debug.Log ("Error:Negative Indexing in changePresentStave!");
 			return -1;
-		} else if (oldSatveIndex >= staveNumber-2 || newSatveIndex >= staveNumber-2) {
+		} else if (oldSatveIndex >= staveNumber-(staveNumberPer-1) || newSatveIndex >= staveNumber-(staveNumberPer-1)) {
 			Debug.Log ("Error:Indexing out of space in changePresentStave!");
 			return -1;
 		}
@@ -180,5 +196,35 @@ public class staveControl : MonoBehaviour {
 			staveObjectArray [newSatveIndex+i].transform.localPosition = stavePosition[i];
 		}
 		return newSatveIndex;
+	}
+
+	//press certain stave
+	public void pressStave(GameObject pressedStave){
+		editStavePosition = whichStaveFromPosition (pressedStave.transform.localPosition);
+	}
+
+	int whichStaveFromPosition(Vector3 pos){
+		for (int i = 0; i< stavePosition.Length; i++) {
+			if(_vector3Equal(pos, stavePosition[i])){
+				return i+nowSatvePosition;
+			}
+		}
+		return -1;
+	}
+
+	bool _vector3Equal(Vector3 v1, Vector3 v2){
+		return (Vector3.SqrMagnitude (v1 - v2) < 0.001);
+	}
+	//press edit button
+	public void pressEditButton(){
+		spreadStave ();
+		if (editStavePosition < 0) {
+			editStavePosition = nowSatvePosition;
+		} else {
+			if(staveNumber - editStavePosition < staveNumberPer){
+				editStavePosition = staveNumber - staveNumberPer;
+			}
+			nowSatvePosition = changePresentStave (nowSatvePosition,editStavePosition);
+		}
 	}
 }
