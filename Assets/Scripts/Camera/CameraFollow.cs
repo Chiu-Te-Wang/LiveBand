@@ -82,7 +82,6 @@ public class CameraFollow : Photon.MonoBehaviour {
 			if (choose == "PIANO") {
 				//keyboard
 				if(GetComponent<PlayerMovement>().isStagePositionNotEmpty(0)){ return; }
-				print ("ddddddd");
 				cameraPosition = new Vector3(3.929463f,10.407265f,0.323639f);
 				cameraRotation = Quaternion.Euler(70f, 0f,0f);
 				camera.fieldOfView = 10;
@@ -105,7 +104,7 @@ public class CameraFollow : Photon.MonoBehaviour {
 				cameraPosition = new Vector3(0f,0f,0f);
 				cameraRotation = Quaternion.Euler(90f, 0f,0f);
 			} else if (choose == "BASS") {
-				//main singer
+				//bass
 				if(GetComponent<PlayerMovement>().isStagePositionNotEmpty(4)){ return; }
 				cameraPosition = new Vector3(0f, 4.74f,2.41f);
 				cameraRotation = Quaternion.Euler(90f, 0f,0f);

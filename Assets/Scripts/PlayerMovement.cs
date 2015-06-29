@@ -294,7 +294,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 				stagePosition = 3;
 				transform.position = new Vector3 (-0.65f, 1.7f, 4.2f);
 				characterImgName = "synthesizer";
-				characterTextName = "synthesizer";
+				characterTextName = "Synthesizer";
 			} else if (choose == "BASS") {
 				//main singer
 				if(isStagePositionNotEmpty(4)){
@@ -344,6 +344,8 @@ public class PlayerMovement : Photon.MonoBehaviour
 		switchPresent(drumFake,true);
 		switchPresent(guitarReal,false);
 		switchPresent(guitarFake,true);
+		switchPresent(bassReal, false);
+		switchPresent(bassFake, true);
 
 
 		//stop the metronome sound
