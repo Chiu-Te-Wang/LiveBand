@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class recorder : MonoBehaviour {
-	public bool recording;
+	public bool recording = false;
 	public int bpm;
 	public float start_time;
 	private List<note> Records = new List<note>();  
