@@ -1,12 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
+using System.Linq;
 
 public class recorder : MonoBehaviour {
 	public bool recording = false;
 	public int bpm;
 	public float start_time;
-	private List<note> Records = new List<note>();  
+	public float end_time;
+	private List<note> Records = new List<note>(); 
+	public GameObject countdownPanel;
+	private int countdown = 3;
+	public Text test;
 	public bool getBool() {
 		return recording;
 	}
@@ -35,33 +41,52 @@ public class recorder : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		countdownPanel.SetActive (false);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
 	}
-	void sort (){
-
-
-	}
-	void show(){
-		
+	void sortNote(){
+		if (Records.Count > 0) {
+			Records = Records.OrderBy (x => x.getStart ()).ToList();
+		}
 	}
 
-	public void startRec (recorder.note[] toShow) {
+	void startRec () {
 		start_time = Time.time;
 		recording = true;
-		foreach ( note n in toShow) {
-
-		};
 	}
-	public void stopRec () {
+	void stopRec () {
 		recording = false;
-		Records = new List<note> ();
+		countdownPanel.SetActive(false);
+		end_time = Time.time;
+		test.text = "" + Records.Count;
+		sortNote ();
 	}
 	public void Add ( AudioSource audio, float start, float end) {
 		Records.Add (new note (audio, start, end));
+	}
+
+	public void pressRecord(){
+		if (recording) {
+			stopRec ();
+		} else {
+			countDownFunc();
+		}
+	}
+
+	void countDownFunc(){
+		if (countdown == 0) {
+			countdown = 3;
+			countdownPanel.GetComponentInChildren<Text> ().text = "Start";
+			startRec ();
+		} else {
+			countdownPanel.SetActive(true);
+			countdownPanel.GetComponentInChildren<Text> ().text = ""+countdown;
+			countdown--;
+			Invoke("countDownFunc",1);
+		}
 	}
 }

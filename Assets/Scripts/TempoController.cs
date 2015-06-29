@@ -55,7 +55,6 @@ public class TempoController : MonoBehaviour {
 	void S2() { 
 		tempo_strike.Play (); 
 		changeColor (new Color(227f/255f, 50f/255f, 142f/255f, 103f/255f));
-		Sprite newSprite =  Resources.Load <Sprite>("piano");
 		playButton.GetComponentsInChildren<Image>()[1].transform.localRotation = Quaternion.Euler (0f, 180f, 0f);
 	}
 	void S3() { 

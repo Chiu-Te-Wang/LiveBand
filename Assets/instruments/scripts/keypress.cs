@@ -45,7 +45,6 @@ public class keypress : Photon.MonoBehaviour {
 	[RPC]
 	void PPRPC(){
 		GetComponent<AudioSource> ().Play ();
-		print ("ssss");
 	}
 }
 

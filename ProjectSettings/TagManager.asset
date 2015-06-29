@@ -28,6 +28,12 @@ TagManager:
   - JoinRoom
   - bassReal
   - bassFake
+  - stave
+  - stavePanelButtonSet
+  - chatroomShieldPanel
+  - stavePanel
+  - exitPanel
+  - staveToggleButton
   layers:
   - Default
   - TransparentFX
