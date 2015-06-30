@@ -51088,6 +51088,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stavePrefab: {fileID: 183216, guid: 140ffc0f34a82e641b95fd7751ebca14, type: 2}
+  musicalSign:
+  - {fileID: 21300000, guid: d635f214b90367141b341c8950cddb14, type: 3}
+  - {fileID: 21300000, guid: dd5a36974092c674980657b80b408836, type: 3}
+  - {fileID: 21300000, guid: cd11753ca4002414d81692b70889e903, type: 3}
+  - {fileID: 21300000, guid: 7f20ea638e03b064a9a13e69541ff3ed, type: 3}
+  - {fileID: 21300000, guid: c24f6365b440d5541bd6e088caae0cdc, type: 3}
+  - {fileID: 21300000, guid: 95367223475462345ad2162f22e07481, type: 3}
+  - {fileID: 21300000, guid: 8239213f42b807541a5cb588d626b1de, type: 3}
+  - {fileID: 21300000, guid: 1df38aa9e4391cc49be4e7da2e957141, type: 3}
 --- !u!114 &1617604334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60316,8 +60325,13 @@ Prefab:
       objectReference: {fileID: 1617604333}
     - target: {fileID: 11459632, guid: 140ffc0f34a82e641b95fd7751ebca14, type: 2}
       propertyPath: m_Color.a
-      value: .478431374
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11459632, guid: 140ffc0f34a82e641b95fd7751ebca14, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d635f214b90367141b341c8950cddb14,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 140ffc0f34a82e641b95fd7751ebca14, type: 2}
   m_IsPrefabParent: 0

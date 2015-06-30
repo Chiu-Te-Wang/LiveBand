@@ -21,6 +21,7 @@ public class staveControl : MonoBehaviour {
 	//place note 
 	private int modelNote = 4;
 	private float noteOffset = 8f;
+	public Sprite[] musicalSign = new Sprite[8];
 
 	void Start () {
 		stavePanelButtonSet = GameObject.FindWithTag ("stavePanelButtonSet");
@@ -277,9 +278,26 @@ public class staveControl : MonoBehaviour {
 		}
 
 		//show note
-		print ("added");
-		notes [startPos].color = new Color (notes [startPos].color.r, notes [startPos].color.g, notes [startPos].color.b, 1f);
-		Vector3 noteDefaultPos = notes [startPos].transform.localPosition;
-		notes [startPos].transform.localPosition = new Vector3 (noteDefaultPos.x,noteDefaultPos.y+noteOffset*(noteTune-modelNote),noteDefaultPos.z);
+		int targetNote = 0;
+		float yOffset = 0f;
+		if (kindOfNote <= 3) {
+			targetNote = startPos;
+			yOffset = noteOffset * (noteTune - modelNote);
+		} else if(kindOfNote <= 5){
+			targetNote = startPos;
+		}else if (kindOfNote == 6) {
+			if(startPos <= 3){
+				targetNote = 1;
+			}else if(startPos <= 7){
+				targetNote = 5;
+			}
+		} else if (kindOfNote == 7) {
+			targetNote = 3;
+		}
+		Vector3 noteDefaultPos = notes [targetNote].transform.localPosition;
+		notes [targetNote].transform.localPosition = new Vector3 (noteDefaultPos.x, noteDefaultPos.y + yOffset, noteDefaultPos.z);
+		notes [targetNote].color = new Color (notes [startPos].color.r, notes [startPos].color.g, notes [startPos].color.b, 1f);
+		notes [targetNote].sprite = musicalSign [kindOfNote];
+
 	}
 }

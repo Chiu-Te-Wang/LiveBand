@@ -52,9 +52,12 @@ public class recorder : MonoBehaviour {
 	void processStave(){
 		stavePanel.SetActive (true);
 		stavePanel.GetComponent<staveControl> ().placeNoteOnStave (0,0,0,0);
+		stavePanel.GetComponent<staveControl> ().placeNoteOnStave (0,1,0,5);
+		stavePanel.GetComponent<staveControl> ().placeNoteOnStave (0,2,0,4);
 		stavePanel.GetComponent<staveControl> ().placeNoteOnStave (1,2,2,0);
 		stavePanel.GetComponent<staveControl> ().placeNoteOnStave (1,5,4,0);
-		stavePanel.GetComponent<staveControl> ().placeNoteOnStave (2,6,8,0);
+		stavePanel.GetComponent<staveControl> ().placeNoteOnStave (2,0,0,6);
+		stavePanel.GetComponent<staveControl> ().placeNoteOnStave (3,0,0,7);
 		stavePanel.GetComponent<staveControl> ().placeNoteOnStave (5,6,8,0);
 		stavePanel.GetComponent<staveControl> ().placeNoteOnStave (7,4,5,0);
 		stavePanel.GetComponent<staveControl> ().spreadStave ();
