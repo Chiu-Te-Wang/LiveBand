@@ -51,6 +51,13 @@ public class recorder : MonoBehaviour {
 	//use Records[] to produce notes on staves
 	void processStave(){
 		stavePanel.SetActive (true);
+		//==== do things here ====
+		//placeNoteOnStave (staveNumber,notePositionNumber,tune,kindOfNote);
+		//staveNumber = 0 ~ 
+		//notePositionNumber = 0 ~ 7
+		//tune =>  0 for do, 1 for re, 2 for mi, 4 for fa......
+		//kindOfNote = 0 ~ 7(eighthnote, quarternote, halfnote, wholenote, 
+		//                   eighthreset, quarterreset, halfreset, wholereset)
 		stavePanel.GetComponent<staveControl> ().placeNoteOnStave (0,0,0,0);
 		stavePanel.GetComponent<staveControl> ().placeNoteOnStave (0,1,0,5);
 		stavePanel.GetComponent<staveControl> ().placeNoteOnStave (0,2,0,4);
@@ -60,6 +67,8 @@ public class recorder : MonoBehaviour {
 		stavePanel.GetComponent<staveControl> ().placeNoteOnStave (3,0,0,7);
 		stavePanel.GetComponent<staveControl> ().placeNoteOnStave (5,6,8,0);
 		stavePanel.GetComponent<staveControl> ().placeNoteOnStave (7,4,5,0);
+		//=========================
+
 		stavePanel.GetComponent<staveControl> ().spreadStave ();
 	}
 
