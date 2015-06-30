@@ -20,6 +20,10 @@ public class PhotonRoomMenu : Photon.MonoBehaviour {
 	public GUIStyle mystyle;
 	public GUIStyle mystyle2;
 
+	public GameObject roombutton;
+	public Transform roompanel;
+
+	private int roomsize;
 	void Awake(){
 		PhotonNetwork.ConnectUsingSettings ("1.0");
 		playerInput = GameObject.Find("Canvas");
@@ -49,6 +53,9 @@ public class PhotonRoomMenu : Photon.MonoBehaviour {
 		de.AddListener (CreateRoom);
 		c.onClick = de;
 		playerInput2.SetActive (false);
+
+
+		roomsize = 0;
 	}
 	private void SubmitName(string arg0){
 		if (!PhotonNetwork.connected && !PhotonNetwork.connecting) {
@@ -96,6 +103,44 @@ public class PhotonRoomMenu : Photon.MonoBehaviour {
 	}
 
 
+
+	void Update(){
+		if(islogin){
+			RoomInfo[] roomInfo = PhotonNetwork.GetRoomList();
+			if (roomInfo.Length != 0) {
+				//j.interactable = true;
+				if(roomInfo.Length != roomsize){
+					roomsize = roomInfo.Length;
+					RoomButton[] buttonlist = roompanel.GetComponentsInChildren<RoomButton>();
+					foreach(RoomButton b in buttonlist){
+						b.destroythis();
+						Debug.Log ("Destroy");
+					}
+					string[] roomNames = new string[roomInfo.Length];
+					//string[] temp = {"sssss", "ssss", "aaaa", "bbbb", "cccccccc"};
+					for (int i = 0; i<roomInfo.Length; ++i) {
+						roomNames [i] = roomInfo [i].name;
+					}
+					for (int i = 0; i < roomNames.Length; ++i) {
+						GameObject newButton = Instantiate (roombutton) as GameObject;
+						
+						RoomButton button = newButton.GetComponent<RoomButton> ();
+						button.nameLabel.text = roomNames [i];
+						newButton.transform.SetParent (roompanel, false);
+					}
+				}
+			} 
+			else {
+				RoomButton[] buttonlist = roompanel.GetComponentsInChildren<RoomButton>();
+				foreach(RoomButton b in buttonlist){
+					b.destroythis();
+					Debug.Log ("Destroy");
+				}
+				j.interactable = false;
+			}
+		}
+	}
+
 	void OnGUI(){
 		GUILayout.Label ("Connection status: " + PhotonNetwork.connectionStateDetailed);
 		
@@ -123,7 +168,7 @@ public class PhotonRoomMenu : Photon.MonoBehaviour {
 			}*/
 
 
-			RoomInfo[] roomInfo = PhotonNetwork.GetRoomList();
+		/*	RoomInfo[] roomInfo = PhotonNetwork.GetRoomList();
 			if(roomInfo.Length != 0 ){
 				j.interactable = true;
 				string[] roomNames = new string[roomInfo.Length];
@@ -131,6 +176,8 @@ public class PhotonRoomMenu : Photon.MonoBehaviour {
 				for(int i = 0; i<roomInfo.Length;++i){
 					roomNames[i] = roomInfo[i].name;
 				}
+
+
 				GUILayout.BeginArea (new Rect (Screen.width/2 - 100f,Screen.height*3/4,Screen.width,Screen.height));
 				roomSel = GUILayout.SelectionGrid(roomSel, roomNames, 1, mystyle2, GUILayout.Width(200));
 
@@ -146,7 +193,7 @@ public class PhotonRoomMenu : Photon.MonoBehaviour {
 					}
 				
 				GUILayout.EndArea();
-			}
+			}*/
 
 		}
 		if (ErrorMessage.Length > 0) {
@@ -155,6 +202,8 @@ public class PhotonRoomMenu : Photon.MonoBehaviour {
 			GUILayout.EndArea();
 		}
 	}
+
+	
 
 	/*public void OnJoinedRoom()
 	{
