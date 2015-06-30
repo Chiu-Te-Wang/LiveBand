@@ -12,6 +12,8 @@ public class recorder : MonoBehaviour {
 	private List<note> Records = new List<note>(); 
 	public GameObject countdownPanel;
 	private int countdown = 3;
+	private bool countdowningOrNot = false;
+	private bool processingOrNot = false;
 	public Text test;//for test
 	public GameObject stavePanel;
 	public bool getBool() {
@@ -44,15 +46,19 @@ public class recorder : MonoBehaviour {
 		countdownPanel.SetActive (false);
 	}
 	void Update () {
-	
+		if (processingOrNot) {
+			stavePanel.SetActive (true);
+		}
 	}
 
 	//use Records[] to produce notes on staves
 	void processStave(){
+		processingOrNot = true;
 		stavePanel.SetActive (true);
-		stavePanel.GetComponent<staveControl> ().placeNoteOnStave (0,0,0);
-		stavePanel.GetComponent<staveControl> ().placeNoteOnStave (1,2,0);
+		//stavePanel.GetComponent<staveControl> ().placeNoteOnStave (0,0,0);
+		//stavePanel.GetComponent<staveControl> ().placeNoteOnStave (1,2,0);
 		stavePanel.GetComponent<staveControl> ().spreadStave ();
+		processingOrNot = false;
 	}
 
 	void sortNote(){
@@ -81,7 +87,14 @@ public class recorder : MonoBehaviour {
 		if (recording) {
 			stopRec ();
 		} else {
-			countDownFunc();
+			if(!countdowningOrNot){
+				countDownFunc();
+			}else{
+				CancelInvoke("countDownFunc");
+				countdown = 3;
+				countdownPanel.SetActive(false);
+				countdowningOrNot = false;
+			}
 		}
 	}
 
@@ -89,8 +102,10 @@ public class recorder : MonoBehaviour {
 		if (countdown == 0) {
 			countdown = 3;
 			countdownPanel.GetComponentInChildren<Text> ().text = "Recording";
+			countdowningOrNot = false;
 			startRec ();
 		} else {
+			countdowningOrNot = true;
 			countdownPanel.SetActive(true);
 			countdownPanel.GetComponentInChildren<Text> ().text = ""+countdown;
 			countdown--;
