@@ -12,7 +12,8 @@ public class recorder : MonoBehaviour {
 	private List<note> Records = new List<note>(); 
 	public GameObject countdownPanel;
 	private int countdown = 3;
-	public Text test;
+	public Text test;//for test
+	public GameObject stavePanel;
 	public bool getBool() {
 		return recording;
 	}
@@ -39,15 +40,21 @@ public class recorder : MonoBehaviour {
 	}
 
 
-	// Use this for initialization
 	void Start () {
 		countdownPanel.SetActive (false);
 	}
-	
-	// Update is called once per frame
 	void Update () {
 	
 	}
+
+	//use Records[] to produce notes on staves
+	void processStave(){
+		stavePanel.SetActive (true);
+		stavePanel.GetComponent<staveControl> ().placeNoteOnStave (0,0,0);
+		stavePanel.GetComponent<staveControl> ().placeNoteOnStave (1,2,0);
+		stavePanel.GetComponent<staveControl> ().spreadStave ();
+	}
+
 	void sortNote(){
 		if (Records.Count > 0) {
 			Records = Records.OrderBy (x => x.getStart ()).ToList();
@@ -64,6 +71,7 @@ public class recorder : MonoBehaviour {
 		end_time = Time.time;
 		test.text = "" + Records.Count;
 		sortNote ();
+		processStave ();
 	}
 	public void Add ( AudioSource audio, float start, float end) {
 		Records.Add (new note (audio, start, end));
@@ -80,7 +88,7 @@ public class recorder : MonoBehaviour {
 	void countDownFunc(){
 		if (countdown == 0) {
 			countdown = 3;
-			countdownPanel.GetComponentInChildren<Text> ().text = "Start";
+			countdownPanel.GetComponentInChildren<Text> ().text = "Recording";
 			startRec ();
 		} else {
 			countdownPanel.SetActive(true);

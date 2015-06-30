@@ -18,6 +18,7 @@ public class staveControl : MonoBehaviour {
 	//edit 
 	private bool editingOrNot = false;
 	private int editStavePosition = -1;
+	private int noteNumPerStave = 4;
 
 	void Start () {
 		stavePanelButtonSet = GameObject.FindWithTag ("stavePanelButtonSet");
@@ -54,7 +55,7 @@ public class staveControl : MonoBehaviour {
 		}
 		stavePosition = tempStavePosition;
 		//hide the stave
-		//gameObject.SetActive (false);
+		gameObject.SetActive (false);
 	}
 
 	//show the whole stavePanel 
@@ -226,5 +227,52 @@ public class staveControl : MonoBehaviour {
 			}
 			nowSatvePosition = changePresentStave (nowSatvePosition,editStavePosition);
 		}
+	}
+
+	//place note on stave
+	public void placeNoteOnStave(int staveIndex, int startPos, int kindOfNote){
+		if (staveIndex < 0 || startPos < 0 || kindOfNote < 0) {
+			Debug.Log("Error : Wrong parameter!(negative) in placeNoteOnStave");
+			return;
+		}
+		if (staveIndex >= staveObjectArray.Count || startPos >= noteNumPerStave) {
+			Debug.Log("Error : Indexing out of space in placeNoteOnStave!");
+			return;
+		}
+		//get image in stave at staveIndex
+		Image[] allImagesAtStave = staveObjectArray [staveIndex].GetComponentsInChildren<Image> ();
+		if (allImagesAtStave == null) {
+			Debug.Log("Error : Can't find notes! notes missing in placeNoteOnStave");
+			return;
+		}
+		//get notes in allImagesAtStave
+		int counter = 0;
+		for (int i =0; i< allImagesAtStave.Length; i++) {
+			if(allImagesAtStave[i].tag == "note"){ counter++; }
+		}
+		Image[] notes = new Image[counter];
+		counter = 0;
+		for (int i =0; i< allImagesAtStave.Length; i++) {
+			if(allImagesAtStave[i].tag == "note"){ 
+				notes[counter] = allImagesAtStave[i];
+				counter++;
+			}
+		}
+
+		//sort notes by position
+		for (int i = 0; i<notes.Length; i++) {
+			for(int j = i+1; j<notes.Length; j++){
+				if(notes[i].transform.position.x > notes[j].transform.position.x){
+					Image tempImage = notes[i];
+					notes[i] = notes[j];
+					notes[j] = tempImage;
+				}
+			}
+		}
+
+		//show note
+		print ("notes.lenght = "+notes.Length);
+		notes [startPos].color = new Color (notes [startPos].color.r, notes [startPos].color.g, notes [startPos].color.b, 1f);
+
 	}
 }

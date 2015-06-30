@@ -34,6 +34,7 @@ TagManager:
   - stavePanel
   - exitPanel
   - staveToggleButton
+  - note
   layers:
   - Default
   - TransparentFX

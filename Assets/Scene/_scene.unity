@@ -13837,6 +13837,7 @@ MonoBehaviour:
   end_time: 0
   countdownPanel: {fileID: 900536246}
   test: {fileID: 1449184024}
+  stavePanel: {fileID: 1617604331}
 --- !u!1 &448052196
 GameObject:
   m_ObjectHideFlags: 0

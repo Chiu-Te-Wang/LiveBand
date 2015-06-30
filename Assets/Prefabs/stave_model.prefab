@@ -12,7 +12,7 @@ GameObject:
   - 114: {fileID: 11474862}
   m_Layer: 5
   m_Name: note 2
-  m_TagString: Untagged
+  m_TagString: note
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +29,7 @@ GameObject:
   - 114: {fileID: 11431916}
   m_Layer: 5
   m_Name: note 1
-  m_TagString: Untagged
+  m_TagString: note
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,7 +46,7 @@ GameObject:
   - 114: {fileID: 11459632}
   m_Layer: 5
   m_Name: note
-  m_TagString: Untagged
+  m_TagString: note
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,7 +99,7 @@ GameObject:
   - 114: {fileID: 11486484}
   m_Layer: 5
   m_Name: note 3
-  m_TagString: Untagged
+  m_TagString: note
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
