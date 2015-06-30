@@ -50,4 +50,6 @@ MonoBehaviour:
   - syncPlayerDirectly
   - OnMouseUpGuitarRPC
   - PPGuitarRPC
+  - OnMouseUpBassRPC
+  - PPBassRPC
   DisableAutoOpenWizard: 0

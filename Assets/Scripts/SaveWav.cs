@@ -9,7 +9,8 @@ public class SaveWav : MonoBehaviour {
 	private int bufferSize = 0;
 	private int numBuffers = 0;
 	private int outputRate= 44100;
-	private string fileName = "recTest";
+	private string fileName;
+	public string filepath = "/storage/emulated/0/Music/" + "LiveBand/";
 	private int headerSize = 44; //default for uncompressed wav
 	
 	private bool recOutput = false;
@@ -22,6 +23,10 @@ public class SaveWav : MonoBehaviour {
 
 	public Transform text;
 	private Text debug;
+
+
+
+
 	void Awake() {
 		AudioSettings.outputSampleRate = outputRate;
 	}
@@ -32,27 +37,29 @@ public class SaveWav : MonoBehaviour {
 		img = REC.GetComponent<Image> ();
 
 		debug = text.GetComponent<Text> ();
-
+		//Directory.CreateDirectory (filepath);
 	}
+
+
+
 	//-------------------
 	public void startREC(){
 		if(recOutput == false) {
-
+			filepath = "/storage/emulated/0/Music/" + "LiveBand/";
 			fileName = "Music_";
 			fileName += System.DateTime.Now.ToString("MM-dd-yy_hh-mm-ss") +".wav";
 			if (!fileName.ToLower().EndsWith(".wav")) {
 				fileName += ".wav";
 			}
 			 
-			var filepath = "/storage/emulated/0/Music/" + "LiveBand/" + fileName;
 			//var filepath = Application.persistentDataPath + "/LiveBand/" + fileName;
 			Debug.Log (filepath);
-			debug.text = filepath;
+			debug.text = filepath+fileName;
 
-			Directory.CreateDirectory(Path.GetDirectoryName(filepath));
+			Directory.CreateDirectory(Path.GetDirectoryName(filepath+fileName));
 
 
-			StartWriting(filepath);
+			StartWriting(filepath+fileName);
 			recOutput = true;
 			print("rec");
 			c.r = 0.5f;
