@@ -51053,7 +51053,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1617604332
 RectTransform:
   m_ObjectHideFlags: 0
@@ -60314,6 +60314,10 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1617604333}
+    - target: {fileID: 11459632, guid: 140ffc0f34a82e641b95fd7751ebca14, type: 2}
+      propertyPath: m_Color.a
+      value: .478431374
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 140ffc0f34a82e641b95fd7751ebca14, type: 2}
   m_IsPrefabParent: 0

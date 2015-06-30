@@ -13,7 +13,6 @@ public class recorder : MonoBehaviour {
 	public GameObject countdownPanel;
 	private int countdown = 3;
 	private bool countdowningOrNot = false;
-	private bool processingOrNot = false;
 	public Text test;//for test
 	public GameObject stavePanel;
 	public bool getBool() {
@@ -46,19 +45,19 @@ public class recorder : MonoBehaviour {
 		countdownPanel.SetActive (false);
 	}
 	void Update () {
-		if (processingOrNot) {
-			stavePanel.SetActive (true);
-		}
+	
 	}
 
 	//use Records[] to produce notes on staves
 	void processStave(){
-		processingOrNot = true;
 		stavePanel.SetActive (true);
-		//stavePanel.GetComponent<staveControl> ().placeNoteOnStave (0,0,0);
-		//stavePanel.GetComponent<staveControl> ().placeNoteOnStave (1,2,0);
+		stavePanel.GetComponent<staveControl> ().placeNoteOnStave (0,0,0,0);
+		stavePanel.GetComponent<staveControl> ().placeNoteOnStave (1,2,2,0);
+		stavePanel.GetComponent<staveControl> ().placeNoteOnStave (1,5,4,0);
+		stavePanel.GetComponent<staveControl> ().placeNoteOnStave (2,6,8,0);
+		stavePanel.GetComponent<staveControl> ().placeNoteOnStave (5,6,8,0);
+		stavePanel.GetComponent<staveControl> ().placeNoteOnStave (7,4,5,0);
 		stavePanel.GetComponent<staveControl> ().spreadStave ();
-		processingOrNot = false;
 	}
 
 	void sortNote(){

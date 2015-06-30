@@ -18,7 +18,9 @@ public class staveControl : MonoBehaviour {
 	//edit 
 	private bool editingOrNot = false;
 	private int editStavePosition = -1;
-	private int noteNumPerStave = 4;
+	//place note 
+	private int modelNote = 4;
+	private float noteOffset = 8f;
 
 	void Start () {
 		stavePanelButtonSet = GameObject.FindWithTag ("stavePanelButtonSet");
@@ -230,14 +232,13 @@ public class staveControl : MonoBehaviour {
 	}
 
 	//place note on stave
-	public void placeNoteOnStave(int staveIndex, int startPos, int kindOfNote){
-		if (staveIndex < 0 || startPos < 0 || kindOfNote < 0) {
+	public void placeNoteOnStave(int staveIndex, int startPos, int noteTune,int kindOfNote){
+		if (staveIndex < 0 || startPos < 0 || kindOfNote < 0 || noteTune < 0) {
 			Debug.Log("Error : Wrong parameter!(negative) in placeNoteOnStave");
 			return;
 		}
-		if (staveIndex >= staveObjectArray.Count || startPos >= noteNumPerStave) {
-			Debug.Log("Error : Indexing out of space in placeNoteOnStave!");
-			return;
+		while (staveIndex >= staveObjectArray.Count) {
+			createNewStave();
 		}
 		//get image in stave at staveIndex
 		Image[] allImagesAtStave = staveObjectArray [staveIndex].GetComponentsInChildren<Image> ();
@@ -259,6 +260,11 @@ public class staveControl : MonoBehaviour {
 			}
 		}
 
+		if (startPos >= notes.Length) {
+			Debug.Log("Error : Indexing startPos out of space in placeNoteOnStave!");
+			//return;
+		}
+
 		//sort notes by position
 		for (int i = 0; i<notes.Length; i++) {
 			for(int j = i+1; j<notes.Length; j++){
@@ -271,8 +277,9 @@ public class staveControl : MonoBehaviour {
 		}
 
 		//show note
-		print ("notes.lenght = "+notes.Length);
+		print ("added");
 		notes [startPos].color = new Color (notes [startPos].color.r, notes [startPos].color.g, notes [startPos].color.b, 1f);
-
+		Vector3 noteDefaultPos = notes [startPos].transform.localPosition;
+		notes [startPos].transform.localPosition = new Vector3 (noteDefaultPos.x,noteDefaultPos.y+noteOffset*(noteTune-modelNote),noteDefaultPos.z);
 	}
 }
