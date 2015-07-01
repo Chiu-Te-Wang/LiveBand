@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class TempoController : MonoBehaviour {
+public class TempoController : Photon.MonoBehaviour {
 	private float timer = 0;
 	private float start_time;
 	public Button playButton;
@@ -38,14 +38,19 @@ public class TempoController : MonoBehaviour {
 		Invoke("S3", 2*tempo);
 		Invoke("S4", 3*tempo);
 	}
+	[RPC]
+	void palyTempoRPC(){
+			if (!playing) {
+				playing = true;
+				PlayOneSect ();
+				timer = 0;
+			} else {
+				stopMetronome ();
+			}
+	}
+
 	public void playTempo() {
-		if (!playing) {
-			playing = true;
-			PlayOneSect();
-			timer = 0;
-		} else {
-			stopMetronome();
-		}
+		photonView.RPC ("palyTempoRPC", PhotonTargets.AllViaServer);
 	}
 	void S1() { 
 		tempo_strike.Play (); 

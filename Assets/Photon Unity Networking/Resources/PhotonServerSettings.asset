@@ -54,4 +54,5 @@ MonoBehaviour:
   - PPBassRPC
   - UpRPC
   - PPRPCS
+  - palyTempoRPC
   DisableAutoOpenWizard: 0
