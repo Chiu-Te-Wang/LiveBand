@@ -339,8 +339,9 @@ public class staveControl : MonoBehaviour {
 			}
 		}
 		Vector3 tempVector3 = notes [startPos].transform.localPosition;
-		connectionLine[0].transform.localPosition = new Vector3(tempVector3.x, tempVector3.y + noteOffset * (noteTune - modelNote), tempVector3.z);
-		connectionLine[0].transform.localScale = new Vector3 (2f, 1f, 1f);
+		Vector3 tempVector32 = notes [endPos].transform.localPosition;
+		connectionLine[0].transform.localPosition = new Vector3((tempVector3.x+tempVector32.x)/2f, tempVector3.y + noteOffset * (noteTune - modelNote), tempVector3.z);
+		connectionLine[0].transform.localScale = new Vector3 ((float)(endPos - startPos)*0.9f, 1f, 1f);
 	}
 	//edit
 	public int editingPosition(){

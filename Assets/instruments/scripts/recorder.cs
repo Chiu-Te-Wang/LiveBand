@@ -87,8 +87,9 @@ public class recorder : MonoBehaviour {
 			//tune =>  1 for do, 2 for re, 3 for mi, 4 for fa......
 			//kindOfNote = 0 ~ 7(eighthnote, quarternote, halfnote, wholenote, 
 			//                   eighthreset, quarterreset, halfreset, wholereset)
-			stavePanel.GetComponent<staveControl> ().placeNoteOnStave (0,0,0,0);
-			stavePanel.GetComponent<staveControl> ().placeNoteOnStave (0,1,0,5);
+			stavePanel.GetComponent<staveControl> ().placeNoteOnStave (0,0,4,0);
+			stavePanel.GetComponent<staveControl> ().placeNoteOnStave (0,7,4,0);
+			stavePanel.GetComponent<staveControl> ().placeConnectionLineOnStave(0,0,7,0);
 			stavePanel.GetComponent<staveControl> ().placeNoteOnStave (0,2,0,4);
 			stavePanel.GetComponent<staveControl> ().placeNoteOnStave (1,2,2,0);
 			stavePanel.GetComponent<staveControl> ().placeNoteOnStave (1,5,4,0);
@@ -155,7 +156,7 @@ public class recorder : MonoBehaviour {
 		}
 	}
 	
-	List<OctData> proccess(){
+	void proccess(){
 		
 		note[] notesData = new note[Records.Count];
 		notesData = Records.ToArray();
@@ -171,13 +172,13 @@ public class recorder : MonoBehaviour {
 		int front = 0;
 		int oct_count = 0;
 		
-		while ( true ) {
+		while ( front < notesData.Length ) {
 			
 			curOct = new OctData();
 			float oct_time = oct_count*oct + start_time;
 			
 			//starting note of this oct
-			while ( true ) {
+			while ( front < notesData.Length ) {
 				
 				note ND = notesData[front];
 				if ( ND.getStart() >= (oct_time - oct/2)
@@ -208,7 +209,6 @@ public class recorder : MonoBehaviour {
 			}
 			oct_count++;
 		}//oct
-		return OctL;
 	}
 	
 	void Upgrade()
