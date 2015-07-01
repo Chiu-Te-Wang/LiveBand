@@ -67,6 +67,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 11441152}
   nameLabel: {fileID: 11439580}
+  j: {fileID: 0}
 --- !u!114 &11439580
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -82,7 +83,7 @@ MonoBehaviour:
   m_Color: {r: .463235319, g: .463235319, b: .463235319, a: 1}
   m_FontData:
     m_Font: {fileID: 12800000, guid: 46238fb1ad7a7a84ba8954c1c860994c, type: 3}
-    m_FontSize: 20
+    m_FontSize: 13
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -200,8 +201,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 200
-  m_MinHeight: 100
+  m_MinWidth: 150
+  m_MinHeight: 60
   m_PreferredWidth: -1
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
@@ -274,8 +275,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -67.7000198, y: -11.5000076}
-  m_SizeDelta: {x: 63, y: 77}
+  m_AnchoredPosition: {x: -35, y: 0}
+  m_SizeDelta: {x: 53, y: 60}
   m_Pivot: {x: .5, y: .5}
 --- !u!1001 &100100000
 Prefab:

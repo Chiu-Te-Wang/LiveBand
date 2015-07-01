@@ -160,11 +160,16 @@ public class recorder : MonoBehaviour {
 	}
 	
 	void proccess(){
-		
+		if (Records.Count == 0) {
+			return;
+		}
 		note[] notesData = new note[Records.Count];
 		notesData = Records.ToArray();
 		
-		
+		if (bpm == 0) {
+			return;
+		}
+
 		float sect = 240/bpm;
 		float oct = 60/bpm;
 		
