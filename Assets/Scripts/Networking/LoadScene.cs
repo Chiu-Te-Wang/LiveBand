@@ -4,7 +4,7 @@ using System.Collections;
 public class LoadScene : Photon.MonoBehaviour {
 
 	public void join(){
-		Debug.Log ("join");
+//		Debug.Log ("join");
 		string s = PlayerPrefs.GetString ("Create_RoomName");
 		string ss = PlayerPrefs.GetString ("Join_RoomName");
 		int coj = PlayerPrefs.GetInt ("CreateOrJoin");
@@ -26,7 +26,7 @@ public class LoadScene : Photon.MonoBehaviour {
 	public void OnJoinedRoom()
 	{
 		if (Application.GetStreamProgressForLevel ("_scene") == 1) {
-			Debug.Log ("OnJoinedRoom");
+			//Debug.Log ("OnJoinedRoom");
 			PhotonNetwork.LoadLevel ("_scene");
 		}
 	}
@@ -34,7 +34,7 @@ public class LoadScene : Photon.MonoBehaviour {
 	public void OnCreatedRoom()
 	{
 		if (Application.GetStreamProgressForLevel ("_scene") == 1) {
-			Debug.Log ("OnCreatedRoom");
+			//Debug.Log ("OnCreatedRoom");
 			PhotonNetwork.LoadLevel ("_scene");
 		}
 	}
