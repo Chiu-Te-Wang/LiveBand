@@ -12,6 +12,7 @@ public class staveControl : MonoBehaviour {
 	private Vector3[] stavePosition;
 	private Vector3[] notePosition;
 	public GameObject stavePrefab;
+	public GameObject connectionLinePrefab;
 	private GameObject stavePanelButtonSet;
 	private bool stavePanelButtonSetActive = true;
 	private bool spreadOrNot = false;

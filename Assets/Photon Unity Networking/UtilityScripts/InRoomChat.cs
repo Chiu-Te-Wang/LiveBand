@@ -80,8 +80,6 @@ public class InRoomChat : Photon.MonoBehaviour
 		options [2] = GUILayout.Width (GuiRect.width*0.2f);
 		if (GUILayout.Button("Send", options))
         {
-			this.inputLine = " (Ping):" +PhotonNetwork.GetPing();
-
             this.photonView.RPC("Chat", PhotonTargets.All, this.inputLine);
             this.inputLine = "";
             GUI.FocusControl("");
