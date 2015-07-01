@@ -10,17 +10,19 @@ public class staveControl : MonoBehaviour {
 	private int nowSatvePosition = 0;
 	private List<GameObject> staveObjectArray = new List<GameObject>();
 	private Vector3[] stavePosition;
+	private Vector3[] notePosition;
 	public GameObject stavePrefab;
 	private GameObject stavePanelButtonSet;
 	private bool stavePanelButtonSetActive = true;
 	private bool spreadOrNot = false;
 	private float offset = -113f;
 	//edit 
-	private bool editingOrNot = false;
 	private int editStavePosition = -1;
+	private bool isEditing = false;
 	//place note 
 	private int modelNote = 4;
 	private float noteOffset = 8f;
+	private int  noteNum = 0;
 	public Sprite[] musicalSign = new Sprite[8];
 
 	void Start () {
@@ -57,6 +59,11 @@ public class staveControl : MonoBehaviour {
 			tempStavePosition[i+staveNumberPer*2] = new Vector3(stavePosition[i].x,stavePosition[i].y+offset*2,stavePosition[i].z);
 		}
 		stavePosition = tempStavePosition;
+
+		//add notes position
+		noteNum = noteNumber ();
+		notePosition = new Vector3[noteNum * staveNumberPer];
+		SetNotePosition ();
 		//hide the stave
 		gameObject.SetActive (false);
 	}
@@ -221,15 +228,18 @@ public class staveControl : MonoBehaviour {
 	}
 	//press edit button
 	public void pressEditButton(){
-		spreadStave ();
-		if (editStavePosition < 0) {
-			editStavePosition = nowSatvePosition;
-		} else {
-			if(staveNumber - editStavePosition < staveNumberPer){
-				editStavePosition = staveNumber - staveNumberPer;
+		if (!isEditing) {
+			spreadStave ();
+			if (editStavePosition < 0) {
+				editStavePosition = nowSatvePosition;
+			} else {
+				if(staveNumber - editStavePosition < staveNumberPer){
+					editStavePosition = staveNumber - staveNumberPer;
+				}
+				nowSatvePosition = changePresentStave (nowSatvePosition,editStavePosition);
 			}
-			nowSatvePosition = changePresentStave (nowSatvePosition,editStavePosition);
 		}
+		isEditing = !isEditing;
 	}
 
 	//place note on stave
@@ -263,13 +273,13 @@ public class staveControl : MonoBehaviour {
 
 		if (startPos >= notes.Length) {
 			Debug.Log("Error : Indexing startPos out of space in placeNoteOnStave!");
-			//return;
+			return;
 		}
 
 		//sort notes by position
 		for (int i = 0; i<notes.Length; i++) {
 			for(int j = i+1; j<notes.Length; j++){
-				if(notes[i].transform.position.x > notes[j].transform.position.x){
+				if(notes[i].transform.localPosition.x > notes[j].transform.localPosition.x){
 					Image tempImage = notes[i];
 					notes[i] = notes[j];
 					notes[j] = tempImage;
@@ -294,10 +304,89 @@ public class staveControl : MonoBehaviour {
 		} else if (kindOfNote == 7) {
 			targetNote = 3;
 		}
-		Vector3 noteDefaultPos = notes [targetNote].transform.localPosition;
+
+		int tempNum = getNotePositionModelNum (staveIndex, targetNote);
+		if (tempNum < 0) {
+			Debug.Log("Error : Can;t find note position in placeNoteOnStave!");
+			return;
+		}
+		Vector3 noteDefaultPos = notePosition [tempNum];
 		notes [targetNote].transform.localPosition = new Vector3 (noteDefaultPos.x, noteDefaultPos.y + yOffset, noteDefaultPos.z);
 		notes [targetNote].color = new Color (notes [startPos].color.r, notes [startPos].color.g, notes [startPos].color.b, 1f);
 		notes [targetNote].sprite = musicalSign [kindOfNote];
 
+	}
+
+	//edit
+	public int editingPosition(){
+		return editStavePosition;
+	}
+	//reset to 0 stave 
+	public void resetStave(){
+		upStaveToTop ();
+	}
+	//note relate
+	int noteNumber(){
+		//get image in stave at staveIndex
+		Image[] allImagesAtStave = staveObjectArray [0].GetComponentsInChildren<Image> ();
+		if (allImagesAtStave == null) {
+			Debug.Log("Error : Can't find notes! notes missing in noteNumber");
+			return -1;
+		}
+		//get notes in allImagesAtStave
+		int counter = 0;
+		for (int i =0; i< allImagesAtStave.Length; i++) {
+			if(allImagesAtStave[i].tag == "note"){ counter++; }
+		}
+		return counter;
+	}
+	void SetNotePosition(){
+		int topCounter = 0;
+		for (int staveIndex = 0; staveIndex<staveNumberPer; staveIndex++) {
+			//get image in stave at staveIndex
+			Image[] allImagesAtStave = staveObjectArray [staveIndex].GetComponentsInChildren<Image> ();
+			if (allImagesAtStave == null) {
+				Debug.Log("Error : Can't find notes! notes missing in SetNotePosition");
+				return;
+			}
+			//get notes in allImagesAtStave
+			int counter = 0;
+			for (int i =0; i< allImagesAtStave.Length; i++) {
+				if(allImagesAtStave[i].tag == "note"){ counter++; }
+			}
+			Image[] notes = new Image[counter];
+			counter = 0;
+			for (int i =0; i< allImagesAtStave.Length; i++) {
+				if(allImagesAtStave[i].tag == "note"){ 
+					notes[counter] = allImagesAtStave[i];
+					counter++;
+				}
+			}
+			
+			//sort notes by position
+			for (int i = 0; i<notes.Length; i++) {
+				for(int j = i+1; j<notes.Length; j++){
+					if(notes[i].transform.localPosition.x > notes[j].transform.localPosition.x){
+						Image tempImage = notes[i];
+						notes[i] = notes[j];
+						notes[j] = tempImage;
+					}
+				}
+			}
+
+			for(int i = 0; i<notes.Length; i++){
+				notePosition[topCounter] = new Vector3(notes[i].transform.localPosition.x,notes[i].transform.localPosition.y,notes[i].transform.localPosition.z);
+				print ("notePosition[topCounter] = "+notePosition[topCounter]);
+				topCounter++;
+			}
+		}
+	}
+	int getNotePositionModelNum(int staveNum, int startNote){
+		for (int i = 0; i< stavePosition.Length; i++) {
+			if (_vector3Equal(staveObjectArray[staveNum].transform.localPosition , stavePosition[i])){
+				return (i*noteNum+startNote);
+			}
+		}
+		return -1;
 	}
 }

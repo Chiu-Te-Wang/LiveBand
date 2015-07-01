@@ -81,6 +81,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 			if (Input.GetKeyUp(KeyCode.Escape)) { 
 				if(GameObject.FindWithTag("stavePanel") != null){
 					//close stave
+					GameObject.FindWithTag("stavePanel").GetComponent<staveControl>().resetStave();
 					GameObject.FindWithTag("stavePanel").SetActive(false);
 					functionPanel.SetActive(true);
 				}
