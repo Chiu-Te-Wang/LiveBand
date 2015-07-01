@@ -77,6 +77,8 @@ public class recorder : MonoBehaviour {
 			//is editing from startEditPosition stave
 			int startEditPosition = stavePanel.GetComponent<staveControl>().editingPosition();
 			stavePanel.GetComponent<staveControl> ().placeNoteOnStave (startEditPosition,0,0,0);
+			stavePanel.GetComponent<staveControl> ().cleanStave(1);
+			stavePanel.GetComponent<staveControl> ().cleanStave(0);
 		} else {
 			//first time recording from 0 stave
 			stavePanel.SetActive (true);

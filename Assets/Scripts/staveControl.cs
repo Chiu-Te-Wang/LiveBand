@@ -320,9 +320,6 @@ public class staveControl : MonoBehaviour {
 
 	//place connection line on stave
 	public void placeConnectionLineOnStave(int staveIndex, int startPos, int endPos, int noteTune){
-		float unityWidth = 35f;
-		float unityTuneHeight = offset;
-
 		Image[] notes = new Image[noteNum];
 		Image[] connectionLine = new Image[1];
 		Image[] allImagesAtStave = staveObjectArray [staveIndex].GetComponentsInChildren<Image> ();
@@ -347,6 +344,23 @@ public class staveControl : MonoBehaviour {
 		newConnectionLine.transform.localPosition = new Vector3((tempVector3.x+tempVector32.x)/2f, tempVector3.y + noteOffset * (noteTune - modelNote), tempVector3.z);
 		newConnectionLine.transform.localScale = new Vector3 ((float)(endPos - startPos)*0.9f, 1f, 1f);
 	}
+
+	//clean stave
+	public void cleanStave(int staveIndex){
+		bool originBool = staveObjectArray [staveIndex].GetActive ();
+		staveObjectArray [staveIndex].SetActive (true);
+		Image[] allImagesAtStave = staveObjectArray [staveIndex].GetComponentsInChildren<Image> ();
+		print ("allImagesAtStave = " + allImagesAtStave.Length);
+		for (int i =0; i< allImagesAtStave.Length; i++) {
+			if(allImagesAtStave[i].tag == "note"){ 
+				allImagesAtStave[i].color = new Color (allImagesAtStave[i].color.r,allImagesAtStave[i].color.g, allImagesAtStave[i].color.b, 0f);;
+			}else if(allImagesAtStave[i].tag == "connectionLine"){
+				GameObject.Destroy(allImagesAtStave[i]);
+			}
+		}
+		staveObjectArray [staveIndex].SetActive (originBool);
+	}
+
 	//edit
 	public int editingPosition(){
 		return editStavePosition;
@@ -390,7 +404,6 @@ public class staveControl : MonoBehaviour {
 
 			for(int i = 0; i<notes.Length; i++){
 				notePosition[topCounter] = new Vector3(notes[i].transform.localPosition.x,notes[i].transform.localPosition.y,notes[i].transform.localPosition.z);
-				print ("notePosition[topCounter] = "+notePosition[topCounter]);
 				topCounter++;
 			}
 		}
