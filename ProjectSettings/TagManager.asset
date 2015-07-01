@@ -41,6 +41,8 @@ TagManager:
   - synthesizerFake
   - staveButton
   - synthesizerStep
+  - newNote
+  - noteBar
   layers:
   - Default
   - TransparentFX

@@ -29,7 +29,6 @@ public class CameraFollow : Photon.MonoBehaviour {
 			float rand = transform.position.z - 15f;
 //			camera.transform.position = new Vector3(1f,15f,-22f+rand);
 			camera.transform.position = new Vector3(0f,14f,36f);
-			print (camera.transform.position);
 			camera.transform.rotation = Quaternion.Euler(35f,180f,0f);
 			offset = camera.transform.position - target.position;
 		

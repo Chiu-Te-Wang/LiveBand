@@ -24,8 +24,9 @@ public class staveControl : MonoBehaviour {
 	private int modelNote = 4;
 	private float noteOffset = 8f;
 	private int  noteNum = 0;
-	public Sprite[] musicalSign = new Sprite[8];
+	public Sprite[] musicalSign = new Sprite[11];
 	public GameObject notePrefab;
+	public GameObject noteBarPrefab;
 
 	void Start () {
 		stavePanelButtonSet = GameObject.FindWithTag ("stavePanelButtonSet");
@@ -246,6 +247,7 @@ public class staveControl : MonoBehaviour {
 
 	//place note on stave
 	public void placeNoteOnStave(int staveIndex, int startPos, int noteTune,int kindOfNote){
+		print ("kindOfNote = " + kindOfNote);
 		if (staveIndex < 0 || startPos < 0 || kindOfNote < 0 ) {
 			Debug.Log("Error : Wrong parameter!(negative) in placeNoteOnStave");
 			return;
@@ -276,18 +278,18 @@ public class staveControl : MonoBehaviour {
 		//show note
 		int targetNote = 0;
 		float yOffset = 0f;
-		if (kindOfNote <= 3) {
+		if (kindOfNote <= 5) {
 			targetNote = startPos;
 			yOffset = noteOffset * (noteTune - modelNote);
-		} else if(kindOfNote <= 5){
+		} else if(kindOfNote <= 7){
 			targetNote = startPos;
-		}else if (kindOfNote == 6) {
+		}else if (kindOfNote == 8) {
 			if(startPos <= 3){
 				targetNote = 1;
 			}else if(startPos <= 7){
 				targetNote = 5;
 			}
-		} else if (kindOfNote == 7) {
+		} else if (kindOfNote == 9) {
 			targetNote = 3;
 		}
 
@@ -297,9 +299,12 @@ public class staveControl : MonoBehaviour {
 			return;
 		}
 		Vector3 noteDefaultPos = notePosition [tempNum];
-		notes [targetNote].transform.localPosition = new Vector3 (noteDefaultPos.x, noteDefaultPos.y + yOffset, noteDefaultPos.z);
-		notes [targetNote].color = new Color (notes [startPos].color.r, notes [startPos].color.g, notes [startPos].color.b, 1f);
-		notes [targetNote].sprite = musicalSign [kindOfNote];
+		GameObject notsToChangeGameObject = (GameObject) Instantiate(notePrefab,new Vector3(0f,0f,0f),Quaternion.Euler(Vector3.zero));
+		notsToChangeGameObject.transform.SetParent (staveObjectArray [staveIndex].transform,false);
+		Image notsToChange = notsToChangeGameObject.GetComponent<Image> ();
+		notsToChange.transform.localPosition = new Vector3 (noteDefaultPos.x, noteDefaultPos.y + yOffset, noteDefaultPos.z);
+		notsToChange.color = new Color (notes [startPos].color.r, notes [startPos].color.g, notes [startPos].color.b, 1f);
+		notsToChange.sprite = musicalSign [kindOfNote];
 
 	}
 
@@ -322,22 +327,8 @@ public class staveControl : MonoBehaviour {
 	//place connection line on stave
 	public void placeConnectionLineOnStave(int staveIndex, int startPos, int endPos, int noteTune){
 		Image[] notes = new Image[noteNum];
-		Image[] connectionLine = new Image[1];
-		Image[] allImagesAtStave = staveObjectArray [staveIndex].GetComponentsInChildren<Image> ();
-		if (allImagesAtStave == null) {
-			Debug.Log("Error : Can't find notes! notes missing in placeConnectionLineOnStave");
-			return;
-		}
+		_getNotes (staveIndex, notes);
 
-		int counter = 0;
-		for (int i =0; i< allImagesAtStave.Length; i++) {
-			if(allImagesAtStave[i].tag == "note"){ 
-				notes[counter] = allImagesAtStave[i];
-				counter++;
-			}else if(allImagesAtStave[i].tag == "connectionLine"){
-				connectionLine[0] = allImagesAtStave[i];
-			}
-		}
 		Vector3 tempVector3 = notes [startPos].transform.localPosition;
 		Vector3 tempVector32 = notes [endPos].transform.localPosition;
 		GameObject newConnectionLine = (GameObject) Instantiate(connectionLinePrefab,new Vector3(0f,0f,0f),Quaternion.Euler(Vector3.zero));
@@ -346,16 +337,35 @@ public class staveControl : MonoBehaviour {
 		newConnectionLine.transform.localScale = new Vector3 ((float)(endPos - startPos)*0.9f, 1f, 1f);
 	}
 
+	//place bar on stave
+	public void placeBarOnStave(int staveIndex, int startPos, int noteTuneStart, int noteTuneEnd){
+		Image[] notes = new Image[noteNum];
+		_getNotes (staveIndex, notes);
+
+
+		float barOffset = (noteTuneEnd+noteTuneStart)/2f - 4f + (noteTuneEnd-noteTuneStart-4f)/2f;
+		Vector3 tempVector3 = notes [startPos].transform.localPosition;
+
+		GameObject newNoteBar = (GameObject) Instantiate(noteBarPrefab,new Vector3(0f,0f,0f),Quaternion.Euler(Vector3.zero));
+		newNoteBar.transform.SetParent (staveObjectArray [staveIndex].transform,false);
+		Image newNoteBarImage = newNoteBar.GetComponent<Image> ();
+		newNoteBarImage.transform.localPosition = new Vector3(tempVector3.x, tempVector3.y + noteOffset*barOffset, tempVector3.z);
+		newNoteBarImage.transform.localScale = new Vector3 (1f,(float)(noteTuneEnd - noteTuneStart)*0.4f, 1f);
+	}
+
 	//clean stave
 	public void cleanStave(int staveIndex){
 		bool originBool = staveObjectArray [staveIndex].GetActive ();
 		staveObjectArray [staveIndex].SetActive (true);
 		Image[] allImagesAtStave = staveObjectArray [staveIndex].GetComponentsInChildren<Image> ();
-		print ("allImagesAtStave = " + allImagesAtStave.Length);
 		for (int i =0; i< allImagesAtStave.Length; i++) {
 			if(allImagesAtStave[i].tag == "note"){ 
 				allImagesAtStave[i].color = new Color (allImagesAtStave[i].color.r,allImagesAtStave[i].color.g, allImagesAtStave[i].color.b, 0f);;
 			}else if(allImagesAtStave[i].tag == "connectionLine"){
+				GameObject.Destroy(allImagesAtStave[i]);
+			}else if(allImagesAtStave[i].tag == "newNote"){
+				GameObject.Destroy(allImagesAtStave[i]);
+			}else if(allImagesAtStave[i].tag == "noteBar"){
 				GameObject.Destroy(allImagesAtStave[i]);
 			}
 		}
