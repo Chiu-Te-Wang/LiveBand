@@ -40,6 +40,7 @@ TagManager:
   - synthesizerReal
   - synthesizerFake
   - staveButton
+  - synthesizerStep
   layers:
   - Default
   - TransparentFX

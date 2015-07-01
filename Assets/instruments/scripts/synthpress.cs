@@ -100,5 +100,14 @@ public class synthpress : Photon.MonoBehaviour {
 		GetComponent<AudioSource> ().Play ();
 		print ("ssss");
 	}
+
+	public void pressStylePanel(string styleStr){
+		photonView.RPC ("changeStylePanel", PhotonTargets.AllViaServer,styleStr);
+	}
+
+	[RPC]
+	void changeStylePanel(string styleStr){
+		play_style = styleStr;
+	}
 }
 

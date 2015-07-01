@@ -99,4 +99,21 @@ public class synthTouch : Photon.MonoBehaviour {
 		for ( int i = 0; i < 5; i++ )	result[i] = sounds[ notes[i] ];
 		return result;
 	}
+
+	public void pressTunePanel(string tuneStr){
+		photonView.RPC ("changeTunePanel", PhotonTargets.AllViaServer,tuneStr);
+	}
+
+	public void pressStylePanel (string styleStr){
+		GameObject[] synthesizerStep = GameObject.FindGameObjectsWithTag ("synthesizerStep");
+		print ("childOfGameobject = " + synthesizerStep.Length);
+		for (int i = 0; i<synthesizerStep.Length; i++) {
+			synthesizerStep[i].GetComponent<synthpress>().pressStylePanel(styleStr);
+		}
+	}
+
+	[RPC]
+	void changeTunePanel(string tuneStr){
+		chord_pressed = tuneStr;
+	}
 }

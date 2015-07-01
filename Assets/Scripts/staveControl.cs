@@ -25,6 +25,7 @@ public class staveControl : MonoBehaviour {
 	private float noteOffset = 8f;
 	private int  noteNum = 0;
 	public Sprite[] musicalSign = new Sprite[8];
+	public GameObject notePrefab;
 
 	void Start () {
 		stavePanelButtonSet = GameObject.FindWithTag ("stavePanelButtonSet");
@@ -245,7 +246,7 @@ public class staveControl : MonoBehaviour {
 
 	//place note on stave
 	public void placeNoteOnStave(int staveIndex, int startPos, int noteTune,int kindOfNote){
-		if (staveIndex < 0 || startPos < 0 || kindOfNote < 0 || noteTune < 0) {
+		if (staveIndex < 0 || startPos < 0 || kindOfNote < 0 ) {
 			Debug.Log("Error : Wrong parameter!(negative) in placeNoteOnStave");
 			return;
 		}

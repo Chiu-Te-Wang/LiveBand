@@ -89,7 +89,7 @@ public class recorder : MonoBehaviour {
 			//tune =>  1 for do, 2 for re, 3 for mi, 4 for fa......
 			//kindOfNote = 0 ~ 7(eighthnote, quarternote, halfnote, wholenote, 
 			//                   eighthreset, quarterreset, halfreset, wholereset)
-			stavePanel.GetComponent<staveControl> ().placeNoteOnStave (0,0,4,0);
+			stavePanel.GetComponent<staveControl> ().placeNoteOnStave (0,0,-2,0);
 			stavePanel.GetComponent<staveControl> ().placeNoteOnStave (0,7,4,0);
 			stavePanel.GetComponent<staveControl> ().placeConnectionLineOnStave(0,0,7,0);
 			stavePanel.GetComponent<staveControl> ().placeNoteOnStave (0,2,0,4);
