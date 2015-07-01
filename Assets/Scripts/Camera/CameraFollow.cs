@@ -44,7 +44,13 @@ public class CameraFollow : Photon.MonoBehaviour {
 		LabelStyle.alignment = TextAnchor.MiddleCenter;
 		LabelStyle.fontStyle = FontStyle.Bold;
 		LabelStyle.normal.textColor = Color.white;
-		GUI.Label (new Rect (namePosition.x - 50, Screen.height - namePosition.y, 100, 20), characterName, LabelStyle);
+		string tempStr = "";
+		if (onStageOrNot) {
+			tempStr = "";
+		} else {
+			tempStr = characterName;
+		}
+		GUI.Label (new Rect (namePosition.x - 50, Screen.height - namePosition.y, 100, 20), tempStr, LabelStyle);
 	}
 
 	void FixedUpdate(){
