@@ -31,7 +31,7 @@ public class PhotonRoomMenu : Photon.MonoBehaviour {
 		var se =  new InputField.SubmitEvent ();
 		se.AddListener (SubmitName);
 		if (inputField == null) {
-			Debug.Log ("inputfield loss");
+			//Debug.Log ("inputfield loss");
 		} else {
 			inputField.onEndEdit = se;
 		}
@@ -64,7 +64,7 @@ public class PhotonRoomMenu : Photon.MonoBehaviour {
 			}		
 		} else {
 			playerName = arg0;
-			Debug.Log (arg0);
+			//Debug.Log (arg0);
 		}
 	}
 	private void SubmitRoom(string arg0){
@@ -114,7 +114,7 @@ public class PhotonRoomMenu : Photon.MonoBehaviour {
 					RoomButton[] buttonlist = roompanel.GetComponentsInChildren<RoomButton>();
 					foreach(RoomButton b in buttonlist){
 						b.destroythis();
-						Debug.Log ("Destroy");
+						//Debug.Log ("Destroy");
 					}
 					string[] roomNames = new string[roomInfo.Length];
 					//string[] temp = {"sssss", "ssss", "aaaa", "bbbb", "cccccccc"};
@@ -134,7 +134,7 @@ public class PhotonRoomMenu : Photon.MonoBehaviour {
 				RoomButton[] buttonlist = roompanel.GetComponentsInChildren<RoomButton>();
 				foreach(RoomButton b in buttonlist){
 					b.destroythis();
-					Debug.Log ("Destroy");
+					//Debug.Log ("Destroy");
 				}
 				j.interactable = false;
 			}

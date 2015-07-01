@@ -53,6 +53,6 @@ MonoBehaviour:
   - OnMouseUpBassRPC
   - PPBassRPC
   - UpRPC
-  - changeTunePanel
-  - changeStylePanel
+  - PPRPCS
+  - palyTempoRPC
   DisableAutoOpenWizard: 0

@@ -35,7 +35,7 @@ public class InRoomChat : Photon.MonoBehaviour
 		chatroomShieldPanel.GetComponent<RectTransform> ().sizeDelta = new Vector2 (GuiRectWidth/2,GuiRectHeight/4f);
 	}
 	public void Awake(){
-		Debug.Log ("characterChoose" + PlayerPrefs.GetInt("Character"));
+		//Debug.Log ("characterChoose" + PlayerPrefs.GetInt("Character"));
 	}
 
     public void OnGUI()

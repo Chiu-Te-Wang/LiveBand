@@ -22,7 +22,7 @@ public class SaveWav : MonoBehaviour {
 	private Color c;
 
 	public Transform text;
-	private Text debug;
+
 
 
 
@@ -36,7 +36,6 @@ public class SaveWav : MonoBehaviour {
 
 		img = REC.GetComponent<Image> ();
 
-		debug = text.GetComponent<Text> ();
 		//Directory.CreateDirectory (filepath);
 	}
 
@@ -54,7 +53,6 @@ public class SaveWav : MonoBehaviour {
 			 
 			//var filepath = Application.persistentDataPath + "/LiveBand/" + fileName;
 			Debug.Log (filepath);
-			debug.text = filepath+fileName;
 
 			Directory.CreateDirectory(Path.GetDirectoryName(filepath+fileName));
 

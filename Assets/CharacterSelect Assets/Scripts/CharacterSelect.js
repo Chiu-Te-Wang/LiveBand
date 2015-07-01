@@ -51,18 +51,18 @@ if (Input.GetMouseButtonUp (0)) {
 
 function Confirm(){
 	if(chooseCharacter == 0){
-		Debug.Log("You have to choose a character.");
+		//Debug.Log("You have to choose a character.");
 		return ;
 	}
 
 	loading.GetComponent.<Text>().enabled = true;
 	PlayerPrefs.SetInt("Character", chooseCharacter);
-	Debug.Log("Confirm press: "+ chooseCharacter);
+	//Debug.Log("Confirm press: "+ chooseCharacter);
 	//Application.LoadLevel("_scene");
 }
 
 function SelectedCharacter1() {
-				Debug.Log ("Character 1 SELECTED"); //Print out in the Unity console which character was selected.
+				//Debug.Log ("Character 1 SELECTED"); //Print out in the Unity console which character was selected.
 				character1Glow.GetComponent.<Renderer>().enabled = true; //these lines turn on or off the appropriate character glow.
 				character2Glow.GetComponent.<Renderer>().enabled = false;
 				character3Glow.GetComponent.<Renderer>().enabled = false;
@@ -72,7 +72,7 @@ function SelectedCharacter1() {
 }
 
 function SelectedCharacter2() {
-				Debug.Log ("Character 2 SELECTED");
+				//Debug.Log ("Character 2 SELECTED");
 				character2Glow.GetComponent.<Renderer>().enabled = true;
 				character1Glow.GetComponent.<Renderer>().enabled = false;
 				character3Glow.GetComponent.<Renderer>().enabled = false;
@@ -82,7 +82,7 @@ function SelectedCharacter2() {
 }
 
 function SelectedCharacter3() {
-				Debug.Log ("Character 3 SELECTED");
+				//Debug.Log ("Character 3 SELECTED");
 				character3Glow.GetComponent.<Renderer>().enabled = true;
 				character1Glow.GetComponent.<Renderer>().enabled = false;
 				character2Glow.GetComponent.<Renderer>().enabled = false;
@@ -92,7 +92,7 @@ function SelectedCharacter3() {
 }
 
 function SelectedCharacter4() {
-				Debug.Log ("Character 4 SELECTED");
+				//Debug.Log ("Character 4 SELECTED");
 				character4Glow.GetComponent.<Renderer>().enabled = true;
 				character3Glow.GetComponent.<Renderer>().enabled = false;
 				character2Glow.GetComponent.<Renderer>().enabled = false;

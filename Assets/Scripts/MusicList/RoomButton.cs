@@ -10,7 +10,7 @@ public class RoomButton : MonoBehaviour {
 	void Awake(){
 		GameObject playerInput2 = GameObject.Find ("RoomCanvas");
 		Button[] c = playerInput2.GetComponentsInChildren<Button> ();
-		Debug.Log ("c: " + c.Length);
+		//Debug.Log ("c: " + c.Length);
 		j = c [1];
 	}
 	public void destroythis(){
