@@ -155,7 +155,7 @@ public class recorder : MonoBehaviour {
 		}
 	}
 	
-	List<OctData> proccess(){
+	void proccess(){
 		
 		note[] notesData = new note[Records.Count];
 		notesData = Records.ToArray();
@@ -171,13 +171,13 @@ public class recorder : MonoBehaviour {
 		int front = 0;
 		int oct_count = 0;
 		
-		while ( true ) {
+		while ( front < notesData.Length ) {
 			
 			curOct = new OctData();
 			float oct_time = oct_count*oct + start_time;
 			
 			//starting note of this oct
-			while ( true ) {
+			while ( front < notesData.Length ) {
 				
 				note ND = notesData[front];
 				if ( ND.getStart() >= (oct_time - oct/2)
@@ -208,7 +208,6 @@ public class recorder : MonoBehaviour {
 			}
 			oct_count++;
 		}//oct
-		return OctL;
 	}
 	
 	void Upgrade()
