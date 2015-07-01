@@ -52,4 +52,5 @@ MonoBehaviour:
   - PPGuitarRPC
   - OnMouseUpBassRPC
   - PPBassRPC
+  - UpRPC
   DisableAutoOpenWizard: 0

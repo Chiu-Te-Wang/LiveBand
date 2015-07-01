@@ -32,6 +32,8 @@ public class PlayerMovement : Photon.MonoBehaviour
 	private GameObject guitarReal;
 	private GameObject bassFake;
 	private GameObject bassReal;
+	private GameObject synthesizerFake;
+	private GameObject synthesizerReal;
 	//stage
 	private GameObject functionPanel;
 	private Vector3 positionBeforeOnStage;
@@ -39,6 +41,8 @@ public class PlayerMovement : Photon.MonoBehaviour
 	public int stagePosition = -1;
 	private GameObject pianoSlider;
 	private Button[] buttonSet;
+	private GameObject synthesizerPanel;
+	private GameObject staveButton;
 	//quit game
 	private GameObject exitPanel;
 
@@ -56,6 +60,10 @@ public class PlayerMovement : Photon.MonoBehaviour
 			instrumentPanel = GameObject.FindWithTag ("instrumentPanel");
 			pianoSlider = GameObject.FindWithTag ("pianoSlider");
 			exitPanel = GameObject.FindWithTag("exitPanel");
+			synthesizerPanel = GameObject.FindWithTag("synthesizerPanel");
+			synthesizerPanel.SetActive(false);
+			staveButton = GameObject.FindWithTag("staveButton");
+			staveButton.SetActive(false);
 			buttonSetControl ();
 			Text usernameText = GameObject.FindWithTag("characterPanel").GetComponentsInChildren<Text>()[1];
 			usernameText.text = photonView.owner.name;
@@ -263,6 +271,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 				switchPresent(pianoFake,false);
 				switchPresent(pianoReal,true);
 				pianoSlider.SetActive(true);
+				staveButton.SetActive(true);
 			} else if (choose == "GUITAR") {
 				//guitar
 				if(isStagePositionNotEmpty(1)){
@@ -294,9 +303,12 @@ public class PlayerMovement : Photon.MonoBehaviour
 					return;
 				}
 				stagePosition = 3;
-				transform.position = new Vector3 (-0.65f, 1.7f, 4.2f);
+				transform.position = new Vector3 (-0.685f, 1.7f, 3.678f);
 				characterImgName = "synthesizer";
 				characterTextName = "Synthesizer";
+				switchPresent(synthesizerFake,false);
+				switchPresent(synthesizerReal,true);
+				synthesizerPanel.SetActive(true);
 			} else if (choose == "BASS") {
 				//main singer
 				if(isStagePositionNotEmpty(4)){
@@ -348,6 +360,12 @@ public class PlayerMovement : Photon.MonoBehaviour
 		switchPresent(guitarFake,true);
 		switchPresent(bassReal, false);
 		switchPresent(bassFake, true);
+		switchPresent(synthesizerReal, false);
+		switchPresent(synthesizerFake, true);
+		staveButton.SetActive (false);
+		synthesizerPanel.SetActive (false);
+
+
 
 
 		//stop the metronome sound
@@ -383,6 +401,10 @@ public class PlayerMovement : Photon.MonoBehaviour
 		bassFake = GameObject.FindWithTag ("bassFake");
 		bassReal = GameObject.FindWithTag ("bassReal");
 		switchPresent (bassReal, false);
+		synthesizerFake = GameObject.FindWithTag ("synthesizerFake");
+		synthesizerReal = GameObject.FindWithTag ("synthesizerReal");
+		switchPresent (synthesizerReal, false);
+
 
 
 		functionPanel = GameObject.FindWithTag ("functionPanel");
