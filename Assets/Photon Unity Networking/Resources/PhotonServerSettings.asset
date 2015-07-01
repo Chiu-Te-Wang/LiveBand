@@ -53,4 +53,5 @@ MonoBehaviour:
   - OnMouseUpBassRPC
   - PPBassRPC
   - UpRPC
+  - PPRPCS
   DisableAutoOpenWizard: 0
