@@ -159,7 +159,6 @@ public class synthpress : Photon.MonoBehaviour {
 	void PPRPCS(string n, string pressed){
 		playing = Chord( n, pressed);
 		PlayChord ();
-		print ("ssss");
 	}
 
 	public void pressStylePanel(string styleStr){
@@ -169,6 +168,7 @@ public class synthpress : Photon.MonoBehaviour {
 	[RPC]
 	void changeStylePanel(string styleStr){
 		play_style = styleStr;
+		print ("styleStr = " + styleStr);
 	}
 }
 

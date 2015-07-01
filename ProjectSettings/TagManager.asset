@@ -43,6 +43,12 @@ TagManager:
   - synthesizerStep
   - newNote
   - noteBar
+  - pianoBtn
+  - guitarBtn
+  - drumBtn
+  - BassBtn
+  - synthBtn
+  - exitBtn
   layers:
   - Default
   - TransparentFX

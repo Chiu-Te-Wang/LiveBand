@@ -122,16 +122,16 @@ public class recorder : MonoBehaviour {
 						if ( NotePos > HighPos )	HighPos = NotePos;
 						if ( NotePos < LowPos )		LowPos = NotePos;
 						
-						int KindOfNote;
-						int x = 0;
-						if ( OctL[i].grade == 1 ) {	KindOfNote = 0; x = 1;}
+						int KindOfNote = 0;
+						int x = 1;
+						if ( OctL[i].grade == 1 ) {	KindOfNote = 0; x = 0;}
 						else if ( OctL[i].grade == 2 )	KindOfNote = 0;
 						else if ( OctL[i].grade == 3 )	{
 							KindOfNote = 0;
 							stavePanel.GetComponent<staveControl> ().placeNoteOnStave(sectAt, octAt, NotePos, 2);					
 						} else if ( OctL[i].grade == 4 )	KindOfNote = 1;
 						else if ( OctL[i].grade == 5 )	KindOfNote = 1;
-						stavePanel.GetComponent<staveControl> ().placeNoteOnStave(sectAt, octAt, NotePos, 1);
+						stavePanel.GetComponent<staveControl> ().placeNoteOnStave(sectAt, octAt, NotePos, KindOfNote);
 						stavePanel.GetComponent<staveControl> ().placeNoteOnStave(sectAt, octAt, NotePos, 4+x);
 						
 						
@@ -208,6 +208,9 @@ public class recorder : MonoBehaviour {
 	}
 	
 	void proccess(){
+		if (bpm == 0) {
+			return;
+		}
 
 		float sect = 240f/bpm;
 		float oct = 30f/bpm;
@@ -221,12 +224,6 @@ public class recorder : MonoBehaviour {
 			notesData = new note[sects*8];
 			for (int i = 0; i < sects*8; i++ )
 				notesData [i] = new note(null, start_time+i*oct, start_time+(i+1)*oct);
-		}
-
-
-		
-		if (bpm == 0) {
-			return;
 		}
 
 		

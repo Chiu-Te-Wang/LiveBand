@@ -379,13 +379,20 @@ public class PlayerMovement : Photon.MonoBehaviour
 	}
 
 	void buttonSetControl(){
-		GameObject ButtonSet = GameObject.FindWithTag ("buttonSet");
-		ButtonSet.GetComponentsInChildren<Button> () [0].onClick.AddListener (() => chooseInstrument ("PIANO"));
-		ButtonSet.GetComponentsInChildren<Button> () [1].onClick.AddListener (() => chooseInstrument ("GUITAR"));
-		ButtonSet.GetComponentsInChildren<Button> () [2].onClick.AddListener (() => chooseInstrument ("DRUM"));
-		ButtonSet.GetComponentsInChildren<Button> () [3].onClick.AddListener (() => chooseInstrument ("BASS"));
-		ButtonSet.GetComponentsInChildren<Button> () [4].onClick.AddListener (() => chooseInstrument ("SYNTHESIZER"));
-		ButtonSet.GetComponentsInChildren<Button> () [5].onClick.AddListener (() => chooseInstrument ("EXIT"));
+		buttonSet = new Button[6];
+		buttonSet[0] = GameObject.FindWithTag ("pianoBtn").GetComponent<Button>();
+		buttonSet[1] = GameObject.FindWithTag ("guitarBtn").GetComponent<Button>();
+		buttonSet[2] = GameObject.FindWithTag ("drumBtn").GetComponent<Button>();
+		buttonSet[3] = GameObject.FindWithTag ("BassBtn").GetComponent<Button>();
+		buttonSet[4] = GameObject.FindWithTag ("synthBtn").GetComponent<Button>();
+		buttonSet[5] = GameObject.FindWithTag ("exitBtn").GetComponent<Button>();
+
+		buttonSet[0].onClick.AddListener (() => chooseInstrument ("PIANO"));
+		buttonSet[1].onClick.AddListener (() => chooseInstrument ("GUITAR"));
+		buttonSet[2].onClick.AddListener (() => chooseInstrument ("DRUM"));
+		buttonSet[3].onClick.AddListener (() => chooseInstrument ("BASS"));
+		buttonSet[4].onClick.AddListener (() => chooseInstrument ("SYNTHESIZER"));
+		buttonSet[5].onClick.AddListener (() => chooseInstrument ("EXIT"));
 		Button exitStageButton = GameObject.FindWithTag ("downStageButton").GetComponent<Button>();
 		exitStageButton.onClick.AddListener(()=>setDownStage());
 		//instrument setting
@@ -408,7 +415,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 
 
 		functionPanel = GameObject.FindWithTag ("functionPanel");
-		buttonSet = GameObject.FindWithTag ("buttonSet").GetComponentsInChildren<Button> ();
+
 	}
 
 	void switchPresent(GameObject target, bool trueOrFalse){
@@ -424,7 +431,8 @@ public class PlayerMovement : Photon.MonoBehaviour
 		GameObject[] playerList = GameObject.FindGameObjectsWithTag("Player_M");
 		for (int i = 0; i<playerList.Length; i++) {
 			if(playerList[i].GetComponent<PlayerMovement>().stagePosition == onStagePos){
-				if(!playerList[i].GetComponent<PhotonView>().isMine){ return true; }
+				//if(!playerList[i].GetComponent<PhotonView>().isMine){ return true; }
+				return true;
 			}
 		}
 		return false;
