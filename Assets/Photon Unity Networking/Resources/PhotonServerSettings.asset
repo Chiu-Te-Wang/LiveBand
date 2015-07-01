@@ -55,4 +55,6 @@ MonoBehaviour:
   - UpRPC
   - PPRPCS
   - palyTempoRPC
+  - changeStylePanel
+  - changeTunePanel
   DisableAutoOpenWizard: 0
