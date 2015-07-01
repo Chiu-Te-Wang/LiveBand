@@ -34,12 +34,25 @@ public class recorder : MonoBehaviour {
 			remain = _e - _s ;
 		}
 		public float getStart(){ return _s; }
+		public float getEnd(){ return _e; }
+		public AudioSource getAudioSource(){ return _a; }
 		public note (){
 			_a = null;
 			_s = 0;
 			_e = 0;
 		}
 
+	}
+
+	public class OctData{
+		public int grade;
+		public List<AudioSource> remainL;
+		public List<AudioSource> notesL;
+		public OctData() {
+			remainL = new List<AudioSource>();
+			notesL = new List<AudioSource>();
+			grade = 8;
+		}
 	}
 
 
@@ -54,6 +67,7 @@ public class recorder : MonoBehaviour {
 
 	//use Records[] to produce notes on staves
 	void processStave(){
+		proccess();
 		if (stavePanel.GetActive ()) {
 			//is editing from startEditPosition stave
 			int startEditPosition = stavePanel.GetComponent<staveControl>().editingPosition();
@@ -133,6 +147,73 @@ public class recorder : MonoBehaviour {
 			countdownPanel[countdownPanelNum].GetComponentInChildren<Text> ().text = ""+countdown;
 			countdown--;
 			Invoke("countDownFunc",1);
+		}
+	}
+
+	List<OctData> proccess(){
+		
+		note[] notesData = new note[Records.Count];
+		notesData = Records.ToArray();
+		
+		List<OctData> OctL = new List<OctData>();
+		
+		float sect = 240/bpm;
+		float oct = 60/bpm;
+		
+		
+		OctData curOct = new OctData();
+		OctData prevOct = new OctData();
+		
+		int front = 0;
+		int oct_count = 0;
+		
+		while ( true ) {
+			
+			curOct = new OctData();
+			float oct_time = oct_count*oct + start_time;
+			
+			//starting note of this oct
+			while ( true ) {
+				
+				note ND = notesData[front];
+				if ( ND.getStart() >= (oct_time - oct/2)
+				    && ND.getStart() < (oct_time + oct/2) ) {
+					
+					curOct.notesL.Add( ND.getAudioSource() );
+					front++;
+				} else	break;
+			}
+			// upgrade
+			if ( curOct.notesL == prevOct.notesL ) {
+				Upgrade();
+				curOct.grade = 0;
+			}
+			//add cur
+			OctL.Add( curOct );
+			
+			
+			//remaining to next oct
+			prevOct = curOct;
+			curOct = new OctData();
+			
+			foreach ( note n in prevOct.notesL )	{
+				if ( n.getEnd() < (oct_time - oct/2) 
+				    || n.getEnd() >= (oct_time + oct/2) ) {
+					curOct.remainL.Add( n.getAudioSource() );
+				}
+			}
+			oct_count++;
+		}//oct
+		return OctL;
+	}
+	
+	void Upgrade()
+	{
+		for ( i = 0; i < OctL.Count; i++ ) {
+			if ( OctL[ OctL.Count-i ].grade != 0 ) {
+				OctL[ OctL.Count-i ].grade /= 2;
+				break;
+			}
 		}
 	}
 }
