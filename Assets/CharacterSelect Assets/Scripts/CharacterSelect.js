@@ -13,7 +13,7 @@ var character4Glow : GameObject;
 
 var button : Transform;
 var chooseCharacter: int;
-
+var loading: Transform;
 function Start()
 {
 character1Glow.GetComponent.<Renderer>().enabled = false;  // We're going to make sure all of the highlighted glows are OFF at scene start.
@@ -21,6 +21,7 @@ character2Glow.GetComponent.<Renderer>().enabled = false;
 character3Glow.GetComponent.<Renderer>().enabled = false;
 character4Glow.GetComponent.<Renderer>().enabled = false;
 button.GetComponent.<Button>().interactable = false;
+loading.GetComponent.<Text>().enabled = false;
 }
 
 function Update() 
@@ -54,6 +55,7 @@ function Confirm(){
 		return ;
 	}
 
+	loading.GetComponent.<Text>().enabled = true;
 	PlayerPrefs.SetInt("Character", chooseCharacter);
 	Debug.Log("Confirm press: "+ chooseCharacter);
 	//Application.LoadLevel("_scene");

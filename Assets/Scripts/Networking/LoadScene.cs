@@ -12,7 +12,7 @@ public class LoadScene : Photon.MonoBehaviour {
 		if (coj == 0) {
 
 			if(!PhotonNetwork.CreateRoom(s, new RoomOptions(){maxPlayers = 4}, null)){
-			
+				
 				PhotonNetwork.LoadLevel("MenuScene");
 			}
 		}
@@ -25,13 +25,17 @@ public class LoadScene : Photon.MonoBehaviour {
 
 	public void OnJoinedRoom()
 	{
-		Debug.Log("OnJoinedRoom");
-		PhotonNetwork.LoadLevel("_scene");
+		if (Application.GetStreamProgressForLevel ("_scene") == 1) {
+			Debug.Log ("OnJoinedRoom");
+			PhotonNetwork.LoadLevel ("_scene");
+		}
 	}
 	
 	public void OnCreatedRoom()
 	{
-		Debug.Log("OnCreatedRoom");
-		PhotonNetwork.LoadLevel("_scene");
+		if (Application.GetStreamProgressForLevel ("_scene") == 1) {
+			Debug.Log ("OnCreatedRoom");
+			PhotonNetwork.LoadLevel ("_scene");
+		}
 	}
 }
