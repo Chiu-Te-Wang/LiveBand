@@ -318,12 +318,12 @@ public class staveControl : MonoBehaviour {
 	}
 
 	//place connection line on stave
-	/*public void placeConnectionLineOnStave(int staveIndex, int startPos, int endPos, int noteTune){
+	public void placeConnectionLineOnStave(int staveIndex, int startPos, int endPos, int noteTune){
 		float unityWidth = 35f;
 		float unityTuneHeight = offset;
 
 		Image[] notes = new Image[noteNum];
-		Image connectionLine = new Image();
+		Image[] connectionLine = new Image[1];
 		Image[] allImagesAtStave = staveObjectArray [staveIndex].GetComponentsInChildren<Image> ();
 		if (allImagesAtStave == null) {
 			Debug.Log("Error : Can't find notes! notes missing in placeConnectionLineOnStave");
@@ -335,13 +335,13 @@ public class staveControl : MonoBehaviour {
 				notes[counter] = allImagesAtStave[i];
 				counter++;
 			}else if(allImagesAtStave[i].tag == "connectionLine"){
-				connectionLine = allImagesAtStave[i];
+				connectionLine[0] = allImagesAtStave[i];
 			}
 		}
 		Vector3 tempVector3 = notes [startPos].transform.localPosition;
-		connectionLine.transform.localPosition = new Vector3(tempVector3.x, tempVector3.y + noteOffset * (noteTune - modelNote), tempVector3.z);
-		connectionLine.transform.localScale = new Vector3 (2f, 1f, 1f);
-	}*/
+		connectionLine[0].transform.localPosition = new Vector3(tempVector3.x, tempVector3.y + noteOffset * (noteTune - modelNote), tempVector3.z);
+		connectionLine[0].transform.localScale = new Vector3 (2f, 1f, 1f);
+	}
 	//edit
 	public int editingPosition(){
 		return editStavePosition;

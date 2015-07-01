@@ -20,13 +20,18 @@ public class recorder : MonoBehaviour {
 	public bool getBool() {
 		return recording;
 	}
+	
+	public List<OctData> OctL = new List<OctData>();
+	
+	
+	
 	public class note{
-
+		
 		AudioSource _a;
 		float _s;
 		float _e;
 		float remain;
-
+		
 		public note(AudioSource a, float s, float e){
 			_a = a;
 			_s = s;
@@ -41,33 +46,33 @@ public class recorder : MonoBehaviour {
 			_s = 0;
 			_e = 0;
 		}
-
+		
 	}
-
+	
 	public class OctData{
 		public int grade;
-		public List<AudioSource> remainL;
-		public List<AudioSource> notesL;
+		public List<note> remainL;
+		public List<note> notesL;
 		public OctData() {
-			remainL = new List<AudioSource>();
-			notesL = new List<AudioSource>();
+			remainL = new List<note>();
+			notesL = new List<note>();
 			grade = 8;
 		}
 	}
-
-
+	
+	
 	void Start () {
 		for (int i = 0; i<countdownPanel.Length; i++) {
 			countdownPanel[i].SetActive (false);
 		}
 	}
 	void Update () {
-	
+		
 	}
-
+	
 	//use Records[] to produce notes on staves
 	void processStave(){
-//		proccess();
+		proccess();
 		if (stavePanel.GetActive ()) {
 			//is editing from startEditPosition stave
 			int startEditPosition = stavePanel.GetComponent<staveControl>().editingPosition();
@@ -95,13 +100,13 @@ public class recorder : MonoBehaviour {
 		}
 		stavePanel.GetComponent<staveControl> ().spreadStave ();
 	}
-
+	
 	void sortNote(){
 		if (Records.Count > 0) {
 			Records = Records.OrderBy (x => x.getStart ()).ToList();
 		}
 	}
-
+	
 	void startRec () {
 		start_time = Time.time;
 		recording = true;
@@ -118,7 +123,7 @@ public class recorder : MonoBehaviour {
 	public void Add ( AudioSource audio, float start, float end) {
 		Records.Add (new note (audio, start, end));
 	}
-
+	
 	public void pressRecord(int whichcountdownPanel){
 		countdownPanelNum = whichcountdownPanel;
 		if (recording) {
@@ -134,7 +139,7 @@ public class recorder : MonoBehaviour {
 			}
 		}
 	}
-
+	
 	void countDownFunc(){
 		if (countdown == 0) {
 			countdown = 3;
@@ -149,13 +154,12 @@ public class recorder : MonoBehaviour {
 			Invoke("countDownFunc",1);
 		}
 	}
-
-	/*List<OctData> proccess(){
+	
+	List<OctData> proccess(){
 		
 		note[] notesData = new note[Records.Count];
 		notesData = Records.ToArray();
 		
-		List<OctData> OctL = new List<OctData>();
 		
 		float sect = 240/bpm;
 		float oct = 60/bpm;
@@ -179,7 +183,7 @@ public class recorder : MonoBehaviour {
 				if ( ND.getStart() >= (oct_time - oct/2)
 				    && ND.getStart() < (oct_time + oct/2) ) {
 					
-					curOct.notesL.Add( ND.getAudioSource() );
+					curOct.notesL.Add( ND );
 					front++;
 				} else	break;
 			}
@@ -199,7 +203,7 @@ public class recorder : MonoBehaviour {
 			foreach ( note n in prevOct.notesL )	{
 				if ( n.getEnd() < (oct_time - oct/2) 
 				    || n.getEnd() >= (oct_time + oct/2) ) {
-					curOct.remainL.Add( n.getAudioSource() );
+					curOct.remainL.Add( n );
 				}
 			}
 			oct_count++;
@@ -209,11 +213,11 @@ public class recorder : MonoBehaviour {
 	
 	void Upgrade()
 	{
-		for ( i = 0; i < OctL.Count; i++ ) {
+		for ( int i = 0; i < OctL.Count; i++ ) {
 			if ( OctL[ OctL.Count-i ].grade != 0 ) {
 				OctL[ OctL.Count-i ].grade /= 2;
 				break;
 			}
 		}
-	}*/
+	}
 }
