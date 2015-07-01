@@ -251,6 +251,7 @@ public class staveControl : MonoBehaviour {
 		while (staveIndex >= staveObjectArray.Count) {
 			createNewStave();
 		}
+		/*
 		//get image in stave at staveIndex
 		Image[] allImagesAtStave = staveObjectArray [staveIndex].GetComponentsInChildren<Image> ();
 		if (allImagesAtStave == null) {
@@ -269,7 +270,9 @@ public class staveControl : MonoBehaviour {
 				notes[counter] = allImagesAtStave[i];
 				counter++;
 			}
-		}
+		}*/
+		Image[] notes = new Image[noteNum];
+		_getNotes (staveIndex, notes);
 
 		if (startPos >= notes.Length) {
 			Debug.Log("Error : Indexing startPos out of space in placeNoteOnStave!");
@@ -317,6 +320,28 @@ public class staveControl : MonoBehaviour {
 
 	}
 
+	void _getNotes(int staveIndex, Image[] notes){
+		//get image in stave at staveIndex
+		Image[] allImagesAtStave = staveObjectArray [staveIndex].GetComponentsInChildren<Image> ();
+		if (allImagesAtStave == null) {
+			Debug.Log("Error : Can't find notes! notes missing in placeNoteOnStave");
+			return;
+		}
+		int counter = 0;
+		for (int i =0; i< allImagesAtStave.Length; i++) {
+			if(allImagesAtStave[i].tag == "note"){ 
+				notes[counter] = allImagesAtStave[i];
+				counter++;
+			}
+		}
+	}
+
+	//place connection line on stave
+	public void placeConnectionLineOnStave(int staveIndex, int startPos, int endPos, int noteTune){
+		float unityWidth = 35f;
+		float unityTuneHeight = offset;
+
+	}
 	//edit
 	public int editingPosition(){
 		return editStavePosition;

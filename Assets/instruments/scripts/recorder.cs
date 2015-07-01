@@ -16,6 +16,7 @@ public class recorder : MonoBehaviour {
 	private bool countdowningOrNot = false;
 	public Text test;//for test
 	public GameObject stavePanel;
+	public GameObject functionalPanel;
 	public bool getBool() {
 		return recording;
 	}
@@ -94,6 +95,7 @@ public class recorder : MonoBehaviour {
 	void stopRec () {
 		recording = false;
 		countdownPanel[countdownPanelNum].SetActive(false);
+		functionalPanel.SetActive (false);
 		end_time = Time.time;
 		test.text = "" + Records.Count;
 		sortNote ();

@@ -84,6 +84,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 					GameObject.FindWithTag("stavePanel").GetComponent<staveControl>().resetStave();
 					GameObject.FindWithTag("stavePanel").SetActive(false);
 					functionPanel.SetActive(true);
+					functionPanel.SetActive(true);
 				}
 				else{
 					if(stagePosition >= 0){
