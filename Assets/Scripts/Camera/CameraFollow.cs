@@ -101,8 +101,8 @@ public class CameraFollow : Photon.MonoBehaviour {
 			} else if (choose == "SYNTHESIZER") {
 				//main singer
 				if(GetComponent<PlayerMovement>().isStagePositionNotEmpty(3)){ return; }
-				cameraPosition = new Vector3(0f,0f,0f);
-				cameraRotation = Quaternion.Euler(90f, 0f,0f);
+				cameraPosition = new Vector3(-0.1f,4.7f,5.1f);
+				cameraRotation = Quaternion.Euler(70f, 0f,0f);
 			} else if (choose == "BASS") {
 				//bass
 				if(GetComponent<PlayerMovement>().isStagePositionNotEmpty(4)){ return; }

@@ -31,8 +31,8 @@ public class synthTouch : Photon.MonoBehaviour {
 
 			Ray ray = Camera.main.ScreenPointToRay(touch.position);
 			RaycastHit hit;
-			if ( Physics.Raycast(ray, out hit, Mathf.Infinity)) {
-
+			if ( Physics.Raycast(ray, out hit, Mathf.Infinity, 1<<11 | 1<<5)) {
+				if (hit.transform.gameObject.layer == LayerMask.NameToLayer("SYNTHESIZERTOUCH")) {
 					if (hit.collider != null) {
 						GameObject key = hit.collider.gameObject;
 
@@ -43,6 +43,7 @@ public class synthTouch : Photon.MonoBehaviour {
 							break;
 						}
 					}
+				}
 			}
 		} if (touchNew != touchOld) {
 			touchOld.GetComponent<synthpress>().Up( GetComponent<recorder>().getBool());

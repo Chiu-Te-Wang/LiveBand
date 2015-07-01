@@ -37,6 +37,9 @@ TagManager:
   - note
   - synthesizerPanel
   - connectionLine
+  - synthesizerReal
+  - synthesizerFake
+  - staveButton
   layers:
   - Default
   - TransparentFX
@@ -49,7 +52,7 @@ TagManager:
   - PIANOTOUCH
   - drumTouch
   - guitarTouch
-  - 
+  - SYNTHESIZERTOUCH
   - 
   - 
   - 

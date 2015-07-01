@@ -323,7 +323,7 @@ public class staveControl : MonoBehaviour {
 		float unityTuneHeight = offset;
 
 		Image[] notes = new Image[noteNum];
-		GameObject connectionLine;
+		Image connectionLine = new Image();
 		Image[] allImagesAtStave = staveObjectArray [staveIndex].GetComponentsInChildren<Image> ();
 		if (allImagesAtStave == null) {
 			Debug.Log("Error : Can't find notes! notes missing in placeConnectionLineOnStave");
@@ -335,7 +335,7 @@ public class staveControl : MonoBehaviour {
 				notes[counter] = allImagesAtStave[i];
 				counter++;
 			}else if(allImagesAtStave[i].tag == "connectionLine"){
-				//connectionLine = allImagesAtStave[i];
+				connectionLine = allImagesAtStave[i];
 			}
 		}
 		Vector3 tempVector3 = notes [startPos].transform.localPosition;

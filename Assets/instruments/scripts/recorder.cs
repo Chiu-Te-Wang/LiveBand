@@ -67,7 +67,7 @@ public class recorder : MonoBehaviour {
 
 	//use Records[] to produce notes on staves
 	void processStave(){
-		proccess();
+//		proccess();
 		if (stavePanel.GetActive ()) {
 			//is editing from startEditPosition stave
 			int startEditPosition = stavePanel.GetComponent<staveControl>().editingPosition();
@@ -150,7 +150,7 @@ public class recorder : MonoBehaviour {
 		}
 	}
 
-	List<OctData> proccess(){
+	/*List<OctData> proccess(){
 		
 		note[] notesData = new note[Records.Count];
 		notesData = Records.ToArray();
@@ -215,5 +215,5 @@ public class recorder : MonoBehaviour {
 				break;
 			}
 		}
-	}
+	}*/
 }
