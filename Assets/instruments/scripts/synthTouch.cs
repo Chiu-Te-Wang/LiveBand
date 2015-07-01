@@ -8,7 +8,7 @@ public class synthTouch : Photon.MonoBehaviour {
 	private GameObject touchOld;
 	private string chordNew;
 	private string chordOld;
-
+	public Text fuckBug;
 
 
 	private Transform trans;
@@ -31,13 +31,15 @@ public class synthTouch : Photon.MonoBehaviour {
 
 			Ray ray = Camera.main.ScreenPointToRay(touch.position);
 			RaycastHit hit;
+			fuckBug.text = "cast";
 			if ( Physics.Raycast(ray, out hit, Mathf.Infinity, 1<<11 | 1<<5)) {
 				if (hit.transform.gameObject.layer == LayerMask.NameToLayer("SYNTHESIZERTOUCH")) {
 					if (hit.collider != null) {
 						GameObject key = hit.collider.gameObject;
-
+						fuckBug.text = "hit";
 						if ( touch.phase != TouchPhase.Ended
 					  	&& touch.phase != TouchPhase.Canceled ) {
+							fuckBug.text = "hitgood";
 							touchNew = key;
 							chordNew = chord_pressed;
 							break;
