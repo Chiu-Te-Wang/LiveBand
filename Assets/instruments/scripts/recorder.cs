@@ -91,8 +91,9 @@ public class recorder : MonoBehaviour {
 			stavePanel.GetComponent<staveControl> ().placeNoteOnStave (0,7,4,0);
 			stavePanel.GetComponent<staveControl> ().placeConnectionLineOnStave(0,0,7,0);
 			stavePanel.GetComponent<staveControl> ().placeNoteOnStave (0,2,0,4);
-			stavePanel.GetComponent<staveControl> ().placeNoteOnStave (1,2,2,0);
-			stavePanel.GetComponent<staveControl> ().placeNoteOnStave (1,5,4,0);
+			stavePanel.GetComponent<staveControl> ().placeNoteOnStave (1,2,5,0);
+			stavePanel.GetComponent<staveControl> ().placeNoteOnStave (1,5,5,0);
+			stavePanel.GetComponent<staveControl> ().placeConnectionLineOnStave(1,2,5,5);
 			stavePanel.GetComponent<staveControl> ().placeNoteOnStave (2,0,0,6);
 			stavePanel.GetComponent<staveControl> ().placeNoteOnStave (3,0,0,7);
 			stavePanel.GetComponent<staveControl> ().placeNoteOnStave (5,6,8,0);

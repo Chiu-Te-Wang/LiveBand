@@ -330,6 +330,7 @@ public class staveControl : MonoBehaviour {
 			Debug.Log("Error : Can't find notes! notes missing in placeConnectionLineOnStave");
 			return;
 		}
+
 		int counter = 0;
 		for (int i =0; i< allImagesAtStave.Length; i++) {
 			if(allImagesAtStave[i].tag == "note"){ 
@@ -341,8 +342,10 @@ public class staveControl : MonoBehaviour {
 		}
 		Vector3 tempVector3 = notes [startPos].transform.localPosition;
 		Vector3 tempVector32 = notes [endPos].transform.localPosition;
-		connectionLine[0].transform.localPosition = new Vector3((tempVector3.x+tempVector32.x)/2f, tempVector3.y + noteOffset * (noteTune - modelNote), tempVector3.z);
-		connectionLine[0].transform.localScale = new Vector3 ((float)(endPos - startPos)*0.9f, 1f, 1f);
+		GameObject newConnectionLine = (GameObject) Instantiate(connectionLinePrefab,new Vector3(0f,0f,0f),Quaternion.Euler(Vector3.zero));
+		newConnectionLine.transform.SetParent (staveObjectArray [staveIndex].transform,false);
+		newConnectionLine.transform.localPosition = new Vector3((tempVector3.x+tempVector32.x)/2f, tempVector3.y + noteOffset * (noteTune - modelNote), tempVector3.z);
+		newConnectionLine.transform.localScale = new Vector3 ((float)(endPos - startPos)*0.9f, 1f, 1f);
 	}
 	//edit
 	public int editingPosition(){
