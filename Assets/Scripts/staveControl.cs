@@ -251,26 +251,7 @@ public class staveControl : MonoBehaviour {
 		while (staveIndex >= staveObjectArray.Count) {
 			createNewStave();
 		}
-		/*
-		//get image in stave at staveIndex
-		Image[] allImagesAtStave = staveObjectArray [staveIndex].GetComponentsInChildren<Image> ();
-		if (allImagesAtStave == null) {
-			Debug.Log("Error : Can't find notes! notes missing in placeNoteOnStave");
-			return;
-		}
-		//get notes in allImagesAtStave
-		int counter = 0;
-		for (int i =0; i< allImagesAtStave.Length; i++) {
-			if(allImagesAtStave[i].tag == "note"){ counter++; }
-		}
-		Image[] notes = new Image[counter];
-		counter = 0;
-		for (int i =0; i< allImagesAtStave.Length; i++) {
-			if(allImagesAtStave[i].tag == "note"){ 
-				notes[counter] = allImagesAtStave[i];
-				counter++;
-			}
-		}*/
+
 		Image[] notes = new Image[noteNum];
 		_getNotes (staveIndex, notes);
 
@@ -324,7 +305,7 @@ public class staveControl : MonoBehaviour {
 		//get image in stave at staveIndex
 		Image[] allImagesAtStave = staveObjectArray [staveIndex].GetComponentsInChildren<Image> ();
 		if (allImagesAtStave == null) {
-			Debug.Log("Error : Can't find notes! notes missing in placeNoteOnStave");
+			Debug.Log("Error : Can't find notes! notes missing in _getNotes");
 			return;
 		}
 		int counter = 0;
@@ -341,6 +322,25 @@ public class staveControl : MonoBehaviour {
 		float unityWidth = 35f;
 		float unityTuneHeight = offset;
 
+		Image[] notes = new Image[noteNum];
+		GameObject connectionLine;
+		Image[] allImagesAtStave = staveObjectArray [staveIndex].GetComponentsInChildren<Image> ();
+		if (allImagesAtStave == null) {
+			Debug.Log("Error : Can't find notes! notes missing in placeConnectionLineOnStave");
+			return;
+		}
+		int counter = 0;
+		for (int i =0; i< allImagesAtStave.Length; i++) {
+			if(allImagesAtStave[i].tag == "note"){ 
+				notes[counter] = allImagesAtStave[i];
+				counter++;
+			}else if(allImagesAtStave[i].tag == "connectionLine"){
+				connectionLine = allImagesAtStave[i];
+			}
+		}
+		Vector3 tempVector3 = notes [startPos].transform.localPosition;
+		connectionLine.transform.localPosition = new Vector3(tempVector3.x, tempVector3.y + noteOffset * (noteTune - modelNote), tempVector3.z);
+		connectionLine.transform.localScale = new Vector3 (2f, 1f, 1f);
 	}
 	//edit
 	public int editingPosition(){
@@ -368,25 +368,9 @@ public class staveControl : MonoBehaviour {
 	void SetNotePosition(){
 		int topCounter = 0;
 		for (int staveIndex = 0; staveIndex<staveNumberPer; staveIndex++) {
-			//get image in stave at staveIndex
-			Image[] allImagesAtStave = staveObjectArray [staveIndex].GetComponentsInChildren<Image> ();
-			if (allImagesAtStave == null) {
-				Debug.Log("Error : Can't find notes! notes missing in SetNotePosition");
-				return;
-			}
-			//get notes in allImagesAtStave
-			int counter = 0;
-			for (int i =0; i< allImagesAtStave.Length; i++) {
-				if(allImagesAtStave[i].tag == "note"){ counter++; }
-			}
-			Image[] notes = new Image[counter];
-			counter = 0;
-			for (int i =0; i< allImagesAtStave.Length; i++) {
-				if(allImagesAtStave[i].tag == "note"){ 
-					notes[counter] = allImagesAtStave[i];
-					counter++;
-				}
-			}
+
+			Image[] notes = new Image[noteNum];
+			_getNotes(staveIndex, notes);
 			
 			//sort notes by position
 			for (int i = 0; i<notes.Length; i++) {
