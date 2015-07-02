@@ -14,7 +14,6 @@ public class recorder : MonoBehaviour {
 	private int countdownPanelNum = 0;
 	private int countdown = 3;
 	private bool countdowningOrNot = false;
-	public Text test;//for test
 	public GameObject stavePanel;
 	public GameObject functionalPanel;
 	public bool getBool() {
@@ -111,7 +110,6 @@ public class recorder : MonoBehaviour {
 					int LowPos = 29;
 					//if( OctL[i].notesL.Count == 0)	stavePanel.GetComponent<staveControl> ().placeNoteOnStave(sectAt, octAt, 0, 6); 
 					for ( int j = 0; j < OctL[i].notesL.Count; j++ ) {
-						test.text = "fuck oct "+OctL[i].grade + " j "+j;
 						//    note in oct
 
 						string toPrint;
@@ -121,7 +119,6 @@ public class recorder : MonoBehaviour {
 						int step = toPrint[toPrint.Length-1] - '0';
 						char Note = toPrint[0];
 						int NoteInt = 0;
-						//test.text = "fuck j " + j + "1";
 						if(Note == 'C') NoteInt = 0;
 						else if (Note == 'D') NoteInt = 1;
 						else if (Note == 'E') NoteInt = 2;
@@ -146,7 +143,6 @@ public class recorder : MonoBehaviour {
 						stavePanel.GetComponent<staveControl> ().placeNoteOnStave(sectAt, octAt, NotePos, KindOfNote);
 						stavePanel.GetComponent<staveControl> ().placeNoteOnStave(sectAt, octAt, NotePos, 4+x);
 						
-						//test.text = "fuck j " + j + "2";
 						if ( toPrint[1] == '#') {
 							stavePanel.GetComponent<staveControl> ().placeNoteOnStave(sectAt, octAt, NotePos, 3);
 						}
@@ -180,7 +176,6 @@ public class recorder : MonoBehaviour {
 		countdownPanel[countdownPanelNum].SetActive(false);
 		functionalPanel.SetActive (false);
 		end_time = Time.time;
-		test.text = "" + Records.Count;
 		sortNote ();
 		processStave ();
 	}
@@ -269,7 +264,6 @@ public class recorder : MonoBehaviour {
 				else curOct.grade = 0;
 
 
-				test.text = "fuck u";
 			}*/
 
 
