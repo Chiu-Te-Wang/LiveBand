@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class synthpress : Photon.MonoBehaviour {
 	private bool pressing;
@@ -47,6 +48,7 @@ public class synthpress : Photon.MonoBehaviour {
 		//PlayChord ();
 
 		photonView.RPC ("PPRPCS", PhotonTargets.AllViaServer, nameD, pressed);
+		print ("play_style = " + play_style);
 		PhotonNetwork.SendOutgoingCommands ();
 		//if ( rec ) recStart = Time.time;
 
@@ -54,35 +56,34 @@ public class synthpress : Photon.MonoBehaviour {
 		GetComponent<Transform> ().Translate (0, -0.09f, 0);
 	}
 	void PlayChord(){
-
 		if (play_style == "press") {
-			Invoke ("PlayChord", 120/bpm);
-			Invoke ("strike0", 0);
-			Invoke ("strike1", 0);
-			Invoke ("strike2", 0);
-			Invoke ("strike3", 0);
+			Invoke ("PlayChord", 120f/bpm);
+			Invoke ("strike0", 0f);
+			Invoke ("strike1", 0f);
+			Invoke ("strike2", 0f);
+			Invoke ("strike3", 0f);
 		} else if (play_style == "step") {
-			Invoke ("PlayChord", 120/bpm);
-			Invoke ("strike0", 0);
-			Invoke ("strike1", 30/bpm);
-			Invoke ("strike2", 60/bpm);
-			Invoke ("strike3", 90/bpm);
+			Invoke ("PlayChord", 120f/bpm);
+			Invoke ("strike0", 0f);
+			Invoke ("strike1", 30f/bpm);
+			Invoke ("strike2", 60f/bpm);
+			Invoke ("strike3", 90f/bpm);
 		} else if (play_style == "hill") {
-			Invoke ("PlayChord", 240/bpm);
-			Invoke ("strike0", 0);
-			Invoke ("strike1", 30/bpm);
-			Invoke ("strike2", 60/bpm);
-			Invoke ("strike3", 90/bpm);
-			Invoke ("strike4", 120/bpm);
-			Invoke ("strike3", 150/bpm);
-			Invoke ("strike2", 180/bpm);
-			Invoke ("strike1", 210/bpm);
+			Invoke ("PlayChord", 240f/bpm);
+			Invoke ("strike0", 0f);
+			Invoke ("strike1", 30f/bpm);
+			Invoke ("strike2", 60f/bpm);
+			Invoke ("strike3", 90f/bpm);
+			Invoke ("strike4", 120f/bpm);
+			Invoke ("strike3", 150f/bpm);
+			Invoke ("strike2", 180f/bpm);
+			Invoke ("strike1", 210f/bpm);
 		} else if (play_style == "updown") {
-			Invoke ("PlayChord", 120/bpm);
-			Invoke ("strike0", 0);
-			Invoke ("strike123", 60/bpm);
+			Invoke ("PlayChord", 120f/bpm);
+			Invoke ("strike0", 0f);
+			Invoke ("strike123", 60f/bpm);
 		} else if (play_style == "random") {
-			Invoke ("PlayChord", 30/bpm);
+			Invoke ("PlayChord", 30f/bpm);
 			int x = Random.Range(0,4);
 			playing[x].Play ();
 		}

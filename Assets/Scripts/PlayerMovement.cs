@@ -43,6 +43,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 	private Button[] buttonSet;
 	private GameObject synthesizerPanel;
 	private GameObject staveButton;
+	private GameObject MusicListPanel;
 	//quit game
 	private GameObject exitPanel;
 
@@ -64,6 +65,7 @@ public class PlayerMovement : Photon.MonoBehaviour
 			synthesizerPanel.SetActive(false);
 			staveButton = GameObject.FindWithTag("staveButton");
 			staveButton.SetActive(false);
+			MusicListPanel = GameObject.FindWithTag("musicListPanel");
 			buttonSetControl ();
 			Text usernameText = GameObject.FindWithTag("characterPanel").GetComponentsInChildren<Text>()[1];
 			usernameText.text = photonView.owner.name;
@@ -92,14 +94,12 @@ public class PlayerMovement : Photon.MonoBehaviour
 					GameObject.FindWithTag("stavePanel").GetComponent<staveControl>().resetStave();
 					GameObject.FindWithTag("stavePanel").SetActive(false);
 					functionPanel.SetActive(true);
-					functionPanel.SetActive(true);
 				}
 				else{
 					if(stagePosition >= 0){
 						//go down stage
 						setDownStage();
 						gameObject.GetComponent<CameraFollow>().setDownStage();
-						print ("downstage");
 					}
 					else{
 						//exit game or not
@@ -376,6 +376,9 @@ public class PlayerMovement : Photon.MonoBehaviour
 		if (GameObject.FindWithTag ("stavePanel") != null) {
 			GameObject.FindWithTag("stavePanel").SetActive(false);
 		}
+
+		//close MusicListPanel
+		MusicListPanel.SetActive (false);
 	}
 
 	void buttonSetControl(){
