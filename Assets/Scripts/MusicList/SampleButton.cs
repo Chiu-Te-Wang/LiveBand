@@ -29,6 +29,14 @@ public class SampleButton : MonoBehaviour {
 		}
 	}
 
+	void Update(){
+		if(playing){
+			if(!source.isPlaying){
+				playing = false;
+			}
+		}
+	}
+
 	public void destroythis(){
 		Destroy (this.gameObject);
 	}
