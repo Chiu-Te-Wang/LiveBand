@@ -73,8 +73,12 @@ public class recorder : MonoBehaviour {
 		print ("STAVE "+ OctL.Count/8);
 		for(int i = 0; i < OctL.Count/8; ++ i)
 		stavePanel.GetComponent<staveControl> ().cleanStave(i);
+		if (OctL.Count % 8 != 0) {
+			stavePanel.GetComponent<staveControl> ().cleanStave(OctL.Count/8);
+		}
 		Records.Clear ();
 		OctL.Clear ();
+
 	}
 	
 	//use Records[] to produce notes on staves
