@@ -9,7 +9,7 @@ public class recorder : MonoBehaviour {
 	public int bpm;
 	public float start_time;
 	public float end_time;
-	private List<note> Records = new List<note>(); 
+	public List<note> Records = new List<note>(); 
 	public GameObject[] countdownPanel;
 	private int countdownPanelNum = 0;
 	private int countdown = 3;
@@ -69,17 +69,27 @@ public class recorder : MonoBehaviour {
 	void Update () {
 		
 	}
+
+	public void cleanAll(){
+		print ("STAVE "+ OctL.Count/8);
+		for(int i = 0; i < OctL.Count/8; ++ i)
+		stavePanel.GetComponent<staveControl> ().cleanStave(i);
+		Records.Clear ();
+		OctL.Clear ();
+	}
 	
 	//use Records[] to produce notes on staves
 	void processStave(){
-		proccess();
 		if (stavePanel.GetActive ()) {
 			//is editing from startEditPosition stave
 			int startEditPosition = stavePanel.GetComponent<staveControl>().editingPosition();
-			stavePanel.GetComponent<staveControl> ().placeNoteOnStave (startEditPosition,0,0,0);
-			stavePanel.GetComponent<staveControl> ().cleanStave(1);
-			stavePanel.GetComponent<staveControl> ().cleanStave(0);
-		} else {
+			//stavePanel.GetComponent<staveControl> ().placeNoteOnStave (startEditPosition,0,0,0);
+
+			cleanAll();
+			//proccess();
+		}
+		// else{
+			proccess();
 			//first time recording from 0 stave
 			stavePanel.SetActive (true);
 			//==== do things here ====
@@ -101,15 +111,17 @@ public class recorder : MonoBehaviour {
 					int LowPos = 29;
 					//if( OctL[i].notesL.Count == 0)	stavePanel.GetComponent<staveControl> ().placeNoteOnStave(sectAt, octAt, 0, 6); 
 					for ( int j = 0; j < OctL[i].notesL.Count; j++ ) {
-						
+						test.text = "fuck oct "+OctL[i].grade + " j "+j;
 						//    note in oct
-						string toPrint = "C1";
+
+						string toPrint;
 						if ( OctL[i].notesL[j].getAudioSource() != null )
 							toPrint = OctL[i].notesL[j].getAudioSource().gameObject.name;
+						else break;
 						int step = toPrint[toPrint.Length-1] - '0';
 						char Note = toPrint[0];
 						int NoteInt = 0;
-						
+						//test.text = "fuck j " + j + "1";
 						if(Note == 'C') NoteInt = 0;
 						else if (Note == 'D') NoteInt = 1;
 						else if (Note == 'E') NoteInt = 2;
@@ -134,7 +146,7 @@ public class recorder : MonoBehaviour {
 						stavePanel.GetComponent<staveControl> ().placeNoteOnStave(sectAt, octAt, NotePos, KindOfNote);
 						stavePanel.GetComponent<staveControl> ().placeNoteOnStave(sectAt, octAt, NotePos, 4+x);
 						
-						
+						//test.text = "fuck j " + j + "2";
 						if ( toPrint[1] == '#') {
 							stavePanel.GetComponent<staveControl> ().placeNoteOnStave(sectAt, octAt, NotePos, 3);
 						}
@@ -149,7 +161,7 @@ public class recorder : MonoBehaviour {
 				}
 			}
 			//=========================
-		}
+		//}
 		stavePanel.GetComponent<staveControl> ().spreadStave ();
 	}
 	
@@ -172,6 +184,7 @@ public class recorder : MonoBehaviour {
 		sortNote ();
 		processStave ();
 	}
+
 	public void Add ( AudioSource audio, float start, float end) {
 		Records.Add (new note (audio, start, end));
 	}
@@ -236,7 +249,7 @@ public class recorder : MonoBehaviour {
 		
 		while ( front < notesData.Length ) {
 			print ("in 2");
-			curOct = new OctData();
+			//curOct = new OctData();
 			float oct_time = oct_count*oct + start_time;
 
 			//starting note of this oct
@@ -251,10 +264,16 @@ public class recorder : MonoBehaviour {
 			}
 
 			// upgrade
-			if ( curOct.notesL == prevOct.notesL ) {
+			/*if ( curOct.notesL == prevOct.notesL ) {
 				if(Upgrade())	curOct.grade = 1;
 				else curOct.grade = 0;
-			}
+
+
+				test.text = "fuck u";
+			}*/
+
+
+
 			//add cur
 			OctL.Add( curOct );
 			
@@ -266,6 +285,7 @@ public class recorder : MonoBehaviour {
 				if ( n.getEnd() < (oct_time - oct/2) 
 				    || n.getEnd() >= (oct_time + oct/2) ) {
 					curOct.remainL.Add( n );
+					//curOct.notesL.Add( n ); 
 				}
 			}
 			oct_count++;

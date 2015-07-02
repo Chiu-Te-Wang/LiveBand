@@ -356,6 +356,7 @@ public class staveControl : MonoBehaviour {
 	//clean stave
 	public void cleanStave(int staveIndex){
 		bool originBool = staveObjectArray [staveIndex].GetActive ();
+		print ("stave num" + staveNumber);
 		staveObjectArray [staveIndex].SetActive (true);
 		Image[] allImagesAtStave = staveObjectArray [staveIndex].GetComponentsInChildren<Image> ();
 		for (int i =0; i< allImagesAtStave.Length; i++) {
