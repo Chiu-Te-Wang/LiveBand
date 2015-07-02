@@ -386,15 +386,15 @@ public class PlayerMovement : Photon.MonoBehaviour
 		buttonSet[0] = GameObject.FindWithTag ("pianoBtn").GetComponent<Button>();
 		buttonSet[1] = GameObject.FindWithTag ("guitarBtn").GetComponent<Button>();
 		buttonSet[2] = GameObject.FindWithTag ("drumBtn").GetComponent<Button>();
-		buttonSet[3] = GameObject.FindWithTag ("BassBtn").GetComponent<Button>();
-		buttonSet[4] = GameObject.FindWithTag ("synthBtn").GetComponent<Button>();
+		buttonSet[3] = GameObject.FindWithTag ("synthBtn").GetComponent<Button>();
+		buttonSet[4] = GameObject.FindWithTag ("BassBtn").GetComponent<Button>();
 		buttonSet[5] = GameObject.FindWithTag ("exitBtn").GetComponent<Button>();
 
 		buttonSet[0].onClick.AddListener (() => chooseInstrument ("PIANO"));
 		buttonSet[1].onClick.AddListener (() => chooseInstrument ("GUITAR"));
 		buttonSet[2].onClick.AddListener (() => chooseInstrument ("DRUM"));
-		buttonSet[3].onClick.AddListener (() => chooseInstrument ("BASS"));
-		buttonSet[4].onClick.AddListener (() => chooseInstrument ("SYNTHESIZER"));
+		buttonSet[3].onClick.AddListener (() => chooseInstrument ("SYNTHESIZER"));
+		buttonSet[4].onClick.AddListener (() => chooseInstrument ("BASS"));
 		buttonSet[5].onClick.AddListener (() => chooseInstrument ("EXIT"));
 		Button exitStageButton = GameObject.FindWithTag ("downStageButton").GetComponent<Button>();
 		exitStageButton.onClick.AddListener(()=>setDownStage());

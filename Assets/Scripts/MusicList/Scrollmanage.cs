@@ -47,9 +47,6 @@ public class Scrollmanage : MonoBehaviour {
 				Debug.Log ("Destroy");
 			}
 			musiclist.SetActive(false);
-			if (GameObject.FindWithTag ("synthesizerReal") != null) {
-				synthPanel.SetActive(true);
-			}
 			return;
 		}
 		filepath = "/storage/emulated/0/Music/" + "LiveBand/"; 
@@ -59,11 +56,8 @@ public class Scrollmanage : MonoBehaviour {
 		Debug.Log ("fileInfo size:"+fileInfo.Length);
 
 		musiclist.SetActive (true);
-		if (GameObject.FindWithTag ("synthesizerReal") != null) {
-			synthPanel.SetActive(false);
-		}
 		openornot = true;
 		PopulateList (fileInfo.Length);
 	}
-	
+
 }

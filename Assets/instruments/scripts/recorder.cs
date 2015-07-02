@@ -83,8 +83,6 @@ public class recorder : MonoBehaviour {
 			//is editing from startEditPosition stave
 			int startEditPosition = stavePanel.GetComponent<staveControl>().editingPosition();
 			//stavePanel.GetComponent<staveControl> ().placeNoteOnStave (startEditPosition,0,0,0);
-
-			cleanAll();
 			//proccess();
 		}
 		// else{
@@ -170,6 +168,7 @@ public class recorder : MonoBehaviour {
 	void startRec () {
 		start_time = Time.time;
 		recording = true;
+		cleanAll();
 	}
 	void stopRec () {
 		recording = false;

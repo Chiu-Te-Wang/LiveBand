@@ -66,13 +66,20 @@ public class CameraFollow : Photon.MonoBehaviour {
 	}
 
 	void buttonSetControl(){
-		GameObject ButtonSet = GameObject.FindWithTag ("buttonSet");
-		ButtonSet.GetComponentsInChildren<Button> () [0].onClick.AddListener (()=>SetCameraToInstrument("PIANO"));
-		ButtonSet.GetComponentsInChildren<Button> () [1].onClick.AddListener (()=>SetCameraToInstrument("GUITAR"));
-		ButtonSet.GetComponentsInChildren<Button> () [2].onClick.AddListener (()=>SetCameraToInstrument("DRUM"));
-		ButtonSet.GetComponentsInChildren<Button> () [3].onClick.AddListener (()=>SetCameraToInstrument("BASS"));
-		ButtonSet.GetComponentsInChildren<Button> () [4].onClick.AddListener (()=>SetCameraToInstrument("SYNTHESIZER"));
-		ButtonSet.GetComponentsInChildren<Button> () [5].onClick.AddListener (()=>SetCameraToInstrument("EXIT"));
+		Button[] buttonSet = new Button[6];
+		buttonSet[0] = GameObject.FindWithTag ("pianoBtn").GetComponent<Button>();
+		buttonSet[1] = GameObject.FindWithTag ("guitarBtn").GetComponent<Button>();
+		buttonSet[2] = GameObject.FindWithTag ("drumBtn").GetComponent<Button>();
+		buttonSet[3] = GameObject.FindWithTag ("synthBtn").GetComponent<Button>();
+		buttonSet[4] = GameObject.FindWithTag ("BassBtn").GetComponent<Button>();
+		buttonSet[5] = GameObject.FindWithTag ("exitBtn").GetComponent<Button>();
+
+		buttonSet[0].onClick.AddListener (()=>SetCameraToInstrument("PIANO"));
+		buttonSet[1].onClick.AddListener (()=>SetCameraToInstrument("GUITAR"));
+		buttonSet[2].onClick.AddListener (()=>SetCameraToInstrument("DRUM"));
+		buttonSet[3].onClick.AddListener (()=>SetCameraToInstrument("SYNTHESIZER"));
+		buttonSet[4].onClick.AddListener (()=>SetCameraToInstrument("BASS"));
+		buttonSet[5].onClick.AddListener (()=>SetCameraToInstrument("EXIT"));
 		Button exitStageButton = GameObject.FindWithTag ("functionPanel").GetComponentInChildren<Button>();
 		exitStageButton.onClick.AddListener(()=>setDownStage());
 	}
