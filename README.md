@@ -1,7 +1,7 @@
 # LiveBand
 NTUEE NMLAB 103-2 FINAL Project using Unity 3D
 
-![Alt text](./Assets/Resources/audience.png?raw=true "Welcome Pictire")
+<img src="./Assets/Resources/login.png" alt="Welcome" width=300px align="middle"></img>
 
 ## Goal
 Threre are so many music related applications, but none of them has connection feature. Therefore, we decide to create an application that can provide connection feature and musical instruments at the same time. 
